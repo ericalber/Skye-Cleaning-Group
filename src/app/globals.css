@@ -1,26 +1,150 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --skye-50: #f0f8ff;
+  --skye-100: #e7f5ff;
+  --skye-200: #cfeaff;
+  --skye-300: #a9d7fb;
+  --skye-400: #7fc2f3;
+  --skye-500: #55acde;
+  --skye-600: #3c94c8;
+  --skye-700: #287aa9;
+  --skye-800: #1b5c80;
+  --skye-900: #123c54;
+  --ink-900: #0f172a;
+  --slate-600: #64748b;
+  --foam: #dff2fb;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: #ffffff;
+  color: var(--ink-900);
+}
+
+::selection {
+  background: var(--skye-200);
+  color: var(--ink-900);
+}
+
+.container-px {
+  @apply px-4 sm:px-6 lg:px-8;
+}
+
+.btn {
+  @apply inline-flex h-11 items-center justify-center rounded-2xl px-5 font-semibold transition;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, var(--skye-600), var(--skye-400));
+  @apply text-white shadow-md;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.btn-secondary {
+  @apply border border-[--skye-300] bg-white text-[--skye-700];
+}
+
+.btn-secondary:hover {
+  @apply bg-[--skye-50];
+}
+
+.card {
+  @apply rounded-2xl border border-black/5 bg-white shadow-[0_8px_30px_rgba(0,0,0,.06)];
+}
+
+.chip {
+  @apply inline-flex items-center gap-2 rounded-full border border-[--skye-200] bg-[--skye-50] px-3 py-1 text-sm text-[--skye-700];
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+
+/* Premium surface styles */
+.surface {
+  --tint: #ffffff;
+  --tint-hi: color-mix(in oklab, var(--tint) 92%, white);
+  --tint-lo: color-mix(in oklab, var(--tint) 86%, black);
+  --edge: rgba(255, 255, 255, 0.45);
+  --shadow: 0 10px 36px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+  position: relative;
+  border-radius: 1.25rem;
+  background:
+    linear-gradient(180deg, var(--tint-hi), var(--tint)),
+    radial-gradient(120% 140% at 10% 0%, rgba(255, 255, 255, 0.55), transparent 60%);
+  box-shadow: var(--shadow);
+  border: 1px solid color-mix(in oklab, var(--tint) 75%, black 25% / 8%);
+}
+
+.surface::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.28), transparent 60%);
+  pointer-events: none;
+}
+
+.surface::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1px 1px at 25% 30%, rgba(0, 0, 0, 0.12), transparent 55%),
+    radial-gradient(1px 1px at 70% 65%, rgba(255, 255, 255, 0.25), transparent 55%);
+  opacity: 0.035;
+}
+
+.surface--white {
+  --tint: #ffffff;
+}
+
+.surface--skye {
+  --tint: #55acde;
+}
+
+.surface--skye-deep {
+  --tint: #287aa9;
+}
+
+.surface--rose {
+  --tint: #ff4f7d;
+}
+
+.surface--soft {
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+@layer base {
+  a {
+    @apply transition-colors;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    @apply outline-none ring-2 ring-offset-2 ring-[var(--skye-400)] ring-offset-white;
+  }
 }
