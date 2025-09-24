@@ -32,7 +32,13 @@ const serviceOptions: { value: FormData['service']; label: string }[] = [
 
 const allowedServiceParams = new Set(serviceOptions.map((option) => option.value))
 
-export default function QuoteForm({ compact = false }: { compact?: boolean }) {
+export default function QuoteForm({
+  compact = false,
+  initialService,
+}: {
+  compact?: boolean
+  initialService?: FormData['service']
+}) {
   const searchParams = useSearchParams()
   const [submitted, setSubmitted] = useState(false)
 
@@ -45,16 +51,20 @@ export default function QuoteForm({ compact = false }: { compact?: boolean }) {
   } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues: {
-      service: undefined,
+      service: initialService,
     },
   })
 
   useEffect(() => {
+    if (initialService && allowedServiceParams.has(initialService)) {
+      setValue('service', initialService)
+      return
+    }
     const serviceParam = searchParams.get('service')
     if (serviceParam && allowedServiceParams.has(serviceParam as FormData['service'])) {
       setValue('service', serviceParam as FormData['service'])
     }
-  }, [searchParams, setValue])
+  }, [initialService, searchParams, setValue])
 
   const onSubmit = async (data: FormData) => {
     setSubmitted(false)

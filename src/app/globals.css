@@ -99,7 +99,7 @@ body {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.28), transparent 60%);
+  background: var(--surface-gloss, linear-gradient(180deg, rgba(255, 255, 255, 0.28), transparent 60%));
   pointer-events: none;
 }
 
@@ -111,8 +111,9 @@ body {
   pointer-events: none;
   background-image:
     radial-gradient(1px 1px at 25% 30%, rgba(0, 0, 0, 0.12), transparent 55%),
-    radial-gradient(1px 1px at 70% 65%, rgba(255, 255, 255, 0.25), transparent 55%);
-  opacity: 0.035;
+    radial-gradient(1px 1px at 70% 65%, rgba(255, 255, 255, 0.25), transparent 55%),
+    var(--surface-overlay, linear-gradient(transparent, transparent));
+  opacity: var(--surface-overlay-opacity, 0.035);
 }
 
 .surface--white {
@@ -127,12 +128,24 @@ body {
   --tint: #287aa9;
 }
 
+.surface--navy {
+  --tint: #123c54;
+}
+
 .surface--rose {
   --tint: #ff4f7d;
 }
 
 .surface--soft {
   --shadow: 0 8px 24px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.surface--metal {
+  --surface-gloss: linear-gradient(125deg, rgba(255, 255, 255, 0.32) 0%, rgba(255, 255, 255, 0.05) 42%, rgba(255, 255, 255, 0) 65%);
+  --surface-overlay: linear-gradient(155deg, rgba(255, 255, 255, 0.15) 0%, rgba(95, 151, 191, 0.12) 38%, rgba(9, 31, 48, 0.42) 90%);
+  --surface-overlay-opacity: 0.12;
+  --shadow: 0 26px 48px rgba(11, 32, 51, 0.28), 0 12px 24px rgba(4, 18, 30, 0.24);
+  border: 1px solid rgba(255, 255, 255, 0.14);
 }
 
 @layer base {

@@ -39,15 +39,15 @@ export default function FAQ() {
         {faqs.map(({ question, answer }, index) => {
           const isOpen = active === index
           return (
-            <div key={question} className="overflow-hidden rounded-2xl border border-black/5 bg-white shadow-sm">
+            <div key={question} className="surface surface--navy surface--soft overflow-hidden text-white">
               <button
                 type="button"
                 className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
                 onClick={() => setActive(isOpen ? null : index)}
                 aria-expanded={isOpen}
               >
-                <span className="text-sm font-semibold text-ink-900">{question}</span>
-                <span className="text-xl text-skye-600" aria-hidden="true">
+                <span className="text-sm font-semibold">{question}</span>
+                <span className="text-xl text-amber-300" aria-hidden="true">
                   {isOpen ? '–' : '+'}
                 </span>
               </button>
@@ -60,7 +60,7 @@ export default function FAQ() {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.2, ease: 'easeOut' }}
                   >
-                    <p className="px-5 pb-5 text-sm text-slate-600">{answer}</p>
+                    <p className="px-5 pb-5 text-sm text-white/80">{answer}</p>
                   </motion.div>
                 )}
               </AnimatePresence>

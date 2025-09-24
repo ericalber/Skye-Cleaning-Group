@@ -1,69 +1,97 @@
-import Link from 'next/link'
+import Image from 'next/image'
 
 const year = new Date().getFullYear()
 
-const quickLinks = [
-  { label: 'Services', href: '#services' },
-  { label: 'Process', href: '#process' },
-  { label: 'Reviews', href: '#reviews' },
-  { label: 'FAQ', href: '#faq' },
+const reputationLogos = [
+  { src: '/logos/google-reviews.svg', alt: 'Google reviews badge' },
+  { src: '/logos/thumbtack.png', alt: 'Thumbtack Top Pro badge' },
+  { src: '/logos/yelp.png', alt: 'Yelp reviews badge' },
+]
+
+const contactLinks = [
+  {
+    href: 'tel:+14154978008',
+    label: 'Call +1 (415) 497-8008',
+    icon: '/icons/phone.svg',
+    alt: 'Phone icon',
+  },
+  {
+    href: 'https://wa.me/14154978008',
+    label: 'WhatsApp +1 (415) 497-8008',
+    icon: '/icons/whatsapp.svg',
+    alt: 'WhatsApp icon',
+    external: true,
+  },
+  {
+    href: 'mailto:contact@skyecgroup.com',
+    label: 'Email: contact@skyecgroup.com',
+    icon: '/icons/email.png',
+    alt: 'Email icon',
+  },
+  {
+    href: 'https://www.instagram.com/skyecgroup',
+    label: 'Instagram: @skyecgroup',
+    icon: '/icons/instagram.png',
+    alt: 'Instagram icon',
+    external: true,
+  },
 ]
 
 export default function Footer() {
   return (
-    <footer className="bg-ink-900 text-white">
-      <div className="container-px py-12">
-        <div className="grid gap-10 md:grid-cols-[1.2fr_0.8fr_1fr]">
+    <footer className="container-px pb-16">
+      <div className="surface surface--white p-10 rounded-3xl">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
           <div>
-            <p className="text-lg font-semibold">Skye Cleaning Group</p>
-            <p className="mt-2 max-w-sm text-sm text-white/70">
-              Premium residential and light commercial cleaning for San Francisco and the North Bay. Personalized care,
-              trusted professionals, and the Skye Done-Right Guarantee.
+            <Image src="/logo-skye.png" alt="SkyeC Group logo" width={120} height={48} className="h-10 w-auto object-contain" />
+            <p className="mt-4 text-sm text-slate-600">
+              SkyeC Group — Residential &amp; Light Commercial Cleaning na Bay Area / North Bay. Localizada em San Francisco,
+              oferecemos atendimento concierge para residências e espaços boutique.
             </p>
-            <div className="mt-4 space-y-1 text-sm">
-              <a href="tel:+14154978008" className="block text-white hover:text-skye-200">
-                +1 (415) 497-8008
-              </a>
-              <a href="mailto:hello@skycleaninggroup.com" className="block text-white hover:text-skye-200">
-                hello@skycleaninggroup.com
-              </a>
-            </div>
+            <p className="mt-6 text-xs text-slate-500">© {year} SkyeC Group. Desenvolvido pela Skye Cleaning Group.</p>
           </div>
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-white/70">Navigation</h3>
-            <ul className="mt-4 space-y-2 text-sm">
-              {quickLinks.map(({ label, href }) => (
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">Contato</h3>
+            <ul className="mt-4 space-y-3 text-sm text-ink-900">
+              {contactLinks.map(({ href, label, icon, alt, external }) => (
                 <li key={label}>
-                  <a href={href} className="hover:text-skye-200">
-                    {label}
+                  <a
+                    href={href}
+                    className="flex items-center gap-3 rounded-xl border border-slate-200/80 bg-white/60 px-3 py-2 text-sm font-medium text-ink-900 shadow-sm transition hover:-translate-y-[1px] hover:border-skye-200 hover:bg-white focus-visible:-translate-y-[1px] focus-visible:border-skye-200 focus-visible:bg-white"
+                    rel={external ? 'noopener noreferrer' : undefined}
+                    target={external ? '_blank' : undefined}
+                  >
+                    <span className="relative flex h-7 w-7 items-center justify-center overflow-hidden rounded-full bg-white">
+                      <Image src={icon} alt={alt} width={24} height={24} className="h-6 w-6 object-contain" />
+                    </span>
+                    <span>{label}</span>
                   </a>
                 </li>
               ))}
-              <li>
-                <Link href="/?service=recurring#quote" className="hover:text-skye-200">
-                  Get My Free Estimate
-                </Link>
-              </li>
             </ul>
           </div>
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-white/70">Hours</h3>
-            <p className="mt-4 text-sm text-white/70">Monday to Saturday, 8am—7pm.</p>
-            <p className="mt-2 text-sm text-white/70">Sunday appointments available upon request.</p>
-            <div className="mt-4 inline-flex rounded-full bg-white/10 px-4 py-2 text-xs uppercase tracking-wide text-white/80">
-              EIN 12-3456789 · SF Biz Reg #0000000
-            </div>
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">Service Area</h3>
+            <ul className="mt-4 space-y-2 text-sm text-ink-900">
+              <li>San Francisco</li>
+              <li>Marin — Novato, San Rafael, Mill Valley, Sausalito</li>
+              <li>North Bay — Petaluma, Santa Rosa</li>
+            </ul>
           </div>
         </div>
-        <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-xs text-white/60 md:flex-row">
-          <p>© {year} Skye Cleaning Group. All rights reserved.</p>
-          <div className="flex items-center gap-5">
-            <Link href="#quote" className="hover:text-skye-200">
-              Request Cleaning Now
-            </Link>
-            <a href="https://wa.me/14154978008" className="hover:text-skye-200">
-              Talk on WhatsApp
-            </a>
+        <div className="mt-10 flex flex-col gap-4 border-t border-slate-200/60 pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-xs text-slate-500">Concierge de limpeza premium para sua próxima visita Skye.</p>
+          <div className="flex flex-wrap items-center justify-end gap-4">
+            {reputationLogos.map(({ src, alt }) => (
+              <Image
+                key={src}
+                src={src}
+                alt={alt}
+                width={90}
+                height={32}
+                className="h-7 w-[90px] object-contain opacity-80 transition-opacity hover:opacity-100"
+              />
+            ))}
           </div>
         </div>
       </div>
