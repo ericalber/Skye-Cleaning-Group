@@ -5,7 +5,7 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Skye Cleaning Group — Residential & Light Commercial Cleaning',
+  title: 'Skye Cleaning Group - Residential & Light Commercial Cleaning',
   description:
     'Skye Cleaning Group delivers premium residential and light commercial cleaning across San Francisco and the North Bay with trusted teams and our Skye Done-Right Guarantee.',
 }

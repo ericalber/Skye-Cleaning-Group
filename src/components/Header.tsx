@@ -2,20 +2,30 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Menu, Phone, MessageCircle, X } from 'lucide-react'
 import Logo from './Logo'
 
-const navItems = [
-  { href: '#services', label: 'Services' },
-  { href: '#process', label: 'Process' },
-  { href: '#reviews', label: 'Reviews' },
-  { href: '#faq', label: 'FAQ' },
-  { href: '#areas', label: 'Service Area' },
+type NavItem = {
+  href: string
+  label: string
+  type: 'route' | 'anchor'
+}
+
+const navItems: NavItem[] = [
+  { href: '/', label: 'Home', type: 'route' },
+  { href: '/about', label: 'About Us', type: 'route' },
+  { href: '#services', label: 'Services', type: 'anchor' },
+  { href: '#process', label: 'Process', type: 'anchor' },
+  { href: '#reviews', label: 'Reviews', type: 'anchor' },
+  { href: '#faq', label: 'FAQ', type: 'anchor' },
+  { href: '#areas', label: 'Service Area', type: 'anchor' },
 ]
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 8)
@@ -32,11 +42,14 @@ export default function Header() {
       <div className="px-0 sm:px-2 lg:px-4 flex h-16 items-center justify-between">
         <Logo />
         <nav className="hidden items-center gap-6 text-sm md:flex">
-          {navItems.map((item) => (
-            <a key={item.href} href={item.href} className="hover:text-skye-700">
-              {item.label}
-            </a>
-          ))}
+          {navItems.map(({ href, label, type }) => {
+            const targetHref = type === 'anchor' ? (pathname === '/' ? href : `/${href}`) : href
+            return (
+              <Link key={`${label}-${href}`} href={targetHref} className="hover:text-skye-700">
+                {label}
+              </Link>
+            )
+          })}
         </nav>
         <div className="hidden items-center gap-2 sm:flex">
           <Link
@@ -66,16 +79,19 @@ export default function Header() {
       {menuOpen && (
         <div className="border-t bg-white py-4 sm:hidden">
           <div className="container-px flex flex-col gap-4">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="text-sm font-medium text-ink-900 hover:text-skye-700"
-                onClick={() => setMenuOpen(false)}
-              >
-                {item.label}
-              </a>
-            ))}
+            {navItems.map(({ href, label, type }) => {
+              const targetHref = type === 'anchor' ? (pathname === '/' ? href : `/${href}`) : href
+              return (
+                <Link
+                  key={`${label}-${href}`}
+                  href={targetHref}
+                  className="text-sm font-medium text-ink-900 hover:text-skye-700"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {label}
+                </Link>
+              )
+            })}
             <Link
               href="https://wa.me/14154978008"
               className="btn btn-secondary"

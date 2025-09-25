@@ -5,14 +5,25 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { Building, Building2, PartyPopper, RefreshCw, Sparkles, Truck } from 'lucide-react'
 import QuoteForm from './QuoteForm'
 
-const services = [
+type Accent = 'emerald' | 'gold' | 'violet' | 'rose'
+
+type Service = {
+  icon: typeof RefreshCw
+  title: string
+  description: string
+  features: string[]
+  value: string
+  accent: Accent
+}
+
+const services: Service[] = [
   {
     icon: RefreshCw,
     title: 'Recurring Cleaning',
     description: 'The cadence that keeps your home feeling hotel-fresh week after week.',
     features: ['Custom schedule & scope', 'Same trusted crew whenever possible', 'Signature Skye Cleaning checklist'],
     value: 'recurring',
-    iconColor: 'text-emerald-300',
+    accent: 'emerald',
   },
   {
     icon: Sparkles,
@@ -20,7 +31,7 @@ const services = [
     description: 'Detail care for kitchens, baths, and high-touch zones before big moments.',
     features: ['Detailing for fixtures & trim', 'Professional-grade products', 'Special focus on buildup areas'],
     value: 'deep',
-    iconColor: 'text-sky-200',
+    accent: 'rose',
   },
   {
     icon: Truck,
@@ -28,7 +39,7 @@ const services = [
     description: 'Deliver or receive a property that is inspection-ready without the stress.',
     features: ['Cabinets & drawers inside', 'Appliance interior detailing', 'Baseboards, doors, and floor edges'],
     value: 'move',
-    iconColor: 'text-amber-300',
+    accent: 'gold',
   },
   {
     icon: Building2,
@@ -36,7 +47,7 @@ const services = [
     description: 'Boutique offices, studios, and clinics serviced after-hours with discretion.',
     features: ['Flexible scheduling windows', 'Discreet, uniformed team', 'Usage reports on request'],
     value: 'light',
-    iconColor: 'text-violet-200',
+    accent: 'violet',
   },
   {
     icon: Building,
@@ -44,7 +55,7 @@ const services = [
     description: 'Tailored care for high-rise, condo, and pied-à-terre lifestyles.',
     features: ['Optimized visits for compact layouts', 'Finish-safe, low-odor products', 'Compliance with building protocols'],
     value: 'apartment',
-    iconColor: 'text-cyan-200',
+    accent: 'emerald',
   },
   {
     icon: PartyPopper,
@@ -52,12 +63,19 @@ const services = [
     description: 'Reset after gatherings so you can focus on guests, not the cleanup.',
     features: ['Trash removal & reset', 'Spot treating floors & upholstery', 'Light staging of common areas'],
     value: 'event',
-    iconColor: 'text-rose-300',
+    accent: 'rose',
   },
 ]
 
+const accentSwatch: Record<Accent, string> = {
+  emerald: 'bg-emerald-200',
+  gold: 'bg-amber-200',
+  violet: 'bg-violet-200',
+  rose: 'bg-rose-200',
+}
+
 export default function Services() {
-  const [selectedService, setSelectedService] = useState<(typeof services)[number]['value'] | null>(null)
+  const [selectedService, setSelectedService] = useState<Service['value'] | null>(null)
 
   return (
     <section id="services" className="container-px py-16">
@@ -70,30 +88,37 @@ export default function Services() {
         </p>
       </div>
       <div className="mt-10 grid gap-6 lg:grid-cols-3">
-        {services.map(({ icon: Icon, title, description, features, value, iconColor }) => (
-          <div key={title} className="surface surface--navy surface--metal p-6 text-left text-white">
-            <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-white/10">
-              <Icon className={`size-6 ${iconColor}`} aria-hidden="true" />
-            </span>
-            <h3 className="mt-4 text-xl font-semibold">{title}</h3>
-            <p className="mt-2 text-sm text-white/80">{description}</p>
-            <ul className="mt-4 space-y-2 text-sm text-white/80">
-              {features.map((feature) => (
-                <li key={feature} className="flex items-start gap-2">
-                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-white/60" aria-hidden="true" />
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
-            <button
-              type="button"
-              onClick={() => setSelectedService(value)}
-              className="mt-6 inline-flex w-full items-center justify-center rounded-2xl border border-white/30 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/20"
-            >
-              Check Availability
-            </button>
-          </div>
-        ))}
+        {services.map(({ icon: Icon, title, description, features, value, accent }) => {
+          const bulletClass = accentSwatch[accent]
+
+          return (
+            <div key={title} className="card-premium p-6 text-left text-ink-900">
+              <div className="card-premium__body">
+                <span className="card-premium__icon" data-variant={accent}>
+                  <Icon className="size-6" aria-hidden="true" />
+                </span>
+                <h3 className="mt-4 text-xl font-semibold text-ink-900">{title}</h3>
+                <p className="mt-2 text-sm text-slate-600">{description}</p>
+                <div className="card-premium__divider" />
+                <ul className="space-y-2 text-sm text-ink-900">
+                  {features.map((feature) => (
+                    <li key={feature} className="flex items-start gap-2">
+                      <span className={`mt-2 h-1.5 w-1.5 rounded-full ${bulletClass}`} aria-hidden="true" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <button
+                  type="button"
+                  onClick={() => setSelectedService(value)}
+                  className="mt-6 inline-flex w-full items-center justify-center rounded-2xl bg-gradient-to-r from-[var(--skye-600)] to-[var(--skye-400)] px-5 py-3 text-sm font-semibold text-white shadow-lg transition hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[--skye-700]"
+                >
+                  Check Availability
+                </button>
+              </div>
+            </div>
+          )
+        })}
       </div>
 
       <AnimatePresence>
@@ -112,7 +137,7 @@ export default function Services() {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 20, opacity: 0 }}
               transition={{ duration: 0.2, ease: 'easeOut' }}
-              className="card relative w-full max-w-xl overflow-hidden bg-white p-6 sm:p-8"
+              className="card relative w-full max-w-xl max-h-[90vh] overflow-y-auto bg-white p-5 sm:p-8"
               onClick={(event) => event.stopPropagation()}
             >
               <button

@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Star } from 'lucide-react'
+import TestimonialsMarquee from './TestimonialsMarquee'
 
 const reviews = [
   {
@@ -8,6 +8,8 @@ const reviews = [
     quote:
       'Skye Cleaning Group transformed our apartment in just a few hours. The attention to detail feels boutique-hotel level.',
     color: 'bg-skye-500',
+    avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&q=80',
+    accent: 'emerald',
   },
   {
     name: 'Priya S.',
@@ -15,6 +17,8 @@ const reviews = [
     quote:
       'The crew was punctual, kind, and careful with our art pieces. Our post-event reset was flawless.',
     color: 'bg-slate-600',
+    avatar: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=120&q=80',
+    accent: 'rose',
   },
   {
     name: 'Nathan & Elise',
@@ -22,6 +26,40 @@ const reviews = [
     quote:
       'We signed up for recurring service and never need a follow-up checklist. Every visit holds the Skye standard.',
     color: 'bg-skye-700',
+    avatar: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=120&q=80',
+    accent: 'violet',
+  },
+  {
+    name: 'Olivia Hart',
+    location: 'Cow Hollow • San Francisco',
+    quote:
+      'They polished every corner before our hosted dinner. Scheduling was effortless and the follow-up impeccable.',
+    color: 'bg-slate-500',
+    accent: 'rose',
+  },
+  {
+    name: 'Michael Lang',
+    location: 'Nob Hill • San Francisco',
+    quote:
+      'Their visit recaps and proactive communication keep our busy household perfectly under control.',
+    color: 'bg-skye-600',
+    accent: 'emerald',
+  },
+  {
+    name: 'Caroline Dupont',
+    location: 'Belvedere • Marin',
+    quote:
+      'The crew is discreet, organized, and always leaves our weekend home staged exactly how we like it.',
+    color: 'bg-slate-700',
+    accent: 'violet',
+  },
+  {
+    name: 'Ethan Rogers',
+    location: 'Healdsburg • Sonoma',
+    quote:
+      'For our rental properties, Skye’s standard keeps us at five stars with every turnover.',
+    color: 'bg-skye-500',
+    accent: 'gold',
   },
 ]
 
@@ -63,23 +101,9 @@ export default function Reviews() {
     <section id="reviews" className="bg-white py-16">
       <div className="container-px">
         <div className="mx-auto max-w-2xl text-center">
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            {reviewSources.map(({ label, description, logo, alt, className, logoBg, subText }) => (
-              <div
-                key={label}
-                className={`group relative flex items-center gap-3 rounded-2xl px-4 py-1.5 text-[0.7rem] transition hover:translate-y-[-1px] hover:shadow-xl ${className}`}
-              >
-                <span className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-200 group-hover:opacity-20 group-hover:bg-white" />
-                <span className={`relative flex h-6 w-6 items-center justify-center overflow-hidden rounded-full ${logoBg}`}>
-                  <Image src={logo} alt={alt} width={20} height={20} className="object-contain" />
-                </span>
-                <div className="flex flex-col">
-                  <span className="font-semibold uppercase tracking-wide">{label}</span>
-                  <span className={`text-[0.65rem] font-normal normal-case opacity-90 ${subText ?? 'text-slate-500'}`}>
-                    {description}
-                  </span>
-                </div>
-              </div>
+          <div className="flex flex-wrap items-center justify-center gap-6">
+            {reviewSources.map(({ label, logo, alt }) => (
+              <Image key={label} src={logo} alt={alt} width={90} height={36} className="h-9 w-[90px] object-contain opacity-90 transition-opacity hover:opacity-100" />
             ))}
           </div>
           <h2 className="mt-4 text-3xl font-black sm:text-4xl">Clients who trust the Skye standard.</h2>
@@ -87,32 +111,8 @@ export default function Reviews() {
             Real stories from Bay Area homes and boutique businesses welcoming our team.
           </p>
         </div>
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
-          {reviews.map(({ name, location, quote, color }) => (
-            <article key={name} className="surface surface--navy surface--metal p-6 text-white">
-              <div className="flex items-center gap-3">
-                <div className={`flex h-12 w-12 items-center justify-center rounded-full text-white ${color}`} aria-hidden="true">
-                  {name
-                    .split(' ')
-                    .map((part) => part[0])
-                    .join('')
-                    .slice(0, 2)}
-                </div>
-                <div>
-                  <p className="font-semibold">{name}</p>
-                  <p className="text-xs uppercase tracking-wide text-white/70">{location}</p>
-                </div>
-              </div>
-              <div className="mt-4 flex items-center gap-1 text-amber-300">
-                {Array.from({ length: 5 }).map((_, index) => (
-                  <Star key={index} className="size-4 fill-current" aria-hidden="true" strokeWidth={1.5} />
-                ))}
-              </div>
-              <p className="mt-4 text-sm text-white/80">“{quote}”</p>
-            </article>
-          ))}
-        </div>
       </div>
+      <TestimonialsMarquee reviews={reviews} />
     </section>
   )
 }

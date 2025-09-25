@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -11,19 +11,42 @@ const schema = z.object({
   email: z.string().email('Please enter a valid email address'),
   phone: z.string().min(8, 'Please enter a valid phone number'),
   zip: z.string().min(5, 'ZIP code must be at least 5 characters'),
-  service: z.enum(['recurring', 'deep', 'move', 'apartment', 'light', 'event'], {
-    error: 'Select a service',
-  }),
+  service: z.enum(
+    [
+      'recurring',
+      'deep',
+      'deep_carpet',
+      'deep_windows',
+      'deep_airbnb',
+      'deep_post_construction',
+      'deep_move_out',
+      'deep_special_event',
+      'move',
+      'apartment',
+      'light',
+      'event',
+    ],
+    {
+      error: 'Select a service',
+    },
+  ),
   bedrooms: z.enum(['0', '1', '2', '3', '4', '5+']).optional(),
   bathrooms: z.enum(['0', '1', '2', '3', '4', '5+']).optional(),
   details: z.string().max(500).optional(),
+  smsConsent: z.boolean().optional(),
 })
 
 type FormData = z.infer<typeof schema>
 
 const serviceOptions: { value: FormData['service']; label: string }[] = [
   { value: 'recurring', label: 'Recurring Cleaning' },
-  { value: 'deep', label: 'One-Time Deep Clean' },
+  { value: 'deep', label: 'Deep Clean - Whole Home' },
+  { value: 'deep_carpet', label: 'Deep Clean - Carpet & Upholstery' },
+  { value: 'deep_windows', label: 'Deep Clean - Interior Windows' },
+  { value: 'deep_airbnb', label: 'Deep Clean - Airbnb Turnover' },
+  { value: 'deep_post_construction', label: 'Deep Clean - Post Construction' },
+  { value: 'deep_move_out', label: 'Deep Clean - Move-Out Inspection' },
+  { value: 'deep_special_event', label: 'Deep Clean - Special Event Reset' },
   { value: 'move', label: 'Move-In / Move-Out' },
   { value: 'apartment', label: 'Apartment & Condo' },
   { value: 'light', label: 'Light Commercial' },
@@ -52,6 +75,7 @@ export default function QuoteForm({
     resolver: zodResolver(schema),
     defaultValues: {
       service: initialService,
+      smsConsent: false,
     },
   })
 
@@ -80,68 +104,56 @@ export default function QuoteForm({
       }
 
       setSubmitted(true)
-      reset({ service: data.service })
+      reset({ service: data.service, smsConsent: data.smsConsent })
     } catch (error) {
       console.error('Quote submission failed', error)
       alert('Something went wrong. Please try again or contact us directly.')
     }
   }
 
+  const inputBase = useMemo(
+    () =>
+      `h-11 w-full rounded-2xl border border-black/5 ${compact ? 'bg-white' : 'bg-white/90'} px-3 outline-none shadow-[0_2px_6px_rgba(0,0,0,0.06)] focus-visible:ring-2 focus-visible:ring-[var(--skye-400)]`,
+    [compact],
+  )
+
+  const textBase = useMemo(
+    () =>
+      `w-full rounded-2xl border border-black/5 ${compact ? 'bg-white' : 'bg-white/90'} px-3 py-2 outline-none shadow-[0_2px_6px_rgba(0,0,0,0.06)] focus-visible:ring-2 focus-visible:ring-[var(--skye-400)]`,
+    [compact],
+  )
+
+  const shellClass = compact ? 'card border border-slate-200/60 bg-white/95' : 'glass card p-6 sm:p-8 backface-hidden'
+  const successClass = compact ? 'text-[var(--skye-700)]' : 'text-[--skye-50]'
+
   return (
-    <div
-      className={`${compact ? '' : 'glass card p-6 sm:p-8'} w-full ${compact ? '' : 'max-w-xl'} rounded-2xl`}
-      role="form"
-      aria-label="Request Cleaning"
-    >
-      {!compact && <h2 className="mb-4 text-3xl font-bold text-white drop-shadow">Request Cleaning</h2>}
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="grid grid-cols-1 gap-3 text-sm sm:grid-cols-2"
-        suppressHydrationWarning
-      >
+    <div className={`${shellClass} w-full ${compact ? '' : 'max-w-xl'} rounded-2xl`} role="form" aria-label="Request Cleaning">
+      <div className="mb-6 space-y-2">
+        <h2 className={`text-2xl font-semibold ${compact ? 'text-ink-900' : 'text-white'} sm:text-3xl`}>Request Cleaning</h2>
+        <p className={`${compact ? 'text-slate-500' : 'text-white/80'} text-xs sm:text-sm`}>
+          Tell us about your space and we’ll confirm availability within one business day.
+        </p>
+      </div>
+      <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 gap-3 text-sm sm:grid-cols-2" suppressHydrationWarning>
         <div>
-          <input
-            {...register('name')}
-            placeholder="Name"
-            className="h-11 w-full rounded-2xl border border-black/5 bg-white/90 px-3 outline-none shadow-[0_2px_6px_rgba(0,0,0,0.06)] focus-visible:ring-2 focus-visible:ring-[var(--skye-400)]"
-            aria-invalid={!!errors.name}
-          />
+          <input {...register('name')} placeholder="Full name" className={inputBase} aria-invalid={!!errors.name} />
           {errors.name && <p className="mt-1 text-red-500">{errors.name.message}</p>}
         </div>
         <div>
-          <input
-            {...register('email')}
-            placeholder="Email"
-            className="h-11 w-full rounded-2xl border border-black/5 bg-white/90 px-3 outline-none shadow-[0_2px_6px_rgba(0,0,0,0.06)] focus-visible:ring-2 focus-visible:ring-[var(--skye-400)]"
-            aria-invalid={!!errors.email}
-          />
+          <input {...register('email')} placeholder="Email" className={inputBase} aria-invalid={!!errors.email} />
           {errors.email && <p className="mt-1 text-red-500">{errors.email.message}</p>}
         </div>
         <div>
-          <input
-            {...register('phone')}
-            placeholder="Phone"
-            className="h-11 w-full rounded-2xl border border-black/5 bg-white/90 px-3 outline-none shadow-[0_2px_6px_rgba(0,0,0,0.06)] focus-visible:ring-2 focus-visible:ring-[var(--skye-400)]"
-            aria-invalid={!!errors.phone}
-          />
+          <input {...register('phone')} placeholder="Phone" className={inputBase} aria-invalid={!!errors.phone} />
           {errors.phone && <p className="mt-1 text-red-500">{errors.phone.message}</p>}
         </div>
         <div>
-          <input
-            {...register('zip')}
-            placeholder="Zip Code"
-            className="h-11 w-full rounded-2xl border border-black/5 bg-white/90 px-3 outline-none shadow-[0_2px_6px_rgba(0,0,0,0.06)] focus-visible:ring-2 focus-visible:ring-[var(--skye-400)]"
-            aria-invalid={!!errors.zip}
-          />
+          <input {...register('zip')} placeholder="ZIP Code" className={inputBase} aria-invalid={!!errors.zip} />
           {errors.zip && <p className="mt-1 text-red-500">{errors.zip.message}</p>}
         </div>
 
         <div className="sm:col-span-2">
-          <select
-            {...register('service')}
-            className="h-11 w-full rounded-2xl border border-black/5 bg-white/90 px-3 outline-none shadow-[0_2px_6px_rgba(0,0,0,0.06)] focus-visible:ring-2 focus-visible:ring-[var(--skye-400)]"
-            aria-invalid={!!errors.service}
-          >
+          <select {...register('service')} className={inputBase} aria-invalid={!!errors.service}>
             <option value="">Desired Service</option>
             {serviceOptions.map((option) => (
               <option key={option.value} value={option.value}>
@@ -153,10 +165,7 @@ export default function QuoteForm({
         </div>
 
         <div>
-          <select
-            {...register('bedrooms')}
-            className="h-11 w-full rounded-2xl border border-black/5 bg-white/90 px-3 outline-none shadow-[0_2px_6px_rgba(0,0,0,0.06)] focus-visible:ring-2 focus-visible:ring-[var(--skye-400)]"
-          >
+          <select {...register('bedrooms')} className={inputBase}>
             <option value="">Bedrooms</option>
             <option value="0">0</option>
             <option value="1">1</option>
@@ -167,10 +176,7 @@ export default function QuoteForm({
           </select>
         </div>
         <div>
-          <select
-            {...register('bathrooms')}
-            className="h-11 w-full rounded-2xl border border-black/5 bg-white/90 px-3 outline-none shadow-[0_2px_6px_rgba(0,0,0,0.06)] focus-visible:ring-2 focus-visible:ring-[var(--skye-400)]"
-          >
+          <select {...register('bathrooms')} className={inputBase}>
             <option value="">Bathrooms</option>
             <option value="0">0</option>
             <option value="1">1</option>
@@ -182,20 +188,27 @@ export default function QuoteForm({
         </div>
 
         <div className="sm:col-span-2">
-          <textarea
-            {...register('details')}
-            placeholder="Details"
-            rows={3}
-            className="w-full rounded-2xl border border-black/5 bg-white/90 px-3 py-2 outline-none shadow-[0_2px_6px_rgba(0,0,0,0.06)] focus-visible:ring-2 focus-visible:ring-[var(--skye-400)]"
-          />
+          <textarea {...register('details')} placeholder="Access notes, pets, priorities" rows={3} className={textBase} />
         </div>
 
-        <div className="sm:col-span-2 mt-1">
+        <div className="sm:col-span-2 flex items-start gap-3 rounded-2xl border border-black/5 bg-white/70 px-4 py-3 text-xs text-slate-600">
+          <input
+            {...register('smsConsent')}
+            id="smsConsent"
+            type="checkbox"
+            className="mt-1 size-4 rounded border-slate-300 text-[var(--skye-600)] focus:ring-[var(--skye-400)]"
+          />
+          <label htmlFor="smsConsent" className="leading-relaxed">
+            I agree to receive SMS updates about scheduling and visit reminders. Message & data rates may apply.
+          </label>
+        </div>
+
+        <div className="sm:col-span-2 mt-2">
           <button disabled={isSubmitting} className="btn btn-primary w-full text-base disabled:opacity-70">
             {isSubmitting ? 'Sending…' : 'Request Cleaning Now'}
           </button>
           {submitted && (
-            <p className="mt-2 text-[--skye-50]" role="status" aria-live="polite">
+            <p className={`mt-2 text-xs ${successClass}`} role="status" aria-live="polite">
               We received your request and will reach out shortly.
             </p>
           )}

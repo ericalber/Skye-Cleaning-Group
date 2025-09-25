@@ -5,19 +5,19 @@ const steps = [
     icon: CalendarCheck,
     title: 'Book',
     description: 'Quick form or WhatsApp with a fast response from our team.',
-    iconColor: 'text-sky-200',
+    accent: 'rose',
   },
   {
     icon: Clock,
     title: 'We arrive on time',
     description: 'A punctual crew shows up with a clear checklist and premium supplies.',
-    iconColor: 'text-emerald-300',
+    accent: 'emerald',
   },
   {
     icon: Sparkles,
     title: 'Enjoy your space',
     description: 'Final walk-through plus our Skye Done-Right Guarantee.',
-    iconColor: 'text-amber-200',
+    accent: 'gold',
   },
 ]
 
@@ -31,13 +31,15 @@ export default function Process() {
         </p>
       </div>
       <div className="mt-10 grid gap-6 md:grid-cols-3">
-        {steps.map(({ icon: Icon, title, description, iconColor }) => (
-          <div key={title} className="surface surface--navy surface--metal p-6 text-center text-white">
-            <span className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-white/10">
-              <Icon className={`size-6 ${iconColor}`} aria-hidden="true" />
-            </span>
-            <h3 className="text-lg font-semibold">{title}</h3>
-            <p className="mt-2 text-sm text-white/80">{description}</p>
+        {steps.map(({ icon: Icon, title, description, accent }) => (
+          <div key={title} className="card-premium p-6 text-center text-ink-900">
+            <div className="card-premium__body flex flex-col items-center">
+              <span className="card-premium__icon" data-variant={accent}>
+                <Icon className="size-6" aria-hidden="true" />
+              </span>
+              <h3 className="mt-4 text-lg font-semibold text-ink-900">{title}</h3>
+              <p className="mt-2 text-sm text-slate-600">{description}</p>
+            </div>
           </div>
         ))}
       </div>

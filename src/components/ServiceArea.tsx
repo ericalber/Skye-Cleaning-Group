@@ -1,7 +1,7 @@
 const bayArea = [
-  'San Francisco — Pacific Heights, SoMa, Sunset, Marina',
-  'Marin County — Mill Valley, Sausalito, Tiburon, Corte Madera',
-  'Select Sonoma County — Petaluma, Sonoma, Healdsburg',
+  'San Francisco - Pacific Heights, SoMa, Sunset, Marina',
+  'Marin County - Mill Valley, Sausalito, Tiburon, Corte Madera',
+  'Select Sonoma County - Petaluma, Sonoma, Healdsburg',
   'North Bay tech and creative studios',
 ]
 
@@ -46,7 +46,7 @@ export default function ServiceArea() {
               ))}
             </ul>
             <div className="mt-6 inline-flex rounded-full bg-white/20 px-4 py-2 text-sm font-semibold text-white">
-              Limited weekly availability — reserve your visit early.
+              Limited weekly availability - reserve your visit early.
             </div>
           </div>
         </div>

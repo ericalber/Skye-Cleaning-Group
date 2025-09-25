@@ -47,7 +47,7 @@ export async function POST(request: Request) {
       // await transporter.sendMail({
       //   to: process.env.QUOTE_TO,
       //   from: 'Skye Cleaning Group <no-reply@skyecgroup.com>',
-      //   subject: `New quote request — ${data.name}`,
+      //   subject: `New quote request - ${data.name}`,
       //   text: JSON.stringify(data, null, 2),
       // })
     }

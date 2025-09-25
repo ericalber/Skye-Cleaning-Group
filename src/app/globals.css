@@ -148,6 +148,236 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.14);
 }
 
+@keyframes marquee-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.testi-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.testi-fade::before,
+.testi-fade::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 18px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.testi-fade::before {
+  left: 0;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.55), transparent);
+}
+
+.testi-fade::after {
+  right: 0;
+  background: linear-gradient(-90deg, rgba(255, 255, 255, 0.55), transparent);
+}
+
+.testi-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 35s linear infinite;
+}
+
+.testi-wrap.is-paused .testi-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testi-track {
+    animation: none;
+  }
+}
+
+.hero-gradient {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(140% 90% at 10% 15%, rgba(133, 208, 255, 0.42), transparent 55%),
+    radial-gradient(120% 85% at 80% 40%, rgba(75, 134, 210, 0.55), transparent 70%),
+    linear-gradient(135deg, rgba(11, 35, 52, 0.92) 0%, rgba(18, 60, 84, 0.88) 55%, rgba(37, 109, 165, 0.85) 100%);
+}
+
+.hero-gradient::before {
+  content: '';
+  position: absolute;
+  inset: -40% 0;
+  background:
+    repeating-linear-gradient(28deg, rgba(255, 255, 255, 0.08) 0 6px, transparent 6px 18px),
+    repeating-linear-gradient(-32deg, rgba(255, 255, 255, 0.05) 0 4px, transparent 4px 14px);
+  opacity: 0.5;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.hero-gradient::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(65% 45% at 15% 20%, rgba(255, 255, 255, 0.16), transparent 60%),
+    radial-gradient(55% 40% at 85% 35%, rgba(146, 215, 255, 0.18), transparent 65%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.card-premium {
+  position: relative;
+  border-radius: 1.5rem;
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.95) 0%, rgba(237, 246, 253, 0.98) 100%);
+  border: 1px solid rgba(18, 60, 84, 0.08);
+  box-shadow: 0 20px 48px rgba(18, 60, 84, 0.12);
+  overflow: hidden;
+}
+
+.card-premium::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(120deg, rgba(123, 196, 255, 0.26), rgba(255, 255, 255, 0));
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.card-premium::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(120px 120px at 20% 10%, rgba(255, 255, 255, 0.45), transparent 70%);
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.card-premium__body {
+  position: relative;
+  z-index: 1;
+}
+
+.card-premium__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 1rem;
+  background: linear-gradient(160deg, rgba(18, 60, 84, 0.9), rgba(73, 148, 205, 0.85));
+  box-shadow: 0 12px 24px rgba(18, 60, 84, 0.22);
+  color: white;
+}
+
+.card-premium__icon[data-variant='emerald'] {
+  background: linear-gradient(160deg, rgba(9, 109, 102, 0.9), rgba(56, 189, 148, 0.85));
+}
+
+.card-premium__icon[data-variant='gold'] {
+  background: linear-gradient(160deg, rgba(146, 111, 35, 0.9), rgba(246, 189, 96, 0.85));
+}
+
+.card-premium__icon[data-variant='violet'] {
+  background: linear-gradient(160deg, rgba(80, 56, 160, 0.9), rgba(154, 105, 245, 0.85));
+}
+
+.card-premium__icon[data-variant='rose'] {
+  background: linear-gradient(160deg, rgba(168, 47, 112, 0.9), rgba(235, 104, 165, 0.85));
+}
+
+.card-premium__divider {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, rgba(18, 60, 84, 0), rgba(18, 60, 84, 0.15), rgba(18, 60, 84, 0));
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.testimonial-avatar {
+  position: relative;
+  display: inline-flex;
+  height: 3.25rem;
+  width: 3.25rem;
+  border-radius: 1.4rem;
+  padding: 3px;
+  background: linear-gradient(160deg, rgba(18, 60, 84, 0.75), rgba(73, 148, 205, 0.85));
+  box-shadow: 0 12px 24px rgba(18, 60, 84, 0.18);
+}
+
+.testimonial-avatar[data-variant='rose'] {
+  background: linear-gradient(160deg, rgba(177, 64, 120, 0.75), rgba(236, 112, 175, 0.85));
+}
+
+.testimonial-avatar[data-variant='emerald'] {
+  background: linear-gradient(160deg, rgba(18, 115, 100, 0.75), rgba(56, 189, 148, 0.85));
+}
+
+.testimonial-avatar[data-variant='gold'] {
+  background: linear-gradient(160deg, rgba(156, 111, 36, 0.78), rgba(249, 207, 105, 0.9));
+}
+
+.testimonial-avatar[data-variant='violet'] {
+  background: linear-gradient(160deg, rgba(94, 72, 182, 0.78), rgba(166, 129, 245, 0.9));
+}
+
+.testimonial-avatar__inner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 1.2rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.96);
+}
+
+.testimonial-avatar__initials {
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-gradient {
+  position: relative;
+  background:
+    radial-gradient(120% 120% at 0% 0%, rgba(133, 208, 255, 0.18), transparent 55%),
+    linear-gradient(180deg, rgba(13, 34, 51, 0.92) 0%, rgba(12, 30, 45, 0.96) 40%, rgba(12, 30, 45, 0.98) 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 2.5rem 2.5rem 0 0;
+  box-shadow: 0 -40px 60px rgba(12, 30, 45, 0.35);
+  overflow: hidden;
+}
+
+.footer-gradient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(60% 45% at 20% 15%, rgba(255, 255, 255, 0.16), transparent 70%),
+    radial-gradient(40% 35% at 80% 30%, rgba(146, 215, 255, 0.18), transparent 70%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.footer-gradient__inner {
+  position: relative;
+  z-index: 1;
+}
+
 @layer base {
   a {
     @apply transition-colors;
