@@ -3,7 +3,7 @@
 import { Suspense, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Building, Building2, PartyPopper, RefreshCw, Sparkles, Truck } from 'lucide-react'
-import QuoteForm from './QuoteForm'
+import QuoteForm, { type QuoteService } from './QuoteForm'
 
 type Accent = 'emerald' | 'gold' | 'violet' | 'rose'
 
@@ -12,7 +12,7 @@ type Service = {
   title: string
   description: string
   features: string[]
-  value: string
+  value: QuoteService
   accent: Accent
 }
 
@@ -75,7 +75,7 @@ const accentSwatch: Record<Accent, string> = {
 }
 
 export default function Services() {
-  const [selectedService, setSelectedService] = useState<Service['value'] | null>(null)
+  const [selectedService, setSelectedService] = useState<QuoteService | null>(null)
 
   return (
     <section id="services" className="container-px py-16">

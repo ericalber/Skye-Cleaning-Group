@@ -4,16 +4,13 @@ import Link from 'next/link'
 
 import { cleanTips, getCleanTip } from '@/data/cleanTips'
 
-type Props = {
-  params: { slug: string }
-}
-
 export function generateStaticParams() {
   return cleanTips.map(({ slug }) => ({ slug }))
 }
 
-export default function CleanTipDetail({ params }: Props) {
-  const tip = getCleanTip(params.slug)
+export default async function CleanTipDetail({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const tip = getCleanTip(slug)
 
   if (!tip) {
     notFound()

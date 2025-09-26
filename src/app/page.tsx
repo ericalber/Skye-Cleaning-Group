@@ -1,3 +1,5 @@
+import { Suspense } from 'react'
+
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import TrustBar from '@/components/TrustBar'
@@ -22,7 +24,9 @@ export default function Page() {
         <Reviews />
         <FAQ />
         <ServiceArea />
-        <QuickActions />
+        <Suspense fallback={null}>
+          <QuickActions />
+        </Suspense>
       </main>
       <Footer />
       <FloatingActionBar />

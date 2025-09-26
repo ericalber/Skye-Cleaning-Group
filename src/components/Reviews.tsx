@@ -1,7 +1,8 @@
 import Image from 'next/image'
 import TestimonialsMarquee from './TestimonialsMarquee'
+import type { Review } from './TestimonialsMarquee'
 
-const reviews = [
+const reviews: Review[] = [
   {
     name: 'Alex Morgan',
     location: 'Pacific Heights • San Francisco',

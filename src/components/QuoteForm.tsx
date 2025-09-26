@@ -38,6 +38,8 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>
 
+export type QuoteService = FormData['service']
+
 const serviceOptions: { value: FormData['service']; label: string }[] = [
   { value: 'recurring', label: 'Recurring Cleaning' },
   { value: 'deep', label: 'Deep Clean - Whole Home' },
