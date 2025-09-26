@@ -1,6 +1,8 @@
 'use client'
 
+import clsx from 'clsx'
 import { Suspense, useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 
 import QuoteForm, { type QuoteService } from './QuoteForm'
@@ -11,6 +13,10 @@ type ModalQuoteProps = {
   initialService?: QuoteService
   title?: string
   description?: string
+  compact?: boolean
+  titleClassName?: string
+  descriptionClassName?: string
+  cardClassName?: string
 }
 
 export default function ModalQuote({
@@ -18,9 +24,16 @@ export default function ModalQuote({
   triggerClassName = 'btn btn-secondary',
   initialService,
   title = 'Get your free quote',
-  description = 'Share the details of your space and we will respond in one business day.',
+  description = 'Share the details of your space and we will respond within one business day.',
+  compact = false,
+  titleClassName = 'text-2xl font-bold text-[--ink-900]',
+  descriptionClassName = 'text-sm text-slate-600',
+  cardClassName,
 }: ModalQuoteProps) {
   const [open, setOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => setMounted(true), [])
 
   useEffect(() => {
     const handleKeyUp = (event: KeyboardEvent) => {
@@ -36,55 +49,66 @@ export default function ModalQuote({
     return () => window.removeEventListener('keyup', handleKeyUp)
   }, [open])
 
-  return (
-    <>
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        className={triggerClassName}
-      >
-        {triggerLabel}
-      </button>
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            role="dialog"
-            aria-modal="true"
+  const closeModal = () => setOpen(false)
+
+  const modalContent = (
+    <AnimatePresence>
+      {open && (
+        <>
+          <motion.button
+            type="button"
+            className="fixed inset-0 z-[75] bg-black/60 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
-            onClick={() => setOpen(false)}
-          >
+            aria-label="Close quote modal"
+            onClick={closeModal}
+          />
+          <div className="fixed inset-x-0 top-1/2 z-[80] mx-auto flex max-w-xl -translate-y-1/2 px-4 sm:px-6">
             <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.97, opacity: 0 }}
-              transition={{ type: 'spring', stiffness: 260, damping: 25 }}
-              className="card relative w-full max-w-xl overflow-hidden p-0"
+              role="dialog"
+              aria-modal="true"
+              initial={{ y: 24, opacity: 0.6 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 24, opacity: 0 }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
+              className={clsx(
+                'surface isolation-auto w-full max-h-[90vh] overflow-y-auto rounded-2xl p-6 sm:p-8 shadow-xl',
+                cardClassName,
+                !cardClassName && 'surface--white text-[--ink-900]'
+              )}
               onClick={(event) => event.stopPropagation()}
             >
               <button
                 type="button"
-                onClick={() => setOpen(false)}
-                className="absolute right-3 top-3 rounded-full bg-black/5 px-2 py-1 text-sm font-semibold"
+                onClick={closeModal}
+                className="absolute right-4 top-4 z-[85] rounded-full bg-black/5 px-2 py-1 text-sm font-semibold text-current"
                 aria-label="Close quote modal"
               >
                 ✕
               </button>
-              <div className="p-6 sm:p-8">
-                <h3 className="text-2xl font-bold text-ink-900">{title}</h3>
-                <p className="mt-1 text-sm text-slate-600">{description}</p>
-                <div className="mt-4">
-                  <Suspense fallback={null}>
-                    <QuoteForm compact initialService={initialService} />
-                  </Suspense>
+              {(title || description) && (
+                <div className="mb-4 space-y-1 text-center">
+                  {title && <h3 className={clsx(titleClassName)}>{title}</h3>}
+                  {description && <p className={clsx(descriptionClassName)}>{description}</p>}
                 </div>
-              </div>
+              )}
+              <Suspense fallback={null}>
+                <QuoteForm compact={compact} initialService={initialService} />
+              </Suspense>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+        </>
+      )}
+    </AnimatePresence>
+  )
+
+  return (
+    <>
+      <button type="button" onClick={() => setOpen(true)} className={triggerClassName}>
+        {triggerLabel}
+      </button>
+      {mounted ? createPortal(modalContent, document.body) : null}
     </>
   )
 }

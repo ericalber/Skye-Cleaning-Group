@@ -1,12 +1,26 @@
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
+import { resolveRecipientAddress, resolveSenderAddress, transporter, verifyTransporter } from '@/lib/email'
 
 const payloadSchema = z.object({
   name: z.string().min(2),
   email: z.string().email(),
   phone: z.string().min(8),
   zip: z.string().min(5),
-  service: z.enum(['recurring', 'deep', 'move', 'apartment', 'light', 'event']),
+  service: z.enum([
+    'recurring',
+    'deep',
+    'deep_carpet',
+    'deep_windows',
+    'deep_airbnb',
+    'deep_post_construction',
+    'deep_move_out',
+    'deep_special_event',
+    'move',
+    'apartment',
+    'light',
+    'event',
+  ]),
   bedrooms: z.enum(['0', '1', '2', '3', '4', '5+']).optional(),
   bathrooms: z.enum(['0', '1', '2', '3', '4', '5+']).optional(),
   details: z.string().max(500).optional(),
@@ -34,22 +48,42 @@ export async function POST(request: Request) {
         console.error('Quote webhook error', error)
         return NextResponse.json({ error: 'Failed to forward quote' }, { status: 502 })
       }
+    } else if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS) {
+      try {
+        await verifyTransporter()
+        const to = resolveRecipientAddress()
+        const from = resolveSenderAddress() || process.env.SMTP_USER || ''
+
+        if (!from) {
+          throw new Error('Missing SMTP sender address.')
+        }
+
+        if (!to) {
+          throw new Error('Missing quote recipient address.')
+        }
+        await transporter.sendMail({
+          to,
+          from,
+          subject: `New quote request - ${data.name}`,
+          text: JSON.stringify(data, null, 2),
+          html: `<h2>New quote request</h2>
+<p><strong>Name:</strong> ${data.name}</p>
+<p><strong>Email:</strong> ${data.email}</p>
+<p><strong>Phone:</strong> ${data.phone}</p>
+<p><strong>ZIP:</strong> ${data.zip}</p>
+<p><strong>Service:</strong> ${data.service}</p>
+<p><strong>Bedrooms:</strong> ${data.bedrooms ?? '—'}</p>
+<p><strong>Bathrooms:</strong> ${data.bathrooms ?? '—'}</p>
+<p><strong>Details:</strong></p>
+<p>${data.details ?? '—'}</p>`,
+          replyTo: data.email,
+        })
+      } catch (error) {
+        console.error('Quote email error', error)
+        return NextResponse.json({ error: 'Failed to send quote email' }, { status: 502 })
+      }
     } else {
-      console.info('Skye Cleaning Group quote request', data)
-      // To enable email via SMTP, install nodemailer and configure the environment variables:
-      // SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, QUOTE_TO
-      // const transporter = nodemailer.createTransport({
-      //   host: process.env.SMTP_HOST,
-      //   port: Number(process.env.SMTP_PORT ?? 587),
-      //   secure: Number(process.env.SMTP_PORT ?? 587) === 465,
-      //   auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
-      // })
-      // await transporter.sendMail({
-      //   to: process.env.QUOTE_TO,
-      //   from: 'Skye Cleaning Group <no-reply@skyecgroup.com>',
-      //   subject: `New quote request - ${data.name}`,
-      //   text: JSON.stringify(data, null, 2),
-      // })
+      console.info('Skye Cleaning Group quote request (no delivery configured)', data)
     }
 
     return NextResponse.json({ ok: true })

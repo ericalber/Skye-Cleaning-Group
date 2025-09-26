@@ -195,7 +195,7 @@ export default function ServicesPage() {
                 key={item}
                 className="flex items-start gap-3 rounded-2xl border border-[var(--skye-100)] bg-[var(--foam)] px-5 py-4 text-left shadow-[0_14px_24px_rgba(22,70,100,0.08)]"
               >
-                <span className="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-[var(--skye-500)] text-xs font-semibold text-white">
+                <span className="mt-1 inline-flex h-8 w-8 items-center justify-center rounded-full bg-[var(--skye-500)] text-base font-semibold text-white">
                   ★
                 </span>
                 <span>{item}</span>

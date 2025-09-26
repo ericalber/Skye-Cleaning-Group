@@ -20,11 +20,11 @@ const caseStudies = [
       'A heritage three story townhouse needed a reset after an interior design overhaul. Our crew cataloged new finishes, sourced low moisture products for silk wall coverings, and created a seasonal detailing map for antiques and art. The owners now welcome guests every Friday evening without a second thought.',
     metrics: [
       { label: 'Detailing window', value: '72 hours' },
-      { label: 'Resident satisfaction score', value: '9.9 out of 10' },
+      { label: 'Resident satisfaction score', value: '98%' },
       { label: 'Maintenance visits per month', value: '6' }
     ],
-    before: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1600&q=80',
-    after: 'https://images.unsplash.com/photo-1600585154340-0ef3c08ede06?auto=format&fit=crop&w=1600&q=80'
+    before: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1600&q=80',
+    after: 'https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=1600&q=80'
   },
   {
     title: 'Napa Valley Manor',
@@ -37,8 +37,8 @@ const caseStudies = [
       { label: 'Inventory variance', value: 'Below 1 percent' },
       { label: 'Scent profile', value: 'Custom lavender citrus blend' }
     ],
-    before: 'https://images.unsplash.com/photo-1464890100898-a385f744067f?auto=format&fit=crop&w=1600&q=80',
-    after: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1600&q=80'
+    before: 'https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1600&q=80',
+    after: 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=1600&q=80'
   },
   {
     title: 'Financial District HQ',
@@ -52,7 +52,7 @@ const caseStudies = [
       { label: 'Emergency call outs', value: 'Under 20 minutes response' }
     ],
     before: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80',
-    after: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80'
+    after: 'https://images.unsplash.com/photo-1487014679447-9f8336841d58?auto=format&fit=crop&w=1600&q=80'
   },
   {
     title: 'Marin Wellness Collective',
@@ -66,7 +66,7 @@ const caseStudies = [
       { label: 'Client loyalty increase', value: '18 percent growth' }
     ],
     before: 'https://images.unsplash.com/photo-1529429617124-aee8095725cb?auto=format&fit=crop&w=1600&q=80',
-    after: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1600&q=80'
+    after: 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1600&q=80'
   }
 ]
 
@@ -198,7 +198,7 @@ export default function PortfolioPage() {
             <Link href="tel:+14154978008" className="btn btn-primary">
               Call +1 (415) 497-8008
             </Link>
-            <ModalQuote triggerLabel="Request a tailored proposal" triggerClassName="btn btn-secondary" initialService="recurring" />
+            <ModalQuote triggerLabel="Request a tailored proposal" triggerClassName="btn btn-secondary" initialService="recurring" compact title="Let’s design your tailored proposal" description="Outline your goals and we will build a concierge plan with timing, crews, and investment details." titleClassName="text-2xl font-extrabold text-[--ink-900]" descriptionClassName="text-sm font-medium text-slate-700" />
           </div>
         </div>
       </section>

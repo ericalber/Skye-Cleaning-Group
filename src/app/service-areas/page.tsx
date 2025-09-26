@@ -83,7 +83,14 @@ export default function ServiceAreasPage() {
               <Link href="#zones" className="btn btn-primary">
                 Explore coverage
               </Link>
-              <ModalQuote triggerLabel="Request expansion visit" triggerClassName="btn btn-secondary-ghost" initialService="light" />
+              <ModalQuote
+                triggerLabel="Request expansion visit"
+                triggerClassName="btn btn-secondary-ghost"
+                initialService="light"
+                title="Plan your expansion visit"
+                description="Tell us about the neighborhood and arrival windows you need."
+                compact
+              />
             </div>
           </div>
         </div>
@@ -191,7 +198,14 @@ export default function ServiceAreasPage() {
                     <Link href="tel:+14154978008" className="btn btn-primary">
                       Call +1 (415) 497-8008
                     </Link>
-                    <ModalQuote triggerLabel="Request a planning session" triggerClassName="btn btn-secondary" initialService="recurring" />
+                    <ModalQuote
+                      triggerLabel="Request a planning session"
+                      triggerClassName="btn btn-secondary"
+                      initialService="recurring"
+                      title="Schedule a planning session"
+                      description="Share coverage details and our concierge will follow up within one hour."
+                      compact
+                    />
                   </div>
                 </div>
               </div>

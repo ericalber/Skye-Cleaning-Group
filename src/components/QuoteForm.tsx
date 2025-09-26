@@ -115,24 +115,24 @@ export default function QuoteForm({
 
   const inputBase = useMemo(
     () =>
-      `h-11 w-full rounded-2xl border border-black/5 ${compact ? 'bg-white' : 'bg-white/90'} px-3 outline-none shadow-[0_2px_6px_rgba(0,0,0,0.06)] focus-visible:ring-2 focus-visible:ring-[var(--skye-400)]`,
-    [compact],
+      'h-11 w-full rounded-2xl border border-black/5 bg-white px-3 text-[--ink-900] placeholder:text-slate-500 shadow-sm focus-visible:ring-2 focus-visible:ring-[var(--skye-400)] focus-visible:outline-none',
+    [],
   )
 
   const textBase = useMemo(
     () =>
-      `w-full rounded-2xl border border-black/5 ${compact ? 'bg-white' : 'bg-white/90'} px-3 py-2 outline-none shadow-[0_2px_6px_rgba(0,0,0,0.06)] focus-visible:ring-2 focus-visible:ring-[var(--skye-400)]`,
-    [compact],
+      'w-full rounded-2xl border border-black/5 bg-white px-3 py-3 text-[--ink-900] placeholder:text-slate-500 shadow-sm focus-visible:ring-2 focus-visible:ring-[var(--skye-400)] focus-visible:outline-none',
+    [],
   )
 
-  const shellClass = compact ? 'card border border-slate-200/60 bg-white/95' : 'glass card p-6 sm:p-8 backface-hidden'
+  const shellClass = compact ? 'card border border-slate-200/70 bg-white' : 'glass card p-6 sm:p-8 backface-hidden'
   const successClass = compact ? 'text-[var(--skye-700)]' : 'text-[--skye-50]'
 
   return (
     <div className={`${shellClass} w-full ${compact ? '' : 'max-w-xl'} rounded-2xl`} role="form" aria-label="Request Cleaning">
       <div className="mb-6 space-y-2">
-        <h2 className={`text-2xl font-semibold ${compact ? 'text-ink-900' : 'text-white'} sm:text-3xl`}>Request Cleaning</h2>
-        <p className={`${compact ? 'text-slate-500' : 'text-white/80'} text-xs sm:text-sm`}>
+        <h2 className={`text-2xl font-semibold ${compact ? 'text-[--ink-900]' : 'text-white'} sm:text-3xl`}>Request Cleaning</h2>
+        <p className={`${compact ? 'text-slate-600' : 'text-white/80'} text-xs sm:text-sm`}>
           Tell us about your space and we’ll confirm availability within one business day.
         </p>
       </div>
@@ -193,7 +193,7 @@ export default function QuoteForm({
           <textarea {...register('details')} placeholder="Access notes, pets, priorities" rows={3} className={textBase} />
         </div>
 
-        <div className="sm:col-span-2 flex items-start gap-3 rounded-2xl border border-black/5 bg-white/70 px-4 py-3 text-xs text-slate-600">
+        <div className="sm:col-span-2 flex items-start gap-3 rounded-2xl border border-black/5 bg-white px-4 py-3 text-xs text-slate-600">
           <input
             {...register('smsConsent')}
             id="smsConsent"
