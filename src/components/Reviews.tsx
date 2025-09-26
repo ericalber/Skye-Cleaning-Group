@@ -67,32 +67,16 @@ const reviewSources = [
   {
     label: 'Google Reviews',
     description: '4.9 ★ rating from Bay Area clients',
-    logo: '/logos/google-reviews.svg',
-    alt: 'Google reviews logo',
-    className:
-      'bg-[radial-gradient(circle_at_top_left,#ffffff_0%,#f4f5f7_55%,#e2e8f0_100%)] text-ink-900 ring-1 ring-white/60 shadow-[0_12px_32px_rgba(15,23,42,0.08)]',
-    logoBg: 'bg-white',
-    subText: 'text-slate-600',
+    logo: '/logos/Google-3d.png',
+    alt: 'Google reviews 3D logo',
+    href: 'https://maps.app.goo.gl/SkyeCleaningGroup',
   },
   {
     label: 'Yelp',
     description: 'People Love Us on Yelp',
-    logo: '/logos/yelp.png',
-    alt: 'Yelp burst logo',
-    className:
-      'bg-[radial-gradient(circle_at_top_left,#c92a2a_0%,#aa0b0b_48%,#650909_100%)] text-white ring-1 ring-white/30 shadow-[0_12px_30px_rgba(175,6,6,0.35)]',
-    logoBg: 'bg-white/15',
-    subText: 'text-white/80',
-  },
-  {
-    label: 'Thumbtack',
-    description: 'Top Pro partner • 2025',
-    logo: '/logos/thumbtack.png',
-    alt: 'Thumbtack pin logo',
-    className:
-      'bg-[radial-gradient(circle_at_top_left,#24c6f5_0%,#0c9ada_55%,#026aa2_100%)] text-white ring-1 ring-white/25 shadow-[0_12px_30px_rgba(2,106,162,0.3)]',
-    logoBg: 'bg-white/15',
-    subText: 'text-white/80',
+    logo: '/logos/yelp-3d.png',
+    alt: 'Yelp 3D logo',
+    href: 'https://www.yelp.com/biz/skye-cleaning-group-san-francisco',
   },
 ]
 
@@ -102,8 +86,23 @@ export default function Reviews() {
       <div className="container-px">
         <div className="mx-auto max-w-2xl text-center">
           <div className="flex flex-wrap items-center justify-center gap-6">
-            {reviewSources.map(({ label, logo, alt }) => (
-              <Image key={label} src={logo} alt={alt} width={90} height={36} className="h-9 w-[90px] object-contain opacity-90 transition-opacity hover:opacity-100" />
+            {reviewSources.map(({ label, logo, alt, href }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="inline-flex"
+              >
+                <Image
+                  src={logo}
+                  alt={alt}
+                  width={256}
+                  height={256}
+                  className="h-12 w-[7rem] object-contain opacity-85 transition-opacity hover:opacity-100 mix-blend-multiply"
+                />
+              </a>
             ))}
           </div>
           <h2 className="mt-4 text-3xl font-black sm:text-4xl">Clients who trust the Skye standard.</h2>

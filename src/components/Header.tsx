@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Menu, Phone, MessageCircle, X } from 'lucide-react'
+import { Menu, Phone, X } from 'lucide-react'
 import Logo from './Logo'
 
 type NavItem = {
@@ -14,12 +14,16 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   { href: '/', label: 'Home', type: 'route' },
+  { href: '/services', label: 'Services', type: 'route' },
+  { href: '/portfolio', label: 'Portfolio', type: 'route' },
+  { href: '/service-areas', label: 'Service Areas', type: 'route' },
+  { href: '/clean-tips', label: 'Clean Tips', type: 'route' },
   { href: '/about', label: 'About Us', type: 'route' },
-  { href: '#services', label: 'Services', type: 'anchor' },
   { href: '#process', label: 'Process', type: 'anchor' },
   { href: '#reviews', label: 'Reviews', type: 'anchor' },
   { href: '#faq', label: 'FAQ', type: 'anchor' },
   { href: '#areas', label: 'Service Area', type: 'anchor' },
+  { href: '#quote', label: 'Request', type: 'anchor' },
 ]
 
 export default function Header() {
@@ -52,14 +56,6 @@ export default function Header() {
           })}
         </nav>
         <div className="hidden items-center gap-2 sm:flex">
-          <Link
-            href="https://wa.me/14154978008"
-            className="btn btn-secondary"
-            aria-label="Text us on WhatsApp"
-          >
-            <MessageCircle className="mr-2 size-4" aria-hidden="true" />
-            Talk on WhatsApp
-          </Link>
           <Link href="tel:+14154978008" className="btn btn-primary" aria-label="Call us now">
             <Phone className="mr-2 size-4" aria-hidden="true" />
             Call Now
@@ -92,14 +88,6 @@ export default function Header() {
                 </Link>
               )
             })}
-            <Link
-              href="https://wa.me/14154978008"
-              className="btn btn-secondary"
-              onClick={() => setMenuOpen(false)}
-            >
-              <MessageCircle className="mr-2 size-4" aria-hidden="true" />
-              Talk on WhatsApp
-            </Link>
             <Link
               href="tel:+14154978008"
               className="btn btn-primary"

@@ -138,6 +138,59 @@ export const cleanTips: CleanTip[] = [
       'This rhythm keeps every zone on a short cycle so professional visits can focus on specialty detailing rather than catch-up cleaning.',
     ],
   },
+
+  {
+    slug: 'nordic-winter-reset',
+    title: 'Nordic winter reset for urban condos',
+    hook: 'Prevent salt and dry air from dulling interiors with Scandinavian inspired maintenance.',
+    excerpt:
+      'Microfiber zoning, humidity balancing, and natural oils preserve warmth and clarity for city residences through freezing months.',
+    hero: 'https://images.unsplash.com/photo-1486572788966-cfd3df1f5b42?auto=format&fit=crop&w=1600&q=80',
+    body: [
+      'Stage a decontamination zone at the entrance with a boot tray, rubber mat, and microfiber mop stored upright. This catches street salt before it scratches hardwood or stains rugs.',
+      'Condition leather and wood weekly using a blend of jojoba oil and warm water. Apply with a soft cloth moving with the grain to prevent drying from indoor heating.',
+      'Run a humidifier at forty percent to protect instruments, fine art, and cabinetry. Pair it with a weekly essential oil diffusion to keep air crisp without heavy fragrance.',
+    ],
+  },
+  {
+    slug: 'parisian-window-lustre',
+    title: 'Parisian window ritual for sparkling storefronts',
+    hook: 'Mirror the glow of Left Bank boutiques with glass care tailored for stone facades.',
+    excerpt:
+      'A two cloth mineral water method keeps display windows bright while guarding limestone detailing from streaks.',
+    hero: 'https://images.unsplash.com/photo-1478479474071-8a3014ad0d82?auto=format&fit=crop&w=1600&q=80',
+    body: [
+      'Dust frames with a natural bristle brush before touching the glass. This prevents grit from dragging across the surface and scratching antique panes.',
+      'Spritz carbonated mineral water from a fine mister and polish with lint free linen following vertical strokes. Work in small sections to control drying time.',
+      'Buff the edges with a fresh dry cloth and inspect the facade for runoff. Finish by conditioning brass hardware using a gentle soap diluted in warm water.',
+    ],
+  },
+  {
+    slug: 'toronto-highrise-schedule',
+    title: 'Toronto highrise cleaning schedule that respects elevators',
+    hook: 'Keep condos pristine without clashing with building traffic or concierge deadlines.',
+    excerpt:
+      'Segment tasks into morning, afternoon, and night routines so highrise residents enjoy a polished home around elevator peak hours.',
+    hero: 'https://images.unsplash.com/photo-1505692952040-dc2003d9d1ba?auto=format&fit=crop&w=1600&q=80',
+    body: [
+      'Complete laundry and bulk waste runs before eight in the morning to secure elevator availability and avoid resident rush periods.',
+      'Focus on quiet chores such as dusting artwork and detailing kitchens mid afternoon when neighbors are at work and hallways stay calm.',
+      'Reserve vacuuming and terrace rinsing for early evening with a cordless unit to minimize noise. Notify the concierge through your resident app once tasks finish.',
+    ],
+  },
+  {
+    slug: 'coastal-salt-shield',
+    title: 'Coastal salt shield for seaside estates',
+    hook: 'Stop ocean mist from corroding finishes by borrowing techniques from Mediterranean resorts.',
+    excerpt:
+      'Daily rinses, mineral neutralizers, and protective waxing preserve metalwork, glass, and stone in marine climates.',
+    hero: 'https://images.unsplash.com/photo-1512912287652-896ed1e00baf?auto=format&fit=crop&w=1600&q=80',
+    body: [
+      'Rinse exterior glass, railings, and patio furniture with fresh water every morning to dissolve salt crystals before the sun bakes them in place.',
+      'Apply a neutralizing spray made from distilled water and a teaspoon of baking soda once a week. This balances pH on metal and stone surfaces.',
+      'Seal outdoor fixtures quarterly with a marine grade wax using a microfiber pad. The protective layer repels moisture and keeps the finish gleaming.',
+    ],
+  },
 ]
 
 export function getCleanTip(slug: string) {

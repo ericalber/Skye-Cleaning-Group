@@ -1,20 +1,21 @@
-import Link from 'next/link'
+import Image from 'next/image'
 
 export default function FloatingActionBar() {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 flex items-center justify-center bg-white/95 p-3 shadow-[0_-4px_20px_rgba(0,0,0,0.08)] backdrop-blur md:hidden">
-      <div className="flex w-full max-w-md items-center gap-3">
-        <Link
-          href="/?service=recurring#quote"
-          className="btn btn-secondary flex-1"
-          aria-label="Request a cleaning quote"
-        >
-          Get Quote
-        </Link>
-        <a href="tel:+14154978008" className="btn btn-primary flex-1" aria-label="Call Skye Cleaning Group">
-          Call Us
-        </a>
-      </div>
+    <div className="pointer-events-none fixed bottom-10 right-4 z-50 flex justify-end md:bottom-20 md:right-16">
+      <a
+        href="https://wa.me/14154978008"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="pointer-events-auto relative inline-flex h-16 w-16 items-center justify-center rounded-full transition hover:-translate-y-1 focus-visible:-translate-y-1 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[var(--skye-200)] drop-shadow-[0_14px_32px_rgba(15,60,90,0.28)]"
+        aria-label="Talk with Skye Cleaning Group on WhatsApp"
+      >
+        <span
+          aria-hidden="true"
+          className="absolute -top-1 -right-1 inline-flex h-3 w-3 items-center justify-center rounded-full bg-[var(--skye-500)] shadow-[0_0_0_2px_rgba(255,255,255,0.9)]"
+        />
+        <Image src="/icons/whatsapp.svg" alt="WhatsApp icon" width={44} height={44} className="h-11 w-11 object-contain" />
+      </a>
     </div>
   )
 }
