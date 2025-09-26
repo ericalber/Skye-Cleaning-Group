@@ -23,7 +23,6 @@ const navItems: NavItem[] = [
   { href: '#reviews', label: 'Reviews', type: 'anchor' },
   { href: '#faq', label: 'FAQ', type: 'anchor' },
   { href: '#areas', label: 'Service Area', type: 'anchor' },
-  { href: '#quote', label: 'Request', type: 'anchor' },
 ]
 
 export default function Header() {
