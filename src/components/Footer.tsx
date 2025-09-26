@@ -8,19 +8,22 @@ const contactLinks = [
     label: 'Call +1 (415) 497-8008',
     icon: '/icons/phone-3d.png',
     alt: 'Phone icon',
+    iconClass: 'mix-blend-multiply',
   },
   {
     href: 'mailto:contact@skyecgroup.com',
     label: 'Email: contact@skyecgroup.com',
     icon: '/icons/communication_mail.png',
     alt: 'Email icon',
+    iconClass: 'mix-blend-multiply',
   },
   {
     href: 'https://www.instagram.com/skyecgroup',
     label: 'Instagram: @skyecgroup',
-    icon: '/icons/Instagram-3d.png',
+    icon: '/icons/instagram.svg',
     alt: 'Instagram icon',
     external: true,
+    iconClass: '',
   },
 ]
 
@@ -40,7 +43,7 @@ export default function Footer() {
           <div className="space-y-4">
             <h3 className="text-sm font-semibold uppercase tracking-wide text-white/70">Contact</h3>
             <ul className="space-y-3 text-sm text-white">
-              {contactLinks.map(({ href, label, icon, alt, external }) => (
+              {contactLinks.map(({ href, label, icon, alt, external, iconClass }) => (
                 <li key={label}>
                   <a
                     href={href}
@@ -49,7 +52,7 @@ export default function Footer() {
                     target={external ? '_blank' : undefined}
                   >
                     <span className="relative flex h-7 w-7 items-center justify-center overflow-hidden rounded-full">
-                      <Image src={icon} alt={alt} width={24} height={24} className="h-6 w-6 object-contain mix-blend-multiply" />
+                      <Image src={icon} alt={alt} width={24} height={24} className={`h-6 w-6 object-contain ${iconClass ?? ''}`} />
                     </span>
                     <span>{label}</span>
                   </a>
