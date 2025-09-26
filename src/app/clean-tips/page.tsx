@@ -2,10 +2,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { cleanTips } from '@/data/cleanTips'
+import PageShell from '@/components/PageShell'
 
 export default function CleanTipsPage() {
   return (
-    <main className="space-y-16 pb-20">
+    <PageShell mainClassName="space-y-16 pb-20">
       <section className="container-px pt-16 text-center">
         <p className="text-xs uppercase tracking-[0.3em] text-[var(--skye-700)]">Clean Tips</p>
         <h1 className="mt-4 text-3xl font-black sm:text-4xl">Sharp cleaning insights to make every routine smarter.</h1>
@@ -36,6 +37,6 @@ export default function CleanTipsPage() {
           ))}
         </div>
       </section>
-    </main>
+    </PageShell>
   )
 }

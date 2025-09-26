@@ -1,19 +1,27 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+import PageShell from '@/components/PageShell'
+
 const heroHighlights = [
   {
     title: 'Residences prepared for magazine shoots',
-    copy: 'From urban lofts to coastal villas we stage every room with layered detailing and microfiber precision so guests step into a fresh signature scent.'
+    copy: 'From urban lofts to coastal villas we stage every room with layered detailing and microfiber precision so guests step into a fresh signature scent.',
+    image:
+      'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=800&q=80',
   },
   {
     title: 'Commercial suites with concierge polish',
-    copy: 'Boutique offices and showrooms receive white glove protocols that protect finishes while keeping schedules undisrupted.'
+    copy: 'Boutique offices and showrooms receive white glove protocols that protect finishes while keeping schedules undisrupted.',
+    image:
+      'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80',
   },
   {
     title: 'Health grade discipline',
-    copy: 'Medical suites and wellness studios rely on our surface safe disinfection sequences vetted by infection control consultants.'
-  }
+    copy: 'Medical suites and wellness studios rely on our surface safe disinfection sequences vetted by infection control consultants.',
+    image:
+      'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=800&q=80',
+  },
 ]
 
 const servicePrograms = [
@@ -42,20 +50,24 @@ const servicePrograms = [
 const specialtyVerticals = [
   {
     title: 'Estate Housekeeping',
-    copy: 'Concierge support for estates with art, wine collections, and specialty flooring. Includes day of event standby teams and valet style supply management.'
+    copy: 'Concierge support for estates with art, wine collections, and specialty flooring. Includes day of event standby teams and valet style supply management.',
+    image: 'https://images.unsplash.com/photo-1616594039964-94ae4e99970c?auto=format&fit=crop&w=800&q=80',
   },
   {
     title: 'Corporate Suites',
-    copy: 'Executive floors, venture studios, and design agencies receive rapid evening resets, scent zoning, and presentation trays aligned with brand guidelines.'
+    copy: 'Executive floors, venture studios, and design agencies receive rapid evening resets, scent zoning, and presentation trays aligned with brand guidelines.',
+    image: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=800&q=80',
   },
   {
     title: 'Medical and Wellness',
-    copy: 'Boutique clinics, dental practices, and med spas rely on our OSHA aligned disinfection routines, instrument prep assistance, and air quality monitoring logs.'
+    copy: 'Boutique clinics, dental practices, and med spas rely on our OSHA aligned disinfection routines, instrument prep assistance, and air quality monitoring logs.',
+    image: 'https://images.unsplash.com/photo-1587370560942-ad2a04eabb6d?auto=format&fit=crop&w=800&q=80',
   },
   {
     title: 'Retail and Showrooms',
-    copy: 'Flagship spaces stay camera ready with fingerprint sweeps, lighting polish, and merchandising support delivered before store hours.'
-  }
+    copy: 'Flagship spaces stay camera ready with fingerprint sweeps, lighting polish, and merchandising support delivered before store hours.',
+    image: 'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=800&q=80',
+  },
 ]
 
 const enhancementAddOns = [
@@ -68,7 +80,7 @@ const enhancementAddOns = [
 
 export default function ServicesPage() {
   return (
-    <main className="space-y-24 pb-24">
+    <PageShell mainClassName="space-y-24 pb-24">
       <section className="hero-gradient relative overflow-hidden">
         <div
           className="absolute inset-0 z-0 opacity-85"
@@ -93,18 +105,22 @@ export default function ServicesPage() {
                 <Link href="/portfolio" className="btn btn-primary">
                   View transformations
                 </Link>
-                <Link href="#consult" className="btn btn-secondary">
+                <Link href="#consult" className="btn btn-secondary-ghost">
                   Build my service plan
                 </Link>
               </div>
             </div>
             <div className="grid gap-4">
-              {heroHighlights.map(({ title, copy }) => (
-                <div key={title} className="card-premium p-5 text-left text-white">
-                  <div className="card-premium__body space-y-2">
-                    <h2 className="text-lg font-semibold">{title}</h2>
-                    <p className="text-sm text-white/75">{copy}</p>
+              {heroHighlights.map(({ title, copy, image }) => (
+                <div
+                  key={title}
+                  className="rounded-[2rem] border border-white/25 bg-white/10 p-5 text-white shadow-[0_18px_48px_rgba(4,16,32,0.36)] backdrop-blur"
+                >
+                  <div className="relative mb-4 h-32 overflow-hidden rounded-[1.5rem] border border-white/20">
+                    <Image src={image} alt={title} fill className="object-cover" />
                   </div>
+                  <h2 className="text-lg font-semibold text-white">{title}</h2>
+                  <p className="mt-2 text-sm text-white/80">{copy}</p>
                 </div>
               ))}
             </div>
@@ -147,10 +163,18 @@ export default function ServicesPage() {
             </p>
           </div>
           <div className="grid gap-8 md:grid-cols-2">
-            {specialtyVerticals.map(({ title, copy }) => (
-              <article key={title} className="rounded-3xl border border-[var(--skye-100)] bg-white p-6 shadow-[0_18px_36px_rgba(30,80,110,0.08)]">
-                <h3 className="text-lg font-semibold text-ink-900">{title}</h3>
-                <p className="mt-3 text-sm text-slate-600">{copy}</p>
+            {specialtyVerticals.map(({ title, copy, image }) => (
+              <article
+                key={title}
+                className="overflow-hidden rounded-3xl border border-[var(--skye-100)] bg-white shadow-[0_18px_36px_rgba(30,80,110,0.08)]"
+              >
+                <div className="relative h-48 w-full">
+                  <Image src={image} alt={title} fill className="object-cover" />
+                </div>
+                <div className="space-y-3 p-6">
+                  <h3 className="text-lg font-semibold text-ink-900">{title}</h3>
+                  <p className="text-sm text-slate-600">{copy}</p>
+                </div>
               </article>
             ))}
           </div>
@@ -189,6 +213,6 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
-    </main>
+    </PageShell>
   )
 }

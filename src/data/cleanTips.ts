@@ -154,41 +154,41 @@ export const cleanTips: CleanTip[] = [
   },
   {
     slug: 'parisian-window-lustre',
-    title: 'Parisian window ritual for sparkling storefronts',
-    hook: 'Mirror the glow of Left Bank boutiques with glass care tailored for stone facades.',
+    title: 'Parisian window ritual for flagship storefronts',
+    hook: 'Make Avenue Montaigne brands jealous with a mineral mist that mesmerizes passersby.',
     excerpt:
-      'A two cloth mineral water method keeps display windows bright while guarding limestone detailing from streaks.',
+      'Luxury retailers rely on a mineral water polish that preserves limestone facades while keeping hero products lit like couture.',
     hero: 'https://images.unsplash.com/photo-1478479474071-8a3014ad0d82?auto=format&fit=crop&w=1600&q=80',
     body: [
-      'Dust frames with a natural bristle brush before touching the glass. This prevents grit from dragging across the surface and scratching antique panes.',
-      'Spritz carbonated mineral water from a fine mister and polish with lint free linen following vertical strokes. Work in small sections to control drying time.',
-      'Buff the edges with a fresh dry cloth and inspect the facade for runoff. Finish by conditioning brass hardware using a gentle soap diluted in warm water.',
+      'Open each shift with a joint walk-through alongside the visual merchandising lead so display angles are documented before cloth touches glass.',
+      'Dust the stonework with a goat hair brush, mist chilled mineral water through a fine sprayer, and polish with linen gloves using vertical strokes to avoid light banding.',
+      'Close by buffing signature hardware with a dedicated crystal cloth and send quick photos to the marketing team for approval before doors open.',
     ],
   },
   {
     slug: 'toronto-highrise-schedule',
-    title: 'Toronto highrise cleaning schedule that respects elevators',
-    hook: 'Keep condos pristine without clashing with building traffic or concierge deadlines.',
+    title: 'Toronto highrise service map for boardroom towers',
+    hook: 'Keep penthouses and trading floors immaculate without hijacking elevator banks.',
     excerpt:
-      'Segment tasks into morning, afternoon, and night routines so highrise residents enjoy a polished home around elevator peak hours.',
+      'Divide the day into concierge approved windows so crews glide between suites while residents and finance teams barely notice.',
     hero: 'https://images.unsplash.com/photo-1505692952040-dc2003d9d1ba?auto=format&fit=crop&w=1600&q=80',
     body: [
-      'Complete laundry and bulk waste runs before eight in the morning to secure elevator availability and avoid resident rush periods.',
-      'Focus on quiet chores such as dusting artwork and detailing kitchens mid afternoon when neighbors are at work and hallways stay calm.',
-      'Reserve vacuuming and terrace rinsing for early evening with a cordless unit to minimize noise. Notify the concierge through your resident app once tasks finish.',
+      'Secure elevator reservations with the concierge before seven every morning for laundry carts, floral refreshes, and waste removal.',
+      'Detail art, kitchens, and meeting lounges mid afternoon when executives are off-site and the building stays whisper quiet.',
+      'Finish with silent cordless vacuuming between seven and eight at night, logging completion in the resident portal before market open the next day.',
     ],
   },
   {
     slug: 'coastal-salt-shield',
     title: 'Coastal salt shield for seaside estates',
-    hook: 'Stop ocean mist from corroding finishes by borrowing techniques from Mediterranean resorts.',
+    hook: 'Borrow yacht level protocols to keep Atlantic terraces camera ready for arrivals.',
     excerpt:
-      'Daily rinses, mineral neutralizers, and protective waxing preserve metalwork, glass, and stone in marine climates.',
+      'Daily desalination, neutralizing rinses, and quarterly barrier treatments preserve glass, stone, and brass against marine spray.',
     hero: 'https://images.unsplash.com/photo-1512912287652-896ed1e00baf?auto=format&fit=crop&w=1600&q=80',
     body: [
-      'Rinse exterior glass, railings, and patio furniture with fresh water every morning to dissolve salt crystals before the sun bakes them in place.',
-      'Apply a neutralizing spray made from distilled water and a teaspoon of baking soda once a week. This balances pH on metal and stone surfaces.',
-      'Seal outdoor fixtures quarterly with a marine grade wax using a microfiber pad. The protective layer repels moisture and keeps the finish gleaming.',
+      'Start sunrise service with a fresh water rinse across glass, railings, and teak lounges so salt crystals never bake into the finish.',
+      'Follow with a neutralizing mist of distilled water and calcium remover, focusing on hinges, fan housings, and glass balustrades.',
+      'Finish each quarter with a marine grade sealant applied using microfiber pads, then log the treatment for the estate manager before guest arrival.',
     ],
   },
 ]

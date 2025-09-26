@@ -1,6 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+import PageShell from '@/components/PageShell'
+
 const introParagraphs = [
   'At Skye Cleaning Group we share exclusive residential and commercial cleaning insights so you can improve your property care and grow your business with confidence.',
   'Our family leads a specialist crew trained to work with high-performance, finish-safe products that deliver impeccable results from penthouses to boutique showrooms.',
@@ -39,7 +41,7 @@ const pillars = [
 
 export default function AboutPage() {
   return (
-    <main className="space-y-20 pb-20">
+    <PageShell mainClassName="space-y-20 pb-20">
       <section className="hero-gradient relative overflow-hidden">
         <div
           className="absolute inset-0 z-0 opacity-85"
@@ -127,6 +129,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-    </main>
+    </PageShell>
   )
 }

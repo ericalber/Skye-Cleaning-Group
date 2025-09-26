@@ -2,6 +2,8 @@ import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import PageShell from '@/components/PageShell'
+
 import { cleanTips, getCleanTip } from '@/data/cleanTips'
 
 export function generateStaticParams() {
@@ -17,7 +19,7 @@ export default async function CleanTipDetail({ params }: { params: Promise<{ slu
   }
 
   return (
-    <main className="space-y-16 pb-20">
+    <PageShell mainClassName="space-y-16 pb-20">
       <section className="hero-gradient relative overflow-hidden">
         <div
           className="absolute inset-0 z-0 opacity-85"
@@ -58,6 +60,6 @@ export default async function CleanTipDetail({ params }: { params: Promise<{ slu
           </div>
         </div>
       </section>
-    </main>
+    </PageShell>
   )
 }

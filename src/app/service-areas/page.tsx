@@ -1,6 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+import PageShell from '@/components/PageShell'
+import ModalQuote from '@/components/ModalQuote'
+
 const coverageZones = [
   {
     name: 'San Francisco Proper',
@@ -12,7 +15,7 @@ const coverageZones = [
     name: 'Marin County',
     neighborhoods: ['Mill Valley', 'Tiburon', 'Sausalito', 'Larkspur', 'Corte Madera'],
     highlight: 'Estate housekeepers coordinate with property managers for seasonal deep care, yacht prep, and guest suite changeovers.',
-    image: 'https://images.unsplash.com/photo-1529429617124-aee8095725cb?auto=format&fit=crop&w=1600&q=80'
+    image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80'
   },
   {
     name: 'North Bay',
@@ -31,16 +34,19 @@ const coverageZones = [
 const logisticPillars = [
   {
     title: 'Strategic dispatch hubs',
-    copy: 'Teams stage from San Francisco and Corte Madera so morning arrivals stay punctual even on peak travel days.'
+    copy: 'Teams stage from San Francisco and Corte Madera so morning arrivals stay punctual even on peak travel days.',
+    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80',
   },
   {
     title: 'Quality controllers on site',
-    copy: 'Supervisors conduct surprise audits, surface testing, and scent calibration to ensure every finish meets the Skye signature.'
+    copy: 'Supervisors conduct surprise audits, surface testing, and scent calibration to ensure every finish meets the Skye signature.',
+    image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=800&q=80',
   },
   {
     title: 'Trusted partner network',
-    copy: 'We coordinate with window detailers, stone restoration artisans, and landscaping leads already vetted for high end properties.'
-  }
+    copy: 'We coordinate with window detailers, stone restoration artisans, and landscaping leads already vetted for high end properties.',
+    image: 'https://images.unsplash.com/photo-1526948531399-320e7e40f0ca?auto=format&fit=crop&w=800&q=80',
+  },
 ]
 
 const expansionServices = [
@@ -53,7 +59,7 @@ const expansionServices = [
 
 export default function ServiceAreasPage() {
   return (
-    <main className="space-y-24 pb-24">
+    <PageShell mainClassName="space-y-24 pb-24">
       <section className="hero-gradient relative overflow-hidden">
         <div
           className="absolute inset-0 z-0 opacity-85"
@@ -77,9 +83,7 @@ export default function ServiceAreasPage() {
               <Link href="#zones" className="btn btn-primary">
                 Explore coverage
               </Link>
-              <Link href="#consult" className="btn btn-secondary">
-                Request expansion visit
-              </Link>
+              <ModalQuote triggerLabel="Request expansion visit" triggerClassName="btn btn-secondary-ghost" initialService="light" />
             </div>
           </div>
         </div>
@@ -132,10 +136,18 @@ export default function ServiceAreasPage() {
             </p>
           </div>
           <div className="grid gap-8 md:grid-cols-3">
-            {logisticPillars.map(({ title, copy }) => (
-              <article key={title} className="rounded-3xl border border-[var(--skye-100)] bg-white p-6 shadow-[0_18px_36px_rgba(30,80,110,0.08)]">
-                <h3 className="text-lg font-semibold text-ink-900">{title}</h3>
-                <p className="mt-3 text-sm text-slate-600">{copy}</p>
+            {logisticPillars.map(({ title, copy, image }) => (
+              <article
+                key={title}
+                className="overflow-hidden rounded-3xl border border-[var(--skye-100)] bg-white shadow-[0_18px_36px_rgba(30,80,110,0.08)]"
+              >
+                <div className="relative h-40 w-full">
+                  <Image src={image} alt={title} fill className="object-cover" />
+                </div>
+                <div className="space-y-3 p-6">
+                  <h3 className="text-lg font-semibold text-ink-900">{title}</h3>
+                  <p className="text-sm text-slate-600">{copy}</p>
+                </div>
               </article>
             ))}
           </div>
@@ -179,9 +191,7 @@ export default function ServiceAreasPage() {
                     <Link href="tel:+14154978008" className="btn btn-primary">
                       Call +1 (415) 497-8008
                     </Link>
-                    <Link href="/?service=recurring#quote" className="btn btn-secondary">
-                      Request a planning session
-                    </Link>
+                    <ModalQuote triggerLabel="Request a planning session" triggerClassName="btn btn-secondary" initialService="recurring" />
                   </div>
                 </div>
               </div>
@@ -189,6 +199,6 @@ export default function ServiceAreasPage() {
           </div>
         </div>
       </section>
-    </main>
+    </PageShell>
   )
 }

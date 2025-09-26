@@ -1,10 +1,14 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+import PageShell from '@/components/PageShell'
+import ModalQuote from '@/components/ModalQuote'
+
 const heroStats = [
-  { label: 'Residences', value: '120+', detail: 'Private homes and penthouses reimagined with Skye detailing.' },
-  { label: 'Commercial suites', value: '45', detail: 'Studios, law firms, and venture offices refreshed on retainer.' },
-  { label: 'Medical sites', value: '18', detail: 'Clinics and med spas maintained to infection control standards.' }
+  { label: 'Residences', value: '1000+', detail: 'Private homes and penthouses reimagined with Skye detailing.' },
+  { label: 'Corporate offices', value: '75', detail: 'Executive suites and venture studios kept launch-ready every week.' },
+  { label: 'Medical sites', value: '18', detail: 'Clinics and med spas maintained to infection control standards.' },
+  { label: 'Wineries', value: '50+', detail: 'Wine country estates and tasting rooms staged between pours.' }
 ]
 
 const caseStudies = [
@@ -86,7 +90,7 @@ const testimonialQuotes = [
 
 export default function PortfolioPage() {
   return (
-    <main className="space-y-24 pb-24">
+    <PageShell mainClassName="space-y-24 pb-24">
       <section className="hero-gradient relative overflow-hidden">
         <div
           className="absolute inset-0 z-0 opacity-85"
@@ -194,12 +198,10 @@ export default function PortfolioPage() {
             <Link href="tel:+14154978008" className="btn btn-primary">
               Call +1 (415) 497-8008
             </Link>
-            <Link href="/?service=recurring#quote" className="btn btn-secondary">
-              Request a tailored proposal
-            </Link>
+            <ModalQuote triggerLabel="Request a tailored proposal" triggerClassName="btn btn-secondary" initialService="recurring" />
           </div>
         </div>
       </section>
-    </main>
+    </PageShell>
   )
 }

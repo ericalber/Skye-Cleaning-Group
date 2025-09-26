@@ -75,8 +75,8 @@ const reviewSources = [
   {
     label: 'Yelp',
     description: 'People Love Us on Yelp',
-    logo: '/logos/yelp-3d.png',
-    alt: 'Yelp 3D logo',
+    logo: '/logos/yelp.png',
+    alt: 'Yelp logo',
     href: 'https://www.yelp.com/biz/skye-cleaning-group-san-francisco',
   },
 ]
@@ -86,7 +86,7 @@ export default function Reviews() {
     <section id="reviews" className="bg-white py-16">
       <div className="container-px">
         <div className="mx-auto max-w-2xl text-center">
-          <div className="flex flex-wrap items-center justify-center gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-4">
             {reviewSources.map(({ label, logo, alt, href }) => (
               <a
                 key={label}
@@ -101,7 +101,7 @@ export default function Reviews() {
                   alt={alt}
                   width={256}
                   height={256}
-                  className="h-12 w-[7rem] object-contain opacity-85 transition-opacity hover:opacity-100 mix-blend-multiply"
+                  className="h-12 w-24 object-contain opacity-85 transition-opacity hover:opacity-100 mix-blend-multiply"
                 />
               </a>
             ))}

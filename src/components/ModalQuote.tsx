@@ -2,9 +2,24 @@
 
 import { Suspense, useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import QuoteForm from './QuoteForm'
 
-export default function ModalQuote() {
+import QuoteForm, { type QuoteService } from './QuoteForm'
+
+type ModalQuoteProps = {
+  triggerLabel?: string
+  triggerClassName?: string
+  initialService?: QuoteService
+  title?: string
+  description?: string
+}
+
+export default function ModalQuote({
+  triggerLabel = 'Request a Quote',
+  triggerClassName = 'btn btn-secondary',
+  initialService,
+  title = 'Get your free quote',
+  description = 'Share the details of your space and we will respond in one business day.',
+}: ModalQuoteProps) {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
@@ -23,8 +38,12 @@ export default function ModalQuote() {
 
   return (
     <>
-      <button onClick={() => setOpen(true)} className="btn btn-secondary">
-        Request a Quote
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        className={triggerClassName}
+      >
+        {triggerLabel}
       </button>
       <AnimatePresence>
         {open && (
@@ -46,6 +65,7 @@ export default function ModalQuote() {
               onClick={(event) => event.stopPropagation()}
             >
               <button
+                type="button"
                 onClick={() => setOpen(false)}
                 className="absolute right-3 top-3 rounded-full bg-black/5 px-2 py-1 text-sm font-semibold"
                 aria-label="Close quote modal"
@@ -53,10 +73,13 @@ export default function ModalQuote() {
                 ✕
               </button>
               <div className="p-6 sm:p-8">
-                <h3 className="text-2xl font-bold mb-3">Get your free quote</h3>
-                <Suspense fallback={null}>
-                  <QuoteForm compact />
-                </Suspense>
+                <h3 className="text-2xl font-bold text-ink-900">{title}</h3>
+                <p className="mt-1 text-sm text-slate-600">{description}</p>
+                <div className="mt-4">
+                  <Suspense fallback={null}>
+                    <QuoteForm compact initialService={initialService} />
+                  </Suspense>
+                </div>
               </div>
             </motion.div>
           </motion.div>
