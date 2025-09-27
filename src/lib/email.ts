@@ -1,5 +1,7 @@
 import nodemailer from 'nodemailer'
 
+declare module 'nodemailer'
+
 const smtpHost = process.env.SMTP_HOST
 const smtpPort = Number(process.env.SMTP_PORT ?? 587)
 const smtpSecure = String(process.env.SMTP_SECURE ?? '').toLowerCase() === 'true'
