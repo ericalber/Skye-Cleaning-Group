@@ -1,26 +1,17 @@
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
+
+import { quoteServiceOptions, type QuoteServiceValue } from '@/data/quoteServices'
 import { resolveRecipientAddress, resolveSenderAddress, transporter, verifyTransporter } from '@/lib/email'
+
+const serviceValues = quoteServiceOptions.map((option) => option.value) as [QuoteServiceValue, ...QuoteServiceValue[]]
 
 const payloadSchema = z.object({
   name: z.string().min(2),
   email: z.string().email(),
   phone: z.string().min(8),
   zip: z.string().min(5),
-  service: z.enum([
-    'recurring',
-    'deep',
-    'deep_carpet',
-    'deep_windows',
-    'deep_airbnb',
-    'deep_post_construction',
-    'deep_move_out',
-    'deep_special_event',
-    'move',
-    'apartment',
-    'light',
-    'event',
-  ]),
+  service: z.enum(serviceValues),
   bedrooms: z.enum(['0', '1', '2', '3', '4', '5+']).optional(),
   bathrooms: z.enum(['0', '1', '2', '3', '4', '5+']).optional(),
   details: z.string().max(500).optional(),

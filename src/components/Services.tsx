@@ -1,6 +1,7 @@
 'use client'
 
 import { Suspense, useState } from 'react'
+import Link from 'next/link'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Building, Building2, PartyPopper, RefreshCw, Sparkles, Truck } from 'lucide-react'
 import QuoteForm, { type QuoteService } from './QuoteForm'
@@ -14,12 +15,14 @@ type Service = {
   features: string[]
   value: QuoteService
   accent: Accent
+  slug: string
 }
 
 const services: Service[] = [
   {
     icon: RefreshCw,
     title: 'Recurring Cleaning',
+    slug: 'recurring-cleaning',
     description: 'The cadence that keeps your home feeling hotel-fresh week after week.',
     features: ['Custom schedule & scope', 'Same trusted crew whenever possible', 'Signature Skye Cleaning checklist'],
     value: 'recurring',
@@ -28,6 +31,7 @@ const services: Service[] = [
   {
     icon: Sparkles,
     title: 'One-Time Deep Clean',
+    slug: 'one-time-deep-clean',
     description: 'Detail care for kitchens, baths, and high-touch zones before big moments.',
     features: ['Detailing for fixtures & trim', 'Professional-grade products', 'Special focus on buildup areas'],
     value: 'deep',
@@ -36,6 +40,7 @@ const services: Service[] = [
   {
     icon: Truck,
     title: 'Move-In / Move-Out',
+    slug: 'move-in-move-out',
     description: 'Deliver or receive a property that is inspection-ready without the stress.',
     features: ['Cabinets & drawers inside', 'Appliance interior detailing', 'Baseboards, doors, and floor edges'],
     value: 'move',
@@ -44,6 +49,7 @@ const services: Service[] = [
   {
     icon: Building2,
     title: 'Light Commercial',
+    slug: 'light-commercial',
     description: 'Boutique offices, studios, and clinics serviced after-hours with discretion.',
     features: ['Flexible scheduling windows', 'Discreet, uniformed team', 'Usage reports on request'],
     value: 'light',
@@ -52,6 +58,7 @@ const services: Service[] = [
   {
     icon: Building,
     title: 'Apartment & Condo',
+    slug: 'apartment-condo',
     description: 'Tailored care for high-rise, condo, and pied-à-terre lifestyles.',
     features: ['Optimized visits for compact layouts', 'Finish-safe, low-odor products', 'Compliance with building protocols'],
     value: 'apartment',
@@ -60,6 +67,7 @@ const services: Service[] = [
   {
     icon: PartyPopper,
     title: 'Post-Event Refresh',
+    slug: 'post-event-refresh',
     description: 'Reset after gatherings so you can focus on guests, not the cleanup.',
     features: ['Trash removal & reset', 'Spot treating floors & upholstery', 'Light staging of common areas'],
     value: 'event',
@@ -88,16 +96,28 @@ export default function Services() {
         </p>
       </div>
       <div className="mt-10 grid gap-6 lg:grid-cols-3">
-        {services.map(({ icon: Icon, title, description, features, value, accent }) => {
+        {services.map(({ icon: Icon, title, description, features, value, accent, slug }) => {
           const bulletClass = accentSwatch[accent]
 
           return (
             <div key={title} className="card-premium p-6 text-left text-ink-900">
               <div className="card-premium__body">
-                <span className="card-premium__icon" data-variant={accent}>
+                <Link
+                  href={`/services/${slug}`}
+                  className="card-premium__icon transition hover:scale-105 focus-visible:ring-2 focus-visible:ring-[var(--skye-400)] focus-visible:outline-none"
+                  data-variant={accent}
+                  aria-label={`${title} service details`}
+                >
                   <Icon className="size-6" aria-hidden="true" />
-                </span>
-                <h3 className="mt-4 text-xl font-semibold text-ink-900">{title}</h3>
+                </Link>
+                <h3 className="mt-4 text-xl font-semibold text-ink-900">
+                  <Link
+                    href={`/services/${slug}`}
+                    className="hover:text-[var(--skye-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--skye-400)] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+                  >
+                    {title}
+                  </Link>
+                </h3>
                 <p className="mt-2 text-sm text-slate-600">{description}</p>
                 <div className="card-premium__divider" />
                 <ul className="space-y-2 text-sm text-ink-900">

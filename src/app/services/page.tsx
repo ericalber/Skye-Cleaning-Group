@@ -2,6 +2,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import PageShell from '@/components/PageShell'
+import ModalQuote from '@/components/ModalQuote'
+import { serviceDetails } from '@/data/servicePages'
 
 const heroHighlights = [
   {
@@ -105,9 +107,7 @@ export default function ServicesPage() {
                 <Link href="/portfolio" className="btn btn-primary">
                   View transformations
                 </Link>
-                <Link href="#consult" className="btn btn-secondary-ghost">
-                  Build my service plan
-                </Link>
+                <ModalQuote triggerClassName="btn btn-secondary-ghost" triggerLabel="Build my service plan" compact />
               </div>
             </div>
             <div className="grid gap-4">
@@ -124,6 +124,42 @@ export default function ServicesPage() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="container-px pt-16" id="service-directory">
+        <div className="mx-auto max-w-6xl space-y-8">
+          <div className="space-y-3 text-center">
+            <h2 className="text-3xl font-black text-ink-900 sm:text-4xl">Explore our concierge services</h2>
+            <p className="text-sm text-slate-600 sm:text-base">Handpick the program that mirrors your property narrative and discover how our specialists turn every visit into measurable value.</p>
+          </div>
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {serviceDetails.map((service) => (
+              <Link
+                key={service.slug}
+                href={`/services/${service.slug}`}
+                className="group relative overflow-hidden rounded-[2rem] border border-[var(--skye-100)] bg-white shadow-[0_22px_56px_rgba(18,60,84,0.12)] transition hover:-translate-y-1"
+              >
+                <div className="relative h-48 w-full overflow-hidden">
+                  <Image
+                    src={service.heroImage}
+                    alt={service.heroAlt}
+                    fill
+                    className="object-cover transition duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/0" aria-hidden="true" />
+                </div>
+                <div className="space-y-3 p-6 text-left text-ink-900">
+                  <h3 className="text-xl font-semibold transition group-hover:text-[var(--skye-700)]">{service.name}</h3>
+                  <p className="text-sm text-slate-600">{service.subheading}</p>
+                  <span className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--skye-700)]">
+                    Discover the service
+                    <span aria-hidden="true">→</span>
+                  </span>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -182,34 +218,44 @@ export default function ServicesPage() {
       </section>
 
       <section className="container-px" id="consult">
-        <div className="mx-auto max-w-5xl space-y-8 rounded-[2rem] bg-white px-10 py-12 text-ink-900 shadow-[0_24px_60px_rgba(18,60,84,0.14)]">
-          <div className="space-y-3 text-center">
-            <h2 className="text-3xl font-black">Enhance every visit</h2>
-            <p className="text-sm text-slate-600 sm:text-base">
-              Layer these add ons to create a bespoke plan that captures every detail of your space.
-            </p>
-          </div>
-          <ul className="grid gap-4 text-sm text-slate-600 md:grid-cols-2">
-            {enhancementAddOns.map((item) => (
-              <li
-                key={item}
-                className="flex items-start gap-3 rounded-2xl border border-[var(--skye-100)] bg-[var(--foam)] px-5 py-4 text-left shadow-[0_14px_24px_rgba(22,70,100,0.08)]"
-              >
-                <span className="mt-1 inline-flex h-8 w-8 items-center justify-center rounded-full bg-[var(--skye-500)] text-base font-semibold text-white">
-                  ★
-                </span>
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-          <div className="flex flex-col items-center gap-4 text-center text-sm text-slate-600 sm:flex-row sm:justify-between">
-            <div>
-              <p className="font-semibold text-ink-900">Ready for a site walkthrough</p>
-              <p>Call us to reserve a consultation window that fits your schedule.</p>
+        <div className="mx-auto max-w-6xl rounded-[2rem] bg-white px-8 py-12 text-ink-900 shadow-[0_24px_60px_rgba(18,60,84,0.14)] sm:px-10">
+          <div className="grid gap-10 lg:grid-cols-[1.05fr_minmax(0,0.95fr)] lg:items-start">
+            <div className="space-y-8">
+              <div className="space-y-3 text-center lg:text-left">
+                <h2 className="text-3xl font-black">Enhance every visit</h2>
+                <p className="text-sm text-slate-600 sm:text-base">
+                  Layer these add ons to create a bespoke plan that captures every detail of your space.
+                </p>
+              </div>
+              <ul className="grid gap-4 text-sm text-slate-600 sm:grid-cols-2">
+                {enhancementAddOns.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-3 rounded-2xl border border-[var(--skye-100)] bg-[var(--foam)] px-5 py-4 text-left shadow-[0_14px_24px_rgba(22,70,100,0.08)]"
+                  >
+                    <span
+                      className="mt-1 inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--skye-500)] text-lg font-semibold leading-none text-white"
+                      aria-hidden="true"
+                    >
+                      ★
+                    </span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="flex flex-col items-center gap-4 text-center text-sm text-slate-600 sm:flex-row sm:justify-between">
+                <div>
+                  <p className="font-semibold text-ink-900">Ready for a site walkthrough</p>
+                  <p>Call us to reserve a consultation window that fits your schedule.</p>
+                </div>
+                <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+                  <Link href="tel:+14154978008" className="btn btn-primary flex-1 justify-center sm:flex-none">
+                    Call +1 (415) 497-8008
+                  </Link>
+                  <ModalQuote triggerClassName="btn btn-secondary flex-1 justify-center sm:flex-none" triggerLabel="Build my service plan" compact />
+                </div>
+              </div>
             </div>
-            <Link href="tel:+14154978008" className="btn btn-primary">
-              Call +1 (415) 497-8008
-            </Link>
           </div>
         </div>
       </section>

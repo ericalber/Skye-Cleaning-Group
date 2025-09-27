@@ -275,22 +275,38 @@ body {
   background: linear-gradient(160deg, rgba(18, 60, 84, 0.9), rgba(73, 148, 205, 0.85));
   box-shadow: 0 12px 24px rgba(18, 60, 84, 0.22);
   color: white;
+  --icon-glow: rgba(73, 148, 205, 0.45);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, filter 0.35s ease;
 }
 
 .card-premium__icon[data-variant='emerald'] {
   background: linear-gradient(160deg, rgba(9, 109, 102, 0.9), rgba(56, 189, 148, 0.85));
+  --icon-glow: rgba(56, 189, 148, 0.5);
 }
 
 .card-premium__icon[data-variant='gold'] {
   background: linear-gradient(160deg, rgba(146, 111, 35, 0.9), rgba(246, 189, 96, 0.85));
+  --icon-glow: rgba(246, 189, 96, 0.5);
 }
 
 .card-premium__icon[data-variant='violet'] {
   background: linear-gradient(160deg, rgba(80, 56, 160, 0.9), rgba(154, 105, 245, 0.85));
+  --icon-glow: rgba(154, 105, 245, 0.55);
 }
 
 .card-premium__icon[data-variant='rose'] {
   background: linear-gradient(160deg, rgba(168, 47, 112, 0.9), rgba(235, 104, 165, 0.85));
+  --icon-glow: rgba(235, 104, 165, 0.5);
+}
+
+.card-premium:hover .card-premium__icon,
+.card-premium:focus-within .card-premium__icon {
+  box-shadow:
+    0 0 0 0.15rem rgba(255, 255, 255, 0.35),
+    0 18px 38px rgba(18, 60, 84, 0.28),
+    0 0 28px var(--icon-glow);
+  filter: brightness(1.08);
+  transform: translateY(-1px);
 }
 
 .card-premium__divider {
@@ -390,4 +406,15 @@ body {
   textarea:focus-visible {
     @apply outline-none ring-2 ring-offset-2 ring-[var(--skye-400)] ring-offset-white;
   }
+}
+
+/* Dropdown overrides */
+.hero-gradient,
+.testi-wrap,
+.testimonial-carousel,
+.card-premium,
+.glass,
+.surface,
+.surface--white {
+  overflow: visible;
 }

@@ -6,30 +6,16 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useSearchParams } from 'next/navigation'
 
+import { quoteServiceOptions, type QuoteServiceValue } from '@/data/quoteServices'
+
+const serviceEnum = z.enum(quoteServiceOptions.map((option) => option.value) as [QuoteServiceValue, ...QuoteServiceValue[]])
+
 const schema = z.object({
   name: z.string().min(2, 'Please enter your name'),
   email: z.string().email('Please enter a valid email address'),
   phone: z.string().min(8, 'Please enter a valid phone number'),
   zip: z.string().min(5, 'ZIP code must be at least 5 characters'),
-  service: z.enum(
-    [
-      'recurring',
-      'deep',
-      'deep_carpet',
-      'deep_windows',
-      'deep_airbnb',
-      'deep_post_construction',
-      'deep_move_out',
-      'deep_special_event',
-      'move',
-      'apartment',
-      'light',
-      'event',
-    ],
-    {
-      error: 'Select a service',
-    },
-  ),
+  service: serviceEnum,
   bedrooms: z.enum(['0', '1', '2', '3', '4', '5+']).optional(),
   bathrooms: z.enum(['0', '1', '2', '3', '4', '5+']).optional(),
   details: z.string().max(500).optional(),
@@ -40,20 +26,7 @@ type FormData = z.infer<typeof schema>
 
 export type QuoteService = FormData['service']
 
-const serviceOptions: { value: FormData['service']; label: string }[] = [
-  { value: 'recurring', label: 'Recurring Cleaning' },
-  { value: 'deep', label: 'Deep Clean - Whole Home' },
-  { value: 'deep_carpet', label: 'Deep Clean - Carpet & Upholstery' },
-  { value: 'deep_windows', label: 'Deep Clean - Interior Windows' },
-  { value: 'deep_airbnb', label: 'Deep Clean - Airbnb Turnover' },
-  { value: 'deep_post_construction', label: 'Deep Clean - Post Construction' },
-  { value: 'deep_move_out', label: 'Deep Clean - Move-Out Inspection' },
-  { value: 'deep_special_event', label: 'Deep Clean - Special Event Reset' },
-  { value: 'move', label: 'Move-In / Move-Out' },
-  { value: 'apartment', label: 'Apartment & Condo' },
-  { value: 'light', label: 'Light Commercial' },
-  { value: 'event', label: 'Post-Event Refresh' },
-]
+const serviceOptions = quoteServiceOptions.map(({ value, label }) => ({ value, label })) as { value: FormData['service']; label: string }[]
 
 const allowedServiceParams = new Set(serviceOptions.map((option) => option.value))
 
