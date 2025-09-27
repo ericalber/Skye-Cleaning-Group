@@ -1,6 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useRef, useState } from 'react'
+import type { KeyboardEvent as ReactKeyboardEvent } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ChevronDown, Phone } from 'lucide-react'
