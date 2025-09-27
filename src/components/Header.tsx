@@ -4,7 +4,9 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ChevronDown, Menu, Phone, X } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import type { KeyboardEvent } from 'react'
+import type { KeyboardEvent as ReactKeyboardEvent } from 'react'
+
+import clsx from 'clsx'
 
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 
@@ -16,6 +18,7 @@ type NavItem = {
   href: string
   label: string
   children?: NavItem[]
+  menuKey?: 'services' | 'about'
 }
 
 const servicesNav: NavItem[] = serviceDetails.map(({ slug, navLabel }) => ({
@@ -35,10 +38,12 @@ const aboutNav: NavItem[] = [
 
 const navItems: NavItem[] = [
   { href: '/', label: 'Home' },
-  { href: '/services', label: 'Services', children: servicesNav },
-  { href: '/about', label: 'About', children: aboutNav },
+  { href: '/services', label: 'Services', children: servicesNav, menuKey: 'services' },
+  { href: '/about', label: 'About', children: aboutNav, menuKey: 'about' },
   { href: '/clean-tips', label: 'Clean Tips' },
 ]
+
+const getMenuId = (item: NavItem) => item.menuKey ?? item.label.toLowerCase().replace(/[^a-z0-9]+/g, '-')
 
 function useIsDesktop() {
   const [isDesktop, setIsDesktop] = useState(false)
@@ -81,16 +86,32 @@ export default function Header() {
   useEffect(() => {
     if (isDesktop || !menuOpen) return
 
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleOutside = (event: Event) => {
       if (!headerRef.current) return
-      if (!headerRef.current.contains(event.target as Node)) {
+      const target = event.target as Node | null
+      if (!target || headerRef.current.contains(target)) return
+      setMobileDropdown(null)
+      setMenuOpen(false)
+    }
+
+    const handleKey = (event: globalThis.KeyboardEvent) => {
+      if (event.key === 'Escape') {
         setMobileDropdown(null)
         setMenuOpen(false)
       }
     }
 
-    document.addEventListener('click', handleClickOutside)
-    return () => document.removeEventListener('click', handleClickOutside)
+    document.addEventListener('click', handleOutside, true)
+    document.addEventListener('touchstart', handleOutside, true)
+    document.addEventListener('pointerdown', handleOutside, true)
+    document.addEventListener('keydown', handleKey, true)
+
+    return () => {
+      document.removeEventListener('click', handleOutside, true)
+      document.removeEventListener('touchstart', handleOutside, true)
+      document.removeEventListener('pointerdown', handleOutside, true)
+      document.removeEventListener('keydown', handleKey, true)
+    }
   }, [isDesktop, menuOpen])
 
   const isActive = (href: string) => {
@@ -98,11 +119,11 @@ export default function Header() {
     return pathname === href || pathname.startsWith(`${href}/`)
   }
 
-  const toggleMobileDropdown = (label: string) => {
-    setMobileDropdown((current) => (current === label ? null : label))
+  const toggleMobileDropdown = (id: string) => {
+    setMobileDropdown((current) => (current === id ? null : id))
   }
 
-  const handleParentKeyDown = (event: KeyboardEvent<HTMLElement>, label: string) => {
+  const handleParentKeyDown = (event: ReactKeyboardEvent<HTMLElement>, id: string) => {
     if (event.key === 'Escape') {
       setMobileDropdown(null)
       return
@@ -110,7 +131,7 @@ export default function Header() {
 
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault()
-      toggleMobileDropdown(label)
+      toggleMobileDropdown(id)
     }
   }
 
@@ -143,41 +164,42 @@ export default function Header() {
             )
           }
 
-          const itemValue = item.label.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+          const itemId = getMenuId(item)
 
-          const desktopItemOpen = openDesktopItem === itemValue
+          const desktopItemOpen = openDesktopItem === itemId
 
           return (
             <NavigationMenu.Item
               key={item.href}
-              value={itemValue}
+              value={itemId}
               className="relative"
               onPointerLeave={() => setOpenDesktopItem(null)}
             >
               <NavigationMenu.Trigger asChild>
                 <Link
                   href={item.href}
+                  data-menu={item.menuKey}
                   className={`inline-flex items-center gap-1 rounded-full px-3 py-1.5 font-medium transition ${
                     isActive(item.href) || desktopItemOpen
                       ? 'bg-[var(--skye-100)] text-[var(--skye-700)]'
                       : 'hover:text-[var(--skye-700)]'
                   }`}
                   onMouseEnter={() => {
-                    if (isDesktop) setOpenDesktopItem(itemValue)
+                    if (isDesktop) setOpenDesktopItem(itemId)
                   }}
                   onFocus={() => {
-                    if (isDesktop) setOpenDesktopItem(itemValue)
+                    if (isDesktop) setOpenDesktopItem(itemId)
                   }}
                   onClick={(event) => {
                     if (isDesktop && !desktopItemOpen && !event.metaKey && !event.ctrlKey && event.button === 0) {
                       event.preventDefault()
-                      setOpenDesktopItem(itemValue)
+                      setOpenDesktopItem(itemId)
                     }
                   }}
                   onKeyDown={(event) => {
                     if ((event.key === 'Enter' || event.key === ' ') && !desktopItemOpen) {
                       event.preventDefault()
-                      setOpenDesktopItem(itemValue)
+                      setOpenDesktopItem(itemId)
                     }
                     if (event.key === 'Escape') {
                       setOpenDesktopItem(null)
@@ -249,51 +271,66 @@ export default function Header() {
             )
           }
 
-          const isOpen = mobileDropdown === item.label
-          const menuId = `${item.label.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase()}-menu-mobile`
+          const itemId = getMenuId(item)
+          const isOpen = mobileDropdown === itemId
+          const menuId = `${itemId}-menu-mobile`
 
           return (
             <div key={item.href} className="flex flex-col gap-2">
               <button
                 type="button"
                 className="flex items-center justify-between rounded-xl border border-black/5 px-4 py-3 text-left text-sm font-semibold text-ink-900"
+                data-menu={item.menuKey}
                 aria-haspopup="menu"
                 aria-expanded={isOpen}
                 aria-controls={menuId}
-                onClick={() => toggleMobileDropdown(item.label)}
-                onKeyDown={(event) => handleParentKeyDown(event, item.label)}
+                onClick={(event) => {
+                  if (isDesktop) return
+                  event.preventDefault()
+                  toggleMobileDropdown(itemId)
+                }}
+                onKeyDown={(event) => handleParentKeyDown(event, itemId)}
               >
                 {item.label}
                 <ChevronDown className={`size-4 transition ${isOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
               </button>
-              {isOpen && (
-                <div
-                  id={menuId}
-                  role="menu"
-                  className="ml-3 flex max-h-[60vh] flex-col gap-2 overflow-y-auto border-l border-black/10 pl-3"
-                  style={{ WebkitOverflowScrolling: 'touch' }}
+              <div
+                id={menuId}
+                role="menu"
+                className={clsx(
+                  'ml-3 flex max-h-[60vh] flex-col gap-2 overflow-y-auto border-l border-black/10 pl-3 transition-all duration-150 ease-out',
+                  isOpen
+                    ? 'visible translate-y-0 opacity-100 pointer-events-auto'
+                    : 'invisible translate-y-2 opacity-0 pointer-events-none'
+                )}
+                style={{ WebkitOverflowScrolling: 'touch' }}
+              >
+                <Link
+                  href={item.href}
+                  role="menuitem"
+                  className="rounded-lg px-3 py-1.5 text-sm font-semibold text-[var(--skye-700)] hover:bg-[var(--foam)]"
+                  onClick={() => {
+                    setMenuOpen(false)
+                    setMobileDropdown(null)
+                  }}
                 >
+                  {item.label} Overview
+                </Link>
+                {item.children.map((child) => (
                   <Link
-                    href={item.href}
+                    key={child.href}
+                    href={child.href}
                     role="menuitem"
-                    className="rounded-lg px-3 py-1.5 text-sm font-semibold text-[var(--skye-700)] hover:bg-[var(--foam)]"
-                    onClick={() => setMenuOpen(false)}
+                    className="rounded-lg px-3 py-1.5 text-sm text-slate-600 hover:bg-[var(--foam)] hover:text-[var(--skye-700)]"
+                    onClick={() => {
+                      setMenuOpen(false)
+                      setMobileDropdown(null)
+                    }}
                   >
-                    {item.label} Overview
+                    {child.label}
                   </Link>
-                  {item.children.map((child) => (
-                    <Link
-                      key={child.href}
-                      href={child.href}
-                      role="menuitem"
-                      className="rounded-lg px-3 py-1.5 text-sm text-slate-600 hover:bg-[var(--foam)] hover:text-[var(--skye-700)]"
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      {child.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
+                ))}
+              </div>
             </div>
           )
         })}
