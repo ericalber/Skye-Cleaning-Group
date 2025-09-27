@@ -131,9 +131,18 @@ export default function NavMobile({ items, isOpen, onClose }: NavMobileProps) {
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [onClose, isOpen])
 
+  const previousPath = useRef(pathname)
+
   useEffect(() => {
-    if (!isOpen) return
-    onClose()
+    if (!isOpen) {
+      previousPath.current = pathname
+      return
+    }
+
+    if (previousPath.current !== pathname) {
+      previousPath.current = pathname
+      onClose()
+    }
   }, [pathname, isOpen, onClose])
 
   const toggleItem = useCallback((id: string) => {
