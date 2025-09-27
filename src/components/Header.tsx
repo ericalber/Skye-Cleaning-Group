@@ -298,10 +298,10 @@ export default function Header() {
                 id={menuId}
                 role="menu"
                 className={clsx(
-                  'ml-3 flex max-h-[60vh] flex-col gap-2 overflow-y-auto border-l border-black/10 pl-3 transition-all duration-150 ease-out',
+                  'ml-3 flex max-h-0 flex-col gap-2 overflow-hidden border-l border-black/10 pl-3 transition-all duration-200 ease-out',
                   isOpen
-                    ? 'visible translate-y-0 opacity-100 pointer-events-auto'
-                    : 'invisible translate-y-2 opacity-0 pointer-events-none'
+                    ? 'max-h-[60vh] translate-y-0 opacity-100 pointer-events-auto overflow-y-auto visible'
+                    : 'translate-y-2 opacity-0 pointer-events-none invisible'
                 )}
                 style={{ WebkitOverflowScrolling: 'touch' }}
               >
