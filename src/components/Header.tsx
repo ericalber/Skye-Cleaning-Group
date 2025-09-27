@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ChevronDown, Menu, Phone, X } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import type { KeyboardEvent, MouseEvent as ReactMouseEvent } from 'react'
+import type { KeyboardEvent } from 'react'
 
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 
@@ -98,19 +98,19 @@ export default function Header() {
     return pathname === href || pathname.startsWith(`${href}/`)
   }
 
-  const handleParentClick = (event: ReactMouseEvent<HTMLAnchorElement>, label: string) => {
-    if (isDesktop) return
-    event.preventDefault()
+  const toggleMobileDropdown = (label: string) => {
     setMobileDropdown((current) => (current === label ? null : label))
   }
 
-  const handleParentKeyDown = (event: KeyboardEvent<HTMLAnchorElement>, label: string) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault()
-      setMobileDropdown((current) => (current === label ? null : label))
-    }
+  const handleParentKeyDown = (event: KeyboardEvent<HTMLElement>, label: string) => {
     if (event.key === 'Escape') {
       setMobileDropdown(null)
+      return
+    }
+
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault()
+      toggleMobileDropdown(label)
     }
   }
 
@@ -254,18 +254,18 @@ export default function Header() {
 
           return (
             <div key={item.href} className="flex flex-col gap-2">
-              <Link
-                href={item.href}
+              <button
+                type="button"
                 className="flex items-center justify-between rounded-xl border border-black/5 px-4 py-3 text-left text-sm font-semibold text-ink-900"
                 aria-haspopup="menu"
                 aria-expanded={isOpen}
                 aria-controls={menuId}
-                onClick={(event) => handleParentClick(event, item.label)}
+                onClick={() => toggleMobileDropdown(item.label)}
                 onKeyDown={(event) => handleParentKeyDown(event, item.label)}
               >
                 {item.label}
                 <ChevronDown className={`size-4 transition ${isOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
-              </Link>
+              </button>
               {isOpen && (
                 <div
                   id={menuId}

@@ -133,12 +133,6 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               initialService={service.quoteService}
               compact
             />
-            <ModalQuote
-              triggerClassName="btn btn-secondary w-full justify-center sm:w-auto"
-              triggerLabel="Request availability"
-              initialService={service.quoteService}
-              compact
-            />
           </div>
         </div>
       </section>
