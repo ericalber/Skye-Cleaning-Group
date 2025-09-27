@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ChevronDown, Menu, Phone, X } from 'lucide-react'
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 
@@ -58,23 +58,18 @@ export default function Header() {
   }, [])
 
   useEffect(() => {
-    const handleOpen = () => setDrawerOpen(true)
-    const handleClose = () => setDrawerOpen(false)
-
-    document.addEventListener('navx-open', handleOpen as EventListener)
-    document.addEventListener('navx-close', handleClose as EventListener)
-
-    return () => {
-      document.removeEventListener('navx-open', handleOpen as EventListener)
-      document.removeEventListener('navx-close', handleClose as EventListener)
-    }
-  }, [])
-
-  useEffect(() => {
     setOpenDesktopItem(null)
   }, [pathname])
 
   const topNavItems = useMemo(() => navItems, [])
+
+  const handleMobileClose = useCallback(() => {
+    setDrawerOpen(false)
+  }, [])
+
+  const handleMobileToggle = useCallback(() => {
+    setDrawerOpen((prev) => !prev)
+  }, [])
 
   const renderDesktopNav = () => (
     <NavigationMenu.Root
@@ -211,12 +206,13 @@ export default function Header() {
             aria-expanded={drawerOpen}
             aria-controls="navx-drawer"
             aria-label="Toggle navigation menu"
+            onClick={handleMobileToggle}
           >
             {drawerOpen ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
           </button>
         </div>
       </header>
-      <NavMobile items={topNavItems} />
+      <NavMobile items={topNavItems} isOpen={drawerOpen} onClose={handleMobileClose} />
     </>
   )
 }

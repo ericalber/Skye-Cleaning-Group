@@ -18,6 +18,8 @@ type NavItem = {
 
 type NavMobileProps = {
   items: NavItem[]
+  isOpen: boolean
+  onClose: () => void
 }
 
 const MOBILE_QUERY = '(max-width: 1023px)'
@@ -25,16 +27,15 @@ const FOCUSABLE_SELECTOR = 'a[href], button, [tabindex]:not([tabindex="-1"])'
 
 const getMenuId = (item: NavItem) => item.menuKey ?? item.label.toLowerCase().replace(/[^a-z0-9]+/g, '-')
 
-export default function NavMobile({ items }: NavMobileProps) {
+export default function NavMobile({ items, isOpen, onClose }: NavMobileProps) {
   const pathname = usePathname()
   const [isMounted, setIsMounted] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
-  const [isOpen, setIsOpen] = useState(false)
   const [openItem, setOpenItem] = useState<string | null>(null)
 
   const drawerRef = useRef<HTMLDivElement | null>(null)
-  const burgerRef = useRef<HTMLElement | null>(null)
-  const isOpenRef = useRef(false)
+  const wasOpenRef = useRef(false)
+  const triggerRef = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
     setIsMounted(true)
@@ -42,6 +43,8 @@ export default function NavMobile({ items }: NavMobileProps) {
     if (!body.classList.contains('with-navx')) {
       body.classList.add('with-navx')
     }
+    triggerRef.current = document.querySelector('[data-navx-toggle="drawer"]') as HTMLElement | null
+
     return () => {
       body.classList.remove('with-navx')
       document.documentElement.classList.remove('navx-lock')
@@ -50,85 +53,49 @@ export default function NavMobile({ items }: NavMobileProps) {
   }, [])
 
   useEffect(() => {
+    if (!isMounted) return
+
     const media = window.matchMedia(MOBILE_QUERY)
     const update = () => setIsMobile(media.matches)
     update()
     media.addEventListener('change', update)
     return () => media.removeEventListener('change', update)
-  }, [])
-
-  const dispatchDrawerEvent = useCallback((type: 'open' | 'close') => {
-    document.dispatchEvent(new CustomEvent(`navx-${type}`))
-  }, [])
-
-  const closeDrawer = useCallback(
-    (returnFocus = true) => {
-      if (!isOpenRef.current) return
-      isOpenRef.current = false
-      setIsOpen(false)
-      setOpenItem(null)
-      document.documentElement.classList.remove('navx-lock')
-      document.body.classList.remove('navx-lock')
-      dispatchDrawerEvent('close')
-      burgerRef.current?.setAttribute('aria-expanded', 'false')
-      if (returnFocus) {
-        burgerRef.current?.focus()
-      }
-    },
-    [dispatchDrawerEvent],
-  )
-
-  const openDrawer = useCallback(() => {
-    if (!isMobile || isOpenRef.current) return
-    isOpenRef.current = true
-    setIsOpen(true)
-    document.documentElement.classList.add('navx-lock')
-    document.body.classList.add('navx-lock')
-    dispatchDrawerEvent('open')
-    burgerRef.current?.setAttribute('aria-expanded', 'true')
-    requestAnimationFrame(() => {
-      const firstFocusable = drawerRef.current?.querySelector<HTMLElement>(FOCUSABLE_SELECTOR)
-      firstFocusable?.focus()
-    })
-  }, [dispatchDrawerEvent, isMobile])
+  }, [isMounted])
 
   useEffect(() => {
-    if (!isMobile) {
-      closeDrawer(false)
+    if (!isMobile && isOpen) {
+      onClose()
     }
-  }, [closeDrawer, isMobile])
+  }, [isMobile, isOpen, onClose])
 
   useEffect(() => {
-    isOpenRef.current = isOpen
-  }, [isOpen])
+    const html = document.documentElement
+    const body = document.body
+    const trigger = triggerRef.current ?? (document.querySelector('[data-navx-toggle="drawer"]') as HTMLElement | null)
 
-  useEffect(() => {
-    burgerRef.current = document.querySelector('[data-navx-toggle="drawer"]') as HTMLElement | null
-    if (burgerRef.current) {
-      burgerRef.current.setAttribute('aria-expanded', 'false')
-    }
-  }, [])
+    if (isOpen && isMobile) {
+      wasOpenRef.current = true
+      html.classList.add('navx-lock')
+      body.classList.add('navx-lock')
+      trigger?.setAttribute('aria-expanded', 'true')
+      requestAnimationFrame(() => {
+        const first = drawerRef.current?.querySelector<HTMLElement>(FOCUSABLE_SELECTOR)
+        first?.focus()
+      })
+    } else {
+      html.classList.remove('navx-lock')
+      body.classList.remove('navx-lock')
+      trigger?.setAttribute('aria-expanded', 'false')
 
-  useEffect(() => {
-    if (!isMounted) return
-
-    const handleTrigger = (event: MouseEvent) => {
-      const target = event.target as HTMLElement | null
-      const trigger = target?.closest('[data-navx-toggle="drawer"]') as HTMLElement | null
-      if (!trigger) return
-      burgerRef.current = trigger
-      if (!isMobile) return
-      event.preventDefault()
-      if (isOpenRef.current) {
-        closeDrawer()
-      } else {
-        openDrawer()
+      if (wasOpenRef.current) {
+        setOpenItem(null)
+        wasOpenRef.current = false
+        if (trigger && typeof trigger.focus === 'function') {
+          trigger.focus()
+        }
       }
     }
-
-    document.addEventListener('click', handleTrigger)
-    return () => document.removeEventListener('click', handleTrigger)
-  }, [closeDrawer, openDrawer, isMobile, isMounted])
+  }, [isMobile, isOpen])
 
   useEffect(() => {
     if (!isOpen) return
@@ -136,7 +103,7 @@ export default function NavMobile({ items }: NavMobileProps) {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         event.preventDefault()
-        closeDrawer()
+        onClose()
         return
       }
 
@@ -162,12 +129,12 @@ export default function NavMobile({ items }: NavMobileProps) {
 
     document.addEventListener('keydown', handleKeyDown)
     return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [closeDrawer, isOpen])
+  }, [onClose, isOpen])
 
   useEffect(() => {
     if (!isOpen) return
-    closeDrawer(false)
-  }, [closeDrawer, isOpen, pathname])
+    onClose()
+  }, [pathname, isOpen, onClose])
 
   const toggleItem = useCallback((id: string) => {
     setOpenItem((current) => (current === id ? null : id))
@@ -177,24 +144,31 @@ export default function NavMobile({ items }: NavMobileProps) {
     (event: ReactKeyboardEvent<HTMLElement>, id: string) => {
       if (event.key === 'Escape') {
         event.preventDefault()
-        closeDrawer()
+        onClose()
         return
       }
 
       if (event.key === 'Enter' || event.key === ' ') {
-        if (!isMobile) return
         event.preventDefault()
+        if (!isMobile) {
+          onClose()
+          return
+        }
         toggleItem(id)
       }
     },
-    [closeDrawer, isMobile, toggleItem],
+    [isMobile, onClose, toggleItem],
   )
 
   const handleParentClick = useCallback(
     (id: string) => {
+      if (!isMobile) {
+        onClose()
+        return
+      }
       toggleItem(id)
     },
-    [toggleItem],
+    [isMobile, onClose, toggleItem],
   )
 
   const renderChildren = (item: NavItem) => {
@@ -203,17 +177,9 @@ export default function NavMobile({ items }: NavMobileProps) {
     const children = item.children ?? []
 
     return (
-      <ul
-        id={`${itemId}-panel`}
-        className={clsx('navx-children', styles.navxChildren)}
-        hidden={!expanded}
-      >
+      <ul id={`${itemId}-panel`} className={clsx('navx-children', styles.navxChildren)} hidden={!expanded}>
         <li>
-          <Link
-            href={item.href}
-            className={clsx('navx-child-link', styles.navxChildLink)}
-            onClick={() => closeDrawer(false)}
-          >
+          <Link href={item.href} className={clsx('navx-child-link', styles.navxChildLink)} onClick={onClose}>
             {item.label} Overview
           </Link>
         </li>
@@ -226,7 +192,7 @@ export default function NavMobile({ items }: NavMobileProps) {
                 styles.navxChildLink,
                 (pathname === child.href || pathname.startsWith(`${child.href}/`)) && styles.navxChildLinkActive,
               )}
-              onClick={() => closeDrawer(false)}
+              onClick={onClose}
             >
               {child.label}
             </Link>
@@ -243,17 +209,24 @@ export default function NavMobile({ items }: NavMobileProps) {
   return (
     <>
       <div
-        className={clsx('navx-overlay', styles.navxOverlay, isOpen && styles.navxOverlayActive)}
-        onClick={() => closeDrawer()}
+        className={clsx(
+          'navx-overlay',
+          styles.navxOverlay,
+          isOpen && styles.navxOverlayActive,
+          isOpen && 'is-active',
+        )}
+        hidden={!isOpen}
+        onClick={onClose}
         aria-hidden={!isOpen}
       />
       <aside
         ref={drawerRef}
         id="navx-drawer"
-        className={clsx('navx-drawer', styles.navxDrawer, isOpen && styles.navxDrawerOpen)}
+        className={clsx('navx-drawer', styles.navxDrawer, isOpen && styles.navxDrawerOpen, isOpen && 'is-open')}
         role="dialog"
         aria-modal="true"
         aria-label="Primary navigation"
+        aria-hidden={!isOpen}
       >
         <nav className={styles.navxNav}>
           <ul className={styles.navxList}>
@@ -265,7 +238,7 @@ export default function NavMobile({ items }: NavMobileProps) {
                     <Link
                       href={item.href}
                       className={clsx('navx-link', styles.navxLink, active && styles.navxLinkActive)}
-                      onClick={() => closeDrawer(false)}
+                      onClick={onClose}
                     >
                       {item.label}
                     </Link>
@@ -298,11 +271,7 @@ export default function NavMobile({ items }: NavMobileProps) {
             })}
           </ul>
           <div className={styles.navxFooter}>
-            <Link
-              href="tel:+14154978008"
-              className={clsx('navx-link', styles.navxCall)}
-              onClick={() => closeDrawer(false)}
-            >
+            <Link href="tel:+14154978008" className={clsx('navx-link', styles.navxCall)} onClick={onClose}>
               <Phone className="mr-2 size-4" aria-hidden="true" />
               Call Now
             </Link>

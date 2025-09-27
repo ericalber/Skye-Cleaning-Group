@@ -18,6 +18,10 @@
   transform: translateX(0);
 }
 
+.navxDrawer.is-open {
+  transform: translateX(0);
+}
+
 .navxOverlay {
   position: fixed;
   inset: 0;
@@ -29,6 +33,11 @@
 }
 
 .navxOverlayActive {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.navxOverlay.is-active {
   opacity: 1;
   pointer-events: auto;
 }
