@@ -1,0 +1,161 @@
+.navxDrawer {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: 82vw;
+  max-width: 360px;
+  height: 100vh;
+  background: var(--ink-900, #0f172a);
+  color: var(--skye-50, #f3f8fc);
+  transform: translateX(-100%);
+  transition: transform 0.24s ease;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 0;
+}
+
+.navxDrawerOpen {
+  transform: translateX(0);
+}
+
+.navxOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 16, 28, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 999;
+}
+
+.navxOverlayActive {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.navxNav {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.navxList {
+  list-style: none;
+  margin: 0;
+  padding: 24px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
+
+.navxItem {
+  list-style: none;
+}
+
+.navxItemHasChildren {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.navxLink,
+.navxChildLink {
+  display: block;
+  padding: 12px 18px;
+  border-radius: 14px;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.navxLink:hover,
+.navxChildLink:hover {
+  background: var(--foam, #dff2fb);
+  color: var(--skye-700, #287aa9);
+}
+
+.navxLinkActive,
+.navxChildLinkActive {
+  background: var(--foam, #dff2fb);
+  color: var(--skye-700, #287aa9);
+  font-weight: 600;
+}
+
+.navxParent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 14px 18px;
+  background: none;
+  border: 0;
+  text-align: left;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.navxCaret {
+  margin-left: 12px;
+  inline-size: 12px;
+  block-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.navxParent[aria-expanded="true"] .navxCaret {
+  transform: rotate(90deg);
+}
+
+.navxChildren {
+  margin: 0;
+  padding: 0 0 12px 12px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.navxChildren[hidden] {
+  display: none !important;
+}
+
+.navxFooter {
+  padding: 12px 18px 4px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.navxCall {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  justify-content: center;
+  padding: 12px 20px;
+  border-radius: 16px;
+  font-weight: 600;
+  background: linear-gradient(90deg, var(--skye-600, #3c94c8), var(--skye-400, #7fc2f3));
+  color: white;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.navxCall:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(18, 60, 84, 0.25);
+}
+
+:global(.navx-lock) {
+  overflow: hidden;
+  touch-action: none;
+}
+
+@media (min-width: 1024px) {
+  .navxDrawer,
+  .navxOverlay {
+    display: none;
+  }
+}

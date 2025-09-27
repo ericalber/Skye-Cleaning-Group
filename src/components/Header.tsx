@@ -3,16 +3,14 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ChevronDown, Menu, Phone, X } from 'lucide-react'
-import { useEffect, useMemo, useRef, useState } from 'react'
-import type { KeyboardEvent as ReactKeyboardEvent } from 'react'
-
-import clsx from 'clsx'
+import { useEffect, useMemo, useState } from 'react'
 
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 
 import { serviceDetails } from '@/data/servicePages'
 
 import Logo from './Logo'
+import NavMobile from './nav/NavMobile'
 
 type NavItem = {
   href: string
@@ -45,112 +43,36 @@ const navItems: NavItem[] = [
 
 const getMenuId = (item: NavItem) => item.menuKey ?? item.label.toLowerCase().replace(/[^a-z0-9]+/g, '-')
 
-function useIsDesktop() {
-  const [isDesktop, setIsDesktop] = useState(false)
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(min-width: 1024px)')
-    const update = () => setIsDesktop(mediaQuery.matches)
-    update()
-    mediaQuery.addEventListener('change', update)
-    return () => mediaQuery.removeEventListener('change', update)
-  }, [])
-
-  return isDesktop
-}
-
 export default function Header() {
   const pathname = usePathname()
-  const isDesktop = useIsDesktop()
 
-  const [isTouchDevice, setIsTouchDevice] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [mobileDropdown, setMobileDropdown] = useState<string | null>(null)
-
+  const [drawerOpen, setDrawerOpen] = useState(false)
   const [openDesktopItem, setOpenDesktopItem] = useState<string | null>(null)
 
   useEffect(() => {
-    const touchQuery = window.matchMedia('(hover: none)')
-    const handleChange = () => setIsTouchDevice(touchQuery.matches)
-    handleChange()
-    touchQuery.addEventListener('change', handleChange)
-    return () => touchQuery.removeEventListener('change', handleChange)
-  }, [])
-
-  const headerRef = useRef<HTMLDivElement | null>(null)
-
-  useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 8)
+    handleScroll()
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   useEffect(() => {
-    setMenuOpen(false)
-    setMobileDropdown(null)
-    setOpenDesktopItem(null)
-  }, [pathname])
+    const handleOpen = () => setDrawerOpen(true)
+    const handleClose = () => setDrawerOpen(false)
 
-  useEffect(() => {
-    if (isDesktop || !menuOpen) return
-
-    const handleOutside = (event: Event) => {
-      if (!headerRef.current) return
-      const target = event.target as Node | null
-      if (!target || headerRef.current.contains(target)) return
-      setMobileDropdown(null)
-      setMenuOpen(false)
-    }
-
-    const handleKey = (event: globalThis.KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setMobileDropdown(null)
-        setMenuOpen(false)
-      }
-    }
-
-    document.addEventListener('click', handleOutside, true)
-    document.addEventListener('touchstart', handleOutside, true)
-    document.addEventListener('pointerdown', handleOutside, true)
-    document.addEventListener('keydown', handleKey, true)
+    document.addEventListener('navx-open', handleOpen as EventListener)
+    document.addEventListener('navx-close', handleClose as EventListener)
 
     return () => {
-      document.removeEventListener('click', handleOutside, true)
-      document.removeEventListener('touchstart', handleOutside, true)
-      document.removeEventListener('pointerdown', handleOutside, true)
-      document.removeEventListener('keydown', handleKey, true)
+      document.removeEventListener('navx-open', handleOpen as EventListener)
+      document.removeEventListener('navx-close', handleClose as EventListener)
     }
-  }, [isDesktop, menuOpen])
+  }, [])
 
-  const isActive = (href: string) => {
-    if (href === '/') return pathname === '/'
-    return pathname === href || pathname.startsWith(`${href}/`)
-  }
-
-  const openMobileDropdown = (id: string) => setMobileDropdown(id)
-  const closeMobileDropdown = () => setMobileDropdown(null)
-  const closeMobileMenuCompletely = () => {
-    setMobileDropdown(null)
-    setMenuOpen(false)
-  }
-
-  const handleParentKeyDown = (event: ReactKeyboardEvent<HTMLElement>, id: string) => {
-    if (event.key === 'Escape') {
-      closeMobileDropdown()
-      return
-    }
-
-    if (event.key === 'Enter' || event.key === ' ') {
-      if (isDesktop || !isTouchDevice) return
-      if (mobileDropdown !== id) {
-        event.preventDefault()
-        openMobileDropdown(id)
-      } else {
-        closeMobileMenuCompletely()
-      }
-    }
-  }
+  useEffect(() => {
+    setOpenDesktopItem(null)
+  }, [pathname])
 
   const topNavItems = useMemo(() => navItems, [])
 
@@ -165,13 +87,14 @@ export default function Header() {
       <NavigationMenu.List className="flex items-center gap-4">
         {topNavItems.map((item) => {
           if (!item.children?.length) {
+            const active = pathname === item.href || pathname.startsWith(`${item.href}/`)
             return (
               <NavigationMenu.Item key={item.href}>
                 <NavigationMenu.Link asChild>
                   <Link
                     href={item.href}
                     className={`rounded-full px-3 py-1.5 font-medium transition ${
-                      isActive(item.href) ? 'bg-[var(--skye-100)] text-[var(--skye-700)]' : 'hover:text-[var(--skye-700)]'
+                      active ? 'bg-[var(--skye-100)] text-[var(--skye-700)]' : 'hover:text-[var(--skye-700)]'
                     }`}
                   >
                     {item.label}
@@ -182,8 +105,8 @@ export default function Header() {
           }
 
           const itemId = getMenuId(item)
-
           const desktopItemOpen = openDesktopItem === itemId
+          const active = pathname === item.href || pathname.startsWith(`${item.href}/`)
 
           return (
             <NavigationMenu.Item
@@ -197,18 +120,12 @@ export default function Header() {
                   href={item.href}
                   data-menu={item.menuKey}
                   className={`inline-flex items-center gap-1 rounded-full px-3 py-1.5 font-medium transition ${
-                    isActive(item.href) || desktopItemOpen
-                      ? 'bg-[var(--skye-100)] text-[var(--skye-700)]'
-                      : 'hover:text-[var(--skye-700)]'
+                    active || desktopItemOpen ? 'bg-[var(--skye-100)] text-[var(--skye-700)]' : 'hover:text-[var(--skye-700)]'
                   }`}
-                  onMouseEnter={() => {
-                    if (isDesktop) setOpenDesktopItem(itemId)
-                  }}
-                  onFocus={() => {
-                    if (isDesktop) setOpenDesktopItem(itemId)
-                  }}
+                  onMouseEnter={() => setOpenDesktopItem(itemId)}
+                  onFocus={() => setOpenDesktopItem(itemId)}
                   onClick={(event) => {
-                    if (isDesktop && !desktopItemOpen && !event.metaKey && !event.ctrlKey && event.button === 0) {
+                    if (!desktopItemOpen && !event.metaKey && !event.ctrlKey && event.button === 0) {
                       event.preventDefault()
                       setOpenDesktopItem(itemId)
                     }
@@ -224,10 +141,7 @@ export default function Header() {
                   }}
                 >
                   {item.label}
-                  <ChevronDown
-                    className={`size-4 transition-transform ${desktopItemOpen ? 'rotate-180' : ''}`}
-                    aria-hidden="true"
-                  />
+                  <ChevronDown className={`size-4 transition-transform ${desktopItemOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
                 </Link>
               </NavigationMenu.Trigger>
               <NavigationMenu.Content asChild>
@@ -241,23 +155,26 @@ export default function Header() {
                     <Link
                       href={item.href}
                       className={`rounded-xl px-3 py-2 font-semibold transition hover:bg-[var(--foam)] ${
-                        isActive(item.href) ? 'bg-[var(--foam)] text-[var(--skye-700)]' : 'text-[var(--skye-700)]'
+                        active ? 'bg-[var(--foam)] text-[var(--skye-700)]' : 'text-[var(--skye-700)]'
                       }`}
                     >
                       {item.label} Overview
                     </Link>
-                    {item.children.map((child) => (
-                      <Link
-                        key={child.href}
-                        href={child.href}
-                        role="menuitem"
-                        className={`rounded-xl px-3 py-2 transition hover:bg-[var(--foam)] ${
-                          isActive(child.href) ? 'bg-[var(--foam)] font-semibold text-[var(--skye-700)]' : ''
-                        }`}
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
+                    {item.children.map((child) => {
+                      const childActive = pathname === child.href
+                      return (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          role="menuitem"
+                          className={`rounded-xl px-3 py-2 transition hover:bg-[var(--foam)] ${
+                            childActive ? 'bg-[var(--foam)] font-semibold text-[var(--skye-700)]' : ''
+                          }`}
+                        >
+                          {child.label}
+                        </Link>
+                      )
+                    })}
                   </div>
                 </div>
               </NavigationMenu.Content>
@@ -271,122 +188,35 @@ export default function Header() {
     </NavigationMenu.Root>
   )
 
-  
-
-const renderMobileNav = () => (
-  <div className="border-t bg-white py-4 lg:hidden" aria-label="Mobile navigation">
-    <div className="container-px flex flex-col gap-4">
-      {topNavItems.map((item) => {
-        if (!item.children?.length) {
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="rounded-xl border border-black/5 px-4 py-3 text-sm font-semibold text-ink-900 hover:bg-[var(--foam)] hover:text-[var(--skye-700)]"
-              onClick={() => closeMobileMenuCompletely()}
-            >
-              {item.label}
-            </Link>
-          )
-        }
-
-        const itemId = getMenuId(item)
-        const isOpen = mobileDropdown === itemId
-        const menuId = `${itemId}-menu-mobile`
-
-        return (
-          <div key={item.href} className="flex flex-col gap-2">
-            <button
-              type="button"
-              data-menu={item.menuKey}
-              className="flex items-center justify-between rounded-xl border border-black/5 px-4 py-3 text-left text-sm font-semibold text-ink-900"
-              aria-haspopup="menu"
-              aria-expanded={isOpen}
-              aria-controls={menuId}
-              onClick={() => {
-                if (isDesktop) return
-                if (mobileDropdown === itemId) {
-                  closeMobileDropdown()
-                } else {
-                  openMobileDropdown(itemId)
-                }
-              }}
-              onKeyDown={(event) => handleParentKeyDown(event, itemId)}
-            >
-              {item.label}
-              <ChevronDown className={`size-4 transition ${isOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
-            </button>
-            <div
-              id={menuId}
-              role="menu"
-              className={clsx(
-                'ml-3 flex max-h-0 flex-col gap-2 overflow-hidden border-l border-black/10 pl-3 transition-all duration-200 ease-out',
-                isOpen
-                  ? 'max-h-[60vh] translate-y-0 opacity-100 pointer-events-auto overflow-y-auto visible'
-                  : 'translate-y-2 opacity-0 pointer-events-none invisible'
-              )}
-              style={{ WebkitOverflowScrolling: 'touch' }}
-            >
-              <Link
-                href={item.href}
-                role="menuitem"
-                className="rounded-lg px-3 py-1.5 text-sm font-semibold text-[var(--skye-700)] hover:bg-[var(--foam)]"
-                onClick={() => closeMobileMenuCompletely()}
-              >
-                {item.label} Overview
-              </Link>
-              {item.children.map((child) => (
-                <Link
-                  key={child.href}
-                  href={child.href}
-                  role="menuitem"
-                  className="rounded-lg px-3 py-1.5 text-sm text-slate-600 hover:bg-[var(--foam)] hover:text-[var(--skye-700)]"
-                  onClick={() => closeMobileMenuCompletely()}
-                >
-                  {child.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-        )
-      })}
-      <Link href="tel:+14154978008" className="btn btn-primary" onClick={() => closeMobileMenuCompletely()}>
-        <Phone className="mr-2 size-4" aria-hidden="true" />
-        Call Now
-      </Link>
-    </div>
-  </div>
-)
-
   return (
-    <header
-      className={`sticky top-0 z-50 border-b transition ${
-        scrolled ? 'bg-white/85 backdrop-blur-md shadow-sm' : 'bg-white/70 backdrop-blur'
-      }`}
-      style={{ overflow: 'visible' }}
-    >
-      <div className="px-0 sm:px-2 lg:px-4 flex h-16 items-center justify-between" ref={headerRef}>
-        <Link href="/" aria-label="Skye Cleaning Group home" className="flex-shrink-0">
+    <>
+      <header
+        className={`sticky top-0 z-50 border-b transition ${
+          scrolled ? 'bg-white/85 backdrop-blur-md shadow-sm' : 'bg-white/70 backdrop-blur'
+        }`}
+      >
+        <div className="container-px flex h-16 items-center justify-between" data-navx-header>
           <Logo />
-        </Link>
-        {renderDesktopNav()}
-        <div className="hidden items-center gap-2 sm:flex">
-          <Link href="tel:+14154978008" className="btn btn-primary" aria-label="Call us now">
-            <Phone className="mr-2 size-4" aria-hidden="true" />
-            Call Now
-          </Link>
+          {renderDesktopNav()}
+          <div className="hidden items-center gap-2 sm:flex">
+            <Link href="tel:+14154978008" className="btn btn-primary" aria-label="Call us now">
+              <Phone className="mr-2 size-4" aria-hidden="true" />
+              Call Now
+            </Link>
+          </div>
+          <button
+            type="button"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 lg:hidden"
+            data-navx-toggle="drawer"
+            aria-expanded={drawerOpen}
+            aria-controls="navx-drawer"
+            aria-label="Toggle navigation menu"
+          >
+            {drawerOpen ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
+          </button>
         </div>
-        <button
-          type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 lg:hidden"
-          onClick={() => setMenuOpen((state) => !state)}
-          aria-expanded={menuOpen}
-          aria-label="Toggle navigation"
-        >
-          {menuOpen ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
-        </button>
-      </div>
-      {menuOpen && renderMobileNav()}
-    </header>
+      </header>
+      <NavMobile items={topNavItems} />
+    </>
   )
 }
