@@ -44,6 +44,7 @@ export default function NavMobile({ items }: NavMobileProps) {
     return () => {
       body.classList.remove('with-navx')
       document.documentElement.classList.remove('navx-lock')
+      document.body.classList.remove('navx-lock')
     }
   }, [])
 
@@ -66,6 +67,7 @@ export default function NavMobile({ items }: NavMobileProps) {
       setIsOpen(false)
       setOpenItem(null)
       document.documentElement.classList.remove('navx-lock')
+      document.body.classList.remove('navx-lock')
       dispatchDrawerEvent('close')
       burgerRef.current?.setAttribute('aria-expanded', 'false')
       if (returnFocus) {
@@ -80,6 +82,7 @@ export default function NavMobile({ items }: NavMobileProps) {
     isOpenRef.current = true
     setIsOpen(true)
     document.documentElement.classList.add('navx-lock')
+    document.body.classList.add('navx-lock')
     dispatchDrawerEvent('open')
     burgerRef.current?.setAttribute('aria-expanded', 'true')
     requestAnimationFrame(() => {

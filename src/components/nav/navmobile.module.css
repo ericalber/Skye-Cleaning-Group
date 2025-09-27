@@ -148,11 +148,6 @@
   box-shadow: 0 10px 24px rgba(18, 60, 84, 0.25);
 }
 
-:global(.navx-lock) {
-  overflow: hidden;
-  touch-action: none;
-}
-
 @media (min-width: 1024px) {
   .navxDrawer,
   .navxOverlay {
