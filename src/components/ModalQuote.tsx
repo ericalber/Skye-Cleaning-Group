@@ -64,7 +64,7 @@ export default function ModalQuote({
             aria-label="Close quote modal"
             onClick={closeModal}
           />
-          <div className="fixed inset-x-0 top-1/2 z-[80] mx-auto flex max-w-xl -translate-y-1/2 px-4 sm:px-6">
+          <div className="fixed inset-0 z-[80] flex items-center justify-center px-4 py-8 sm:px-6">
             <motion.div
               role="dialog"
               aria-modal="true"
@@ -73,10 +73,11 @@ export default function ModalQuote({
               exit={{ y: 24, opacity: 0 }}
               transition={{ duration: 0.2, ease: 'easeOut' }}
               className={clsx(
-                'surface isolation-auto w-full max-h-[90vh] overflow-y-auto rounded-2xl p-6 sm:p-8 shadow-xl',
+                'surface isolation-auto w-full max-w-xl max-h-[90vh] overflow-y-auto rounded-2xl p-6 sm:p-8 shadow-xl',
                 cardClassName,
                 !cardClassName && 'surface--white text-[--ink-900]'
               )}
+              style={{ WebkitOverflowScrolling: 'touch' }}
               onClick={(event) => event.stopPropagation()}
             >
               <button

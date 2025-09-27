@@ -110,6 +110,7 @@ export default function Header() {
 
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault()
+      event.stopPropagation()
       toggleMobileDropdown(label)
     }
   }
@@ -260,7 +261,10 @@ export default function Header() {
                 aria-haspopup="menu"
                 aria-expanded={isOpen}
                 aria-controls={menuId}
-                onClick={() => toggleMobileDropdown(item.label)}
+                onClick={(event) => {
+                  event.stopPropagation()
+                  toggleMobileDropdown(item.label)
+                }}
                 onKeyDown={(event) => handleParentKeyDown(event, item.label)}
               >
                 {item.label}
