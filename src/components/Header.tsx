@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ChevronDown, Menu, Phone, X } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import type { KeyboardEvent } from 'react'
+import type { KeyboardEvent as ReactKeyboardEvent } from 'react'
 
 import clsx from 'clsx'
 
@@ -94,7 +94,7 @@ export default function Header() {
       setMenuOpen(false)
     }
 
-    const handleKey = (event: KeyboardEvent) => {
+    const handleKey = (event: globalThis.KeyboardEvent) => {
       if (event.key === 'Escape') {
         setMobileDropdown(null)
         setMenuOpen(false)
@@ -123,7 +123,7 @@ export default function Header() {
     setMobileDropdown((current) => (current === label ? null : label))
   }
 
-  const handleParentKeyDown = (event: KeyboardEvent<HTMLElement>, label: string) => {
+  const handleParentKeyDown = (event: ReactKeyboardEvent<HTMLElement>, label: string) => {
     if (event.key === 'Escape') {
       setMobileDropdown(null)
       return
