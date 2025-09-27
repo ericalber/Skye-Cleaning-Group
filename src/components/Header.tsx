@@ -63,11 +63,20 @@ export default function Header() {
   const pathname = usePathname()
   const isDesktop = useIsDesktop()
 
+  const [isTouchDevice, setIsTouchDevice] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null)
 
   const [openDesktopItem, setOpenDesktopItem] = useState<string | null>(null)
+
+  useEffect(() => {
+    const touchQuery = window.matchMedia('(hover: none)')
+    const handleChange = () => setIsTouchDevice(touchQuery.matches)
+    handleChange()
+    touchQuery.addEventListener('change', handleChange)
+    return () => touchQuery.removeEventListener('change', handleChange)
+  }, [])
 
   const headerRef = useRef<HTMLDivElement | null>(null)
 
@@ -133,11 +142,12 @@ export default function Header() {
     }
 
     if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault()
-      if (mobileDropdown === id) {
-        closeMobileDropdown()
-      } else {
+      if (isDesktop || !isTouchDevice) return
+      if (mobileDropdown !== id) {
+        event.preventDefault()
         openMobileDropdown(id)
+      } else {
+        closeMobileMenuCompletely()
       }
     }
   }
