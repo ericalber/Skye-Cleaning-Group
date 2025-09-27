@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ChevronDown, Menu, Phone, X } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import type { KeyboardEvent, PointerEvent as ReactPointerEvent, MouseEvent as ReactMouseEvent, TouchEvent as ReactTouchEvent } from 'react'
+import type { KeyboardEvent } from 'react'
 
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 
@@ -81,43 +81,21 @@ export default function Header() {
   useEffect(() => {
     if (isDesktop || !menuOpen) return
 
-    const handlePointerOutside = (event: Event) => {
+    const handleClickOutside = (event: MouseEvent) => {
       if (!headerRef.current) return
-      const target = event.target as Node | null
-      if (target && headerRef.current.contains(target)) {
-        return
+      if (!headerRef.current.contains(event.target as Node)) {
+        setMobileDropdown(null)
+        setMenuOpen(false)
       }
-      setMobileDropdown(null)
-      setMenuOpen(false)
     }
 
-    document.addEventListener('click', handlePointerOutside, true)
-    document.addEventListener('touchstart', handlePointerOutside, true)
-    document.addEventListener('pointerdown', handlePointerOutside, true)
-
-    return () => {
-      document.removeEventListener('click', handlePointerOutside, true)
-      document.removeEventListener('touchstart', handlePointerOutside, true)
-      document.removeEventListener('pointerdown', handlePointerOutside, true)
-    }
+    document.addEventListener('click', handleClickOutside)
+    return () => document.removeEventListener('click', handleClickOutside)
   }, [isDesktop, menuOpen])
 
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/'
     return pathname === href || pathname.startsWith(`${href}/`)
-  }
-
-  const consumeInteractiveEvent = (event: ReactMouseEvent<HTMLElement> | ReactTouchEvent<HTMLElement> | ReactPointerEvent<HTMLElement>) => {
-    if ('preventDefault' in event) {
-      event.preventDefault()
-    }
-    if ('stopPropagation' in event) {
-      event.stopPropagation()
-    }
-    const nativeEvent = (event as { nativeEvent?: { stopImmediatePropagation?: () => void } }).nativeEvent
-    if (nativeEvent?.stopImmediatePropagation) {
-      nativeEvent.stopImmediatePropagation()
-    }
   }
 
   const toggleMobileDropdown = (label: string) => {
@@ -132,9 +110,6 @@ export default function Header() {
 
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault()
-      event.stopPropagation()
-      const nativeEvent = (event as unknown as { nativeEvent?: { stopImmediatePropagation?: () => void } }).nativeEvent
-      nativeEvent?.stopImmediatePropagation?.()
       toggleMobileDropdown(label)
     }
   }
@@ -258,14 +233,7 @@ export default function Header() {
   )
 
   const renderMobileNav = () => (
-    <div
-      className="border-t bg-white py-4 lg:hidden"
-      aria-label="Mobile navigation"
-      role="navigation"
-      onClick={(event) => event.stopPropagation()}
-      onTouchStart={(event) => event.stopPropagation()}
-      onPointerDown={(event) => event.stopPropagation()}
-    >
+    <div className="border-t bg-white py-4 lg:hidden" aria-label="Mobile navigation">
       <div className="container-px flex flex-col gap-4">
         {topNavItems.map((item) => {
           if (!item.children?.length) {
@@ -292,20 +260,8 @@ export default function Header() {
                 aria-haspopup="menu"
                 aria-expanded={isOpen}
                 aria-controls={menuId}
-                onClick={(event) => {
-                  consumeInteractiveEvent(event)
-                  toggleMobileDropdown(item.label)
-                }}
-                onPointerDown={(event) => consumeInteractiveEvent(event)}
-                onTouchStart={(event) => consumeInteractiveEvent(event)}
-                onTouchEnd={(event) => consumeInteractiveEvent(event)}
-                onKeyDown={(event) => {
-                  if (event.key === 'Tab') {
-                    event.stopPropagation()
-                    return
-                  }
-                  handleParentKeyDown(event, item.label)
-                }}
+                onClick={() => toggleMobileDropdown(item.label)}
+                onKeyDown={(event) => handleParentKeyDown(event, item.label)}
               >
                 {item.label}
                 <ChevronDown className={`size-4 transition ${isOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
@@ -321,10 +277,7 @@ export default function Header() {
                     href={item.href}
                     role="menuitem"
                     className="rounded-lg px-3 py-1.5 text-sm font-semibold text-[var(--skye-700)] hover:bg-[var(--foam)]"
-                    onClick={() => {
-                      setMenuOpen(false)
-                      setMobileDropdown(null)
-                    }}
+                    onClick={() => setMenuOpen(false)}
                   >
                     {item.label} Overview
                   </Link>
@@ -334,10 +287,7 @@ export default function Header() {
                       href={child.href}
                       role="menuitem"
                       className="rounded-lg px-3 py-1.5 text-sm text-slate-600 hover:bg-[var(--foam)] hover:text-[var(--skye-700)]"
-                      onClick={() => {
-                        setMenuOpen(false)
-                        setMobileDropdown(null)
-                      }}
+                      onClick={() => setMenuOpen(false)}
                     >
                       {child.label}
                     </Link>

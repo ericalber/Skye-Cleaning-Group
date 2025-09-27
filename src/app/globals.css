@@ -28,6 +28,7 @@ body {
   margin: 0;
   background: #ffffff;
   color: var(--ink-900);
+  overflow-x: hidden;
 }
 
 ::selection {
