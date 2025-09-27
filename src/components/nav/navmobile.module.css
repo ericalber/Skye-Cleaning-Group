@@ -4,8 +4,8 @@
   width: 82vw;
   max-width: 360px;
   height: 100vh;
-  background: var(--ink-900, #0f172a);
-  color: var(--skye-50, #f3f8fc);
+  background: var(--surface, #ffffff);
+  color: var(--ink-900, #0f172a);
   transform: translateX(-100%);
   transition: transform 0.24s ease;
   z-index: 1000;
