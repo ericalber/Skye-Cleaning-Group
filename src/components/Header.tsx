@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ChevronDown, Menu, Phone, X } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import type { KeyboardEvent, MouseEvent } from 'react'
+import type { KeyboardEvent, MouseEvent as ReactMouseEvent } from 'react'
 
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 
@@ -81,7 +81,7 @@ export default function Header() {
   useEffect(() => {
     if (isDesktop || !menuOpen) return
 
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleClickOutside = (event: globalThis.MouseEvent) => {
       if (!headerRef.current) return
       if (!headerRef.current.contains(event.target as Node)) {
         setMobileDropdown(null)
@@ -98,7 +98,7 @@ export default function Header() {
     return pathname === href || pathname.startsWith(`${href}/`)
   }
 
-  const handleParentClick = (event: MouseEvent<HTMLAnchorElement>, label: string) => {
+  const handleParentClick = (event: ReactMouseEvent<HTMLAnchorElement>, label: string) => {
     if (isDesktop) return
     event.preventDefault()
     setMobileDropdown((current) => (current === label ? null : label))
