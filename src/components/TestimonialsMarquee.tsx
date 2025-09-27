@@ -49,7 +49,7 @@ export default function TestimonialsMarquee({ reviews }: TestimonialsMarqueeProp
             return (
               <li
                 key={`${name}-${index}`}
-                className="card-premium mx-3 min-w-[280px] max-w-[320px] rounded-2xl p-6 text-ink-900 shadow-sm sm:min-w-[320px] sm:max-w-[360px]"
+                className="card-premium mx-3 w-[min(320px,100%)] max-w-full rounded-2xl p-6 text-ink-900 shadow-sm sm:w-[min(360px,100%)]"
               >
                 <div className="card-premium__body space-y-4">
                   <div className="flex items-center gap-3">

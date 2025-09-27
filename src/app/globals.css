@@ -419,3 +419,35 @@ body {
 .surface--white {
   overflow: visible;
 }
+
+.page-home,
+[data-page="home"] {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+.page-home *,
+[data-page="home"] * {
+  box-sizing: border-box;
+}
+.page-home img,
+[data-page="home"] img,
+.page-home video,
+[data-page="home"] video,
+.page-home svg,
+[data-page="home"] svg,
+.page-home canvas,
+[data-page="home"] canvas {
+  max-width: 100%;
+  height: auto;
+}
+.page-home .logos-row,
+[data-page="home"] .logos-row {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+header, nav {
+  overflow: visible !important;
+  position: relative;
+  z-index: 50;
+}

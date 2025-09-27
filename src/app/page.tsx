@@ -16,7 +16,7 @@ export default function Page() {
   return (
     <>
       <Header />
-      <main id="quote" className="pb-24 md:pb-0">
+      <main id="quote" className="page-home pb-24 md:pb-0" data-page="home">
         <Hero />
         <TrustBar />
         <Services />
