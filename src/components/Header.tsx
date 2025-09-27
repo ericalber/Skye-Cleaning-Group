@@ -234,7 +234,12 @@ export default function Header() {
   )
 
   const renderMobileNav = () => (
-    <div className="border-t bg-white py-4 lg:hidden" aria-label="Mobile navigation">
+    <div
+      className="border-t bg-white py-4 lg:hidden"
+      aria-label="Mobile navigation"
+      role="navigation"
+      onClick={(event) => event.stopPropagation()}
+    >
       <div className="container-px flex flex-col gap-4">
         {topNavItems.map((item) => {
           if (!item.children?.length) {
@@ -266,7 +271,13 @@ export default function Header() {
                   event.stopPropagation()
                   toggleMobileDropdown(item.label)
                 }}
-                onKeyDown={(event) => handleParentKeyDown(event, item.label)}
+                onKeyDown={(event) => {
+                  if (event.key === 'Tab') {
+                    event.stopPropagation()
+                    return
+                  }
+                  handleParentKeyDown(event, item.label)
+                }}
               >
                 {item.label}
                 <ChevronDown className={`size-4 transition ${isOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
@@ -282,7 +293,10 @@ export default function Header() {
                     href={item.href}
                     role="menuitem"
                     className="rounded-lg px-3 py-1.5 text-sm font-semibold text-[var(--skye-700)] hover:bg-[var(--foam)]"
-                    onClick={() => setMenuOpen(false)}
+                    onClick={() => {
+                      setMenuOpen(false)
+                      setMobileDropdown(null)
+                    }}
                   >
                     {item.label} Overview
                   </Link>
@@ -292,7 +306,10 @@ export default function Header() {
                       href={child.href}
                       role="menuitem"
                       className="rounded-lg px-3 py-1.5 text-sm text-slate-600 hover:bg-[var(--foam)] hover:text-[var(--skye-700)]"
-                      onClick={() => setMenuOpen(false)}
+                      onClick={() => {
+                        setMenuOpen(false)
+                        setMobileDropdown(null)
+                      }}
                     >
                       {child.label}
                     </Link>
