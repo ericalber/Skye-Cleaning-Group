@@ -120,21 +120,22 @@ export default function Header() {
   }
 
   const openMobileDropdown = (id: string) => setMobileDropdown(id)
-  const closeMobileMenus = () => {
+  const closeMobileDropdown = () => setMobileDropdown(null)
+  const closeMobileMenuCompletely = () => {
     setMobileDropdown(null)
     setMenuOpen(false)
   }
 
   const handleParentKeyDown = (event: ReactKeyboardEvent<HTMLElement>, id: string) => {
     if (event.key === 'Escape') {
-      closeMobileMenus()
+      closeMobileDropdown()
       return
     }
 
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault()
       if (mobileDropdown === id) {
-        closeMobileMenus()
+        closeMobileDropdown()
       } else {
         openMobileDropdown(id)
       }
@@ -272,7 +273,7 @@ const renderMobileNav = () => (
               key={item.href}
               href={item.href}
               className="rounded-xl border border-black/5 px-4 py-3 text-sm font-semibold text-ink-900 hover:bg-[var(--foam)] hover:text-[var(--skye-700)]"
-              onClick={() => closeMobileMenus()}
+              onClick={() => closeMobileMenuCompletely()}
             >
               {item.label}
             </Link>
@@ -285,29 +286,26 @@ const renderMobileNav = () => (
 
         return (
           <div key={item.href} className="flex flex-col gap-2">
-            <Link
-              href={item.href}
+            <button
+              type="button"
               data-menu={item.menuKey}
               className="flex items-center justify-between rounded-xl border border-black/5 px-4 py-3 text-left text-sm font-semibold text-ink-900"
               aria-haspopup="menu"
               aria-expanded={isOpen}
               aria-controls={menuId}
-              onClick={(event) => {
+              onClick={() => {
                 if (isDesktop) return
-                const currentlyOpen = mobileDropdown === itemId
-                if (!currentlyOpen) {
-                  event.preventDefault()
-                  openMobileDropdown(itemId)
+                if (mobileDropdown === itemId) {
+                  closeMobileDropdown()
                 } else {
-                  event.preventDefault()
-                  closeMobileMenus()
+                  openMobileDropdown(itemId)
                 }
               }}
               onKeyDown={(event) => handleParentKeyDown(event, itemId)}
             >
               {item.label}
               <ChevronDown className={`size-4 transition ${isOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
-            </Link>
+            </button>
             <div
               id={menuId}
               role="menu"
@@ -323,7 +321,7 @@ const renderMobileNav = () => (
                 href={item.href}
                 role="menuitem"
                 className="rounded-lg px-3 py-1.5 text-sm font-semibold text-[var(--skye-700)] hover:bg-[var(--foam)]"
-                onClick={() => closeMobileMenus()}
+                onClick={() => closeMobileMenuCompletely()}
               >
                 {item.label} Overview
               </Link>
@@ -333,7 +331,7 @@ const renderMobileNav = () => (
                   href={child.href}
                   role="menuitem"
                   className="rounded-lg px-3 py-1.5 text-sm text-slate-600 hover:bg-[var(--foam)] hover:text-[var(--skye-700)]"
-                  onClick={() => closeMobileMenus()}
+                  onClick={() => closeMobileMenuCompletely()}
                 >
                   {child.label}
                 </Link>
@@ -342,7 +340,7 @@ const renderMobileNav = () => (
           </div>
         )
       })}
-      <Link href="tel:+14154978008" className="btn btn-primary" onClick={() => closeMobileMenus()}>
+      <Link href="tel:+14154978008" className="btn btn-primary" onClick={() => closeMobileMenuCompletely()}>
         <Phone className="mr-2 size-4" aria-hidden="true" />
         Call Now
       </Link>
