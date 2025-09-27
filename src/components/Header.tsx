@@ -262,6 +262,7 @@ export default function Header() {
                 aria-expanded={isOpen}
                 aria-controls={menuId}
                 onClick={(event) => {
+                  event.preventDefault()
                   event.stopPropagation()
                   toggleMobileDropdown(item.label)
                 }}

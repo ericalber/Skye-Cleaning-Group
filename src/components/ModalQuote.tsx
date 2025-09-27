@@ -64,22 +64,23 @@ export default function ModalQuote({
             aria-label="Close quote modal"
             onClick={closeModal}
           />
-          <div className="fixed inset-0 z-[80] flex items-center justify-center px-4 py-8 sm:px-6">
-            <motion.div
-              role="dialog"
-              aria-modal="true"
-              initial={{ y: 24, opacity: 0.6 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 24, opacity: 0 }}
-              transition={{ duration: 0.2, ease: 'easeOut' }}
-              className={clsx(
-                'surface isolation-auto w-full max-w-xl max-h-[90vh] overflow-y-auto rounded-2xl p-6 sm:p-8 shadow-xl',
-                cardClassName,
-                !cardClassName && 'surface--white text-[--ink-900]'
-              )}
-              style={{ WebkitOverflowScrolling: 'touch' }}
-              onClick={(event) => event.stopPropagation()}
-            >
+          <div className="fixed inset-0 z-[80] overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center px-4 py-10 sm:px-6">
+              <motion.div
+                role="dialog"
+                aria-modal="true"
+                initial={{ y: 24, opacity: 0.6 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: 24, opacity: 0 }}
+                transition={{ duration: 0.2, ease: 'easeOut' }}
+                className={clsx(
+                  'surface isolation-auto w-full max-w-xl rounded-2xl p-6 sm:p-8 shadow-xl',
+                  cardClassName,
+                  !cardClassName && 'surface--white text-[--ink-900]'
+                )}
+                style={{ WebkitOverflowScrolling: 'touch' }}
+                onClick={(event) => event.stopPropagation()}
+              >
               <button
                 type="button"
                 onClick={closeModal}
@@ -98,6 +99,7 @@ export default function ModalQuote({
                 <QuoteForm compact={compact} initialService={initialService} />
               </Suspense>
             </motion.div>
+            </div>
           </div>
         </>
       )}
