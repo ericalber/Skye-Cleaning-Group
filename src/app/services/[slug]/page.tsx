@@ -1,11 +1,19 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import Image from 'next/image'
-
 import PageShell from '@/components/PageShell'
 import ModalQuote from '@/components/ModalQuote'
 import ServiceTabs from '@/components/ServiceTabs'
+import ServiceMediaSection from '@/components/ServiceMediaSection'
+import ServiceSteps from '@/components/ServiceSteps'
 import { serviceDetails } from '@/data/servicePages'
+import { serviceStepsBySlug } from '@/data/serviceSteps'
+
+const defaultServiceSteps = [
+  { title: 'Property briefing', description: 'We confirm access instructions, finishes to protect, and the experience you need the next visit to deliver.' },
+  { title: 'Precision prep', description: 'Crew leads stage finish-safe chemistry, microfiber carts, and specialty equipment before entering the first zone.' },
+  { title: 'Concierge execution', description: 'Teams follow Skye choreography room by room, capturing photos and checkpoints that prove standards are met.' },
+  { title: 'Signature wrap', description: 'A supervisor conducts a final walk-through, resets amenities, and sends your digital recap within the hour.' },
+]
 
 export function generateStaticParams() {
   return serviceDetails.map(({ slug }) => ({ slug }))
@@ -36,8 +44,10 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     notFound()
   }
 
+  const steps = serviceStepsBySlug[service.slug] ?? defaultServiceSteps
+
   return (
-    <PageShell mainClassName="space-y-20 pb-24">
+    <PageShell bodyClassName="with-service-landing" mainClassName="space-y-20 pb-24">
       <section className="hero-gradient relative overflow-hidden">
         <div
           className="absolute inset-0 z-0 opacity-90"
@@ -65,31 +75,11 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           ))}
         </div>
       </section>
+      {service.sections.map((section, index) => (
+        <ServiceMediaSection key={section.title} section={section} index={index} />
+      ))}
 
-      <section className="container-px">
-        <div className="mx-auto flex max-w-5xl flex-col gap-12">
-          {service.sections.map((section, index) => {
-            const imageFirst = section.imagePosition === 'left'
-
-            return (
-              <div
-                key={section.title}
-                className="grid gap-8 lg:grid-cols-2 lg:items-center"
-              >
-                <div className={`order-2 space-y-4 text-sm text-slate-600 sm:text-base ${imageFirst ? 'lg:order-2' : 'lg:order-1'}`}>
-                  <h2 className="text-2xl font-semibold text-ink-900">{section.title}</h2>
-                  {section.body.map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
-                  ))}
-                </div>
-                <div className={`order-1 relative h-72 w-full overflow-hidden rounded-[2rem] border border-[var(--skye-100)] shadow-[0_24px_60px_rgba(18,60,84,0.15)] ${imageFirst ? 'lg:order-1' : 'lg:order-2'}`}>
-                  <Image src={section.image} alt={section.title} fill className="object-cover" priority={index === 0} />
-                </div>
-              </div>
-            )
-          })}
-        </div>
-      </section>
+      <ServiceSteps items={steps} />
 
       <section className="container-px">
         <div className="mx-auto max-w-5xl space-y-10">

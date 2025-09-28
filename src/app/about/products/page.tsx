@@ -48,7 +48,7 @@ const productPillars = [
 
 export default function ProductsPage() {
   return (
-    <PageShell mainClassName="space-y-20 pb-20">
+    <PageShell bodyClassName="with-gotravel with-service-landing" mainClassName="space-y-20 pb-20">
       <section className="hero-gradient relative overflow-hidden">
         <div
           className="absolute inset-0 z-0 opacity-85"

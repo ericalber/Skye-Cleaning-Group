@@ -19,7 +19,7 @@ export default async function CleanTipDetail({ params }: { params: Promise<{ slu
   }
 
   return (
-    <PageShell mainClassName="space-y-16 pb-20">
+    <PageShell bodyClassName="with-gotravel with-service-landing" mainClassName="space-y-16 pb-20">
       <section className="hero-gradient relative overflow-hidden">
         <div
           className="absolute inset-0 z-0 opacity-85"

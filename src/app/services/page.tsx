@@ -82,7 +82,7 @@ const enhancementAddOns = [
 
 export default function ServicesPage() {
   return (
-    <PageShell mainClassName="space-y-24 pb-24">
+    <PageShell bodyClassName="with-gotravel with-service-landing" mainClassName="space-y-24 pb-24">
       <section className="hero-gradient relative overflow-hidden">
         <div
           className="absolute inset-0 z-0 opacity-85"
@@ -134,14 +134,14 @@ export default function ServicesPage() {
             <h2 className="text-3xl font-black text-ink-900 sm:text-4xl">Explore our concierge services</h2>
             <p className="text-sm text-slate-600 sm:text-base">Handpick the program that mirrors your property narrative and discover how our specialists turn every visit into measurable value.</p>
           </div>
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <div className="gtx-grid -columns-3">
             {serviceDetails.map((service) => (
               <Link
                 key={service.slug}
                 href={`/services/${service.slug}`}
-                className="group relative overflow-hidden rounded-[2rem] border border-[var(--skye-100)] bg-white shadow-[0_22px_56px_rgba(18,60,84,0.12)] transition hover:-translate-y-1"
+                className="gtx-card group overflow-hidden"
               >
-                <div className="relative h-48 w-full overflow-hidden">
+                <div className="gtx-card__media">
                   <Image
                     src={service.heroImage}
                     alt={service.heroAlt}
@@ -150,10 +150,10 @@ export default function ServicesPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/0" aria-hidden="true" />
                 </div>
-                <div className="space-y-3 p-6 text-left text-ink-900">
-                  <h3 className="text-xl font-semibold transition group-hover:text-[var(--skye-700)]">{service.name}</h3>
-                  <p className="text-sm text-slate-600">{service.subheading}</p>
-                  <span className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--skye-700)]">
+                <div className="gtx-card__body text-left">
+                  <h3 className="gtx-card__title transition group-hover:text-[var(--skye-700)]">{service.name}</h3>
+                  <p className="gtx-card__excerpt">{service.subheading}</p>
+                  <span className="gtx-card__cta">
                     Discover the service
                     <span aria-hidden="true">→</span>
                   </span>

@@ -2,6 +2,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import PageShell from '@/components/PageShell'
+import ServiceMediaSection from '@/components/ServiceMediaSection'
+import type { ServiceSection } from '@/data/servicePages'
 
 const introParagraphs = [
   'At Skye Cleaning Group we share exclusive residential and commercial cleaning insights so you can improve your property care and grow your business with confidence.',
@@ -9,6 +11,21 @@ const introParagraphs = [
   'We stay close to our community, offering transparent guidance on which formulas and techniques produce the best outcomes for every surface and schedule.',
   'Every insight we share focuses on helping you achieve efficient, consistent cleaning while protecting the time, investment, and people that matter most.',
   'We believe the right products are essential for exceptional results, so we test and recommend market-leading solutions that align with strict safety, sustainability, and performance standards.',
+]
+
+const storySections: ServiceSection[] = [
+  {
+    title: 'Hospitality is our heritage',
+    body: introParagraphs.slice(0, 2),
+    image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1600&q=80',
+    imagePosition: 'left' as const,
+  },
+  {
+    title: 'Process-driven partnerships',
+    body: introParagraphs.slice(2),
+    image: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=1600&q=80',
+    imagePosition: 'right' as const,
+  },
 ]
 
 const pillars = [
@@ -41,7 +58,7 @@ const pillars = [
 
 export default function AboutPage() {
   return (
-    <PageShell mainClassName="space-y-20 pb-20">
+    <PageShell bodyClassName="with-service-landing with-gotravel" mainClassName="space-y-20 pb-20">
       <section className="hero-gradient relative overflow-hidden">
         <div
           className="absolute inset-0 z-0 opacity-85"
@@ -82,13 +99,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="container-px">
-        <div className="mx-auto max-w-4xl space-y-4 text-slate-700">
-          {introParagraphs.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
-        </div>
-      </section>
+      {storySections.map((section, index) => (
+        <ServiceMediaSection key={section.title} section={section} index={index} />
+      ))}
 
       <section className="container-px">
         <div className="mx-auto max-w-6xl space-y-12">
@@ -98,15 +111,15 @@ export default function AboutPage() {
               Each commitment receives the same meticulous care, from the first briefing to the final checklist.
             </p>
           </div>
-          <div className="grid gap-8 md:grid-cols-2">
+          <div className="gtx-grid -columns-2">
             {pillars.map(({ title, copy, image }) => (
-              <article key={title} className="card-premium p-6">
-                <div className="card-premium__body space-y-4">
-                  <div className="relative h-48 w-full overflow-hidden rounded-[1.25rem]">
-                    <Image src={image} alt={title} fill className="object-cover" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-ink-900">{title}</h3>
-                  <p className="text-sm text-slate-600">{copy}</p>
+              <article key={title} className="gtx-card">
+                <div className="gtx-card__media">
+                  <Image src={image} alt={title} fill className="object-cover" />
+                </div>
+                <div className="gtx-card__body">
+                  <h3 className="gtx-card__title">{title}</h3>
+                  <p className="gtx-card__excerpt">{copy}</p>
                 </div>
               </article>
             ))}

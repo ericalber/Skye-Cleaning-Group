@@ -43,3 +43,9 @@ body.with-grandstar button[data-navx-toggle="drawer"]:focus-visible {
 body.with-grandstar .navx-overlay.is-active {
   backdrop-filter: blur(12px);
 }
+
+@media (max-width: 640px) {
+  body.with-grandstar main {
+    padding-bottom: calc(6.5rem + env(safe-area-inset-bottom, 0px));
+  }
+}
