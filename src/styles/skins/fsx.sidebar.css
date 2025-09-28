@@ -1,0 +1,117 @@
+/* Flat Sidebar visual skin. Activated with body.with-sidebar-flat */
+body.with-sidebar-flat .navx-overlay {
+  background: rgba(9, 20, 33, 0.46);
+}
+
+body.with-sidebar-flat .navx-drawer {
+  background: var(--gsx-surface, rgba(255, 255, 255, 0.94));
+  color: var(--ink-900, #102136);
+  border-radius: 0 var(--gsx-radius-lg, 22px) var(--gsx-radius-lg, 22px) 0;
+  box-shadow: var(--gsx-shadow-md, 0 18px 42px rgba(12, 23, 41, 0.14));
+  border-right: 1px solid var(--gsx-border, rgba(12, 42, 71, 0.12));
+}
+
+body.with-sidebar-flat .navx-nav,
+body.with-sidebar-flat .navxList {
+  gap: var(--gsx-spacing-2, 0.625rem);
+}
+
+body.with-sidebar-flat .navx-item {
+  margin-inline: var(--gsx-spacing-2, 0.625rem);
+}
+
+body.with-sidebar-flat .navx-parent,
+body.with-sidebar-flat .navx-link,
+body.with-sidebar-flat .navx-child-link {
+  border-radius: var(--gsx-radius, 14px);
+  padding-inline: calc(var(--gsx-spacing-3, 0.875rem) + 0.2rem);
+  padding-block: 0.7rem;
+  font-weight: 500;
+  color: inherit;
+  transition: background var(--gsx-duration, 200ms) ease,
+    color var(--gsx-duration, 200ms) ease,
+    box-shadow var(--gsx-duration, 200ms) ease;
+}
+
+body.with-sidebar-flat .navx-parent:hover,
+body.with-sidebar-flat .navx-link:hover,
+body.with-sidebar-flat .navx-child-link:hover {
+  background: rgba(47, 124, 191, 0.12);
+  color: var(--gsx-primary, #2f7cbf);
+}
+
+body.with-sidebar-flat .navx-parent[aria-expanded='true'],
+body.with-sidebar-flat .navx-link[class*='navxLinkActive'],
+body.with-sidebar-flat .navx-child-link[class*='navxChildLinkActive'] {
+  background: rgba(47, 124, 191, 0.18);
+  color: var(--gsx-primary, #2f7cbf);
+  font-weight: 600;
+  box-shadow: inset 0 0 0 1px rgba(47, 124, 191, 0.18);
+}
+
+body.with-sidebar-flat .navx-parent[aria-expanded='true'] .navx-caret svg {
+  transform: rotate(90deg);
+  transition: transform var(--gsx-duration, 200ms) ease;
+}
+
+body.with-sidebar-flat .navx-parent .navx-caret svg {
+  transition: transform var(--gsx-duration, 200ms) ease;
+}
+
+body.with-sidebar-flat .navx-children {
+  margin-left: calc(var(--gsx-spacing-3, 0.875rem) + 0.35rem);
+  padding-left: var(--gsx-spacing-3, 0.875rem);
+  border-left: 1px solid rgba(16, 33, 54, 0.12);
+  gap: var(--gsx-spacing-2, 0.625rem);
+}
+
+body.with-sidebar-flat .navx-children[hidden] {
+  display: none;
+}
+
+body.with-sidebar-flat .navx-call {
+  border-radius: var(--gsx-radius, 14px);
+  background: linear-gradient(135deg, rgba(47, 124, 191, 0.92), rgba(65, 160, 214, 0.92));
+  box-shadow: var(--gsx-shadow-sm, 0 8px 20px rgba(17, 27, 44, 0.1));
+}
+
+body.with-sidebar-flat .navx-call:hover {
+  box-shadow: var(--gsx-shadow-md, 0 18px 42px rgba(12, 23, 41, 0.16));
+}
+
+/* Dark variant */
+body.with-sidebar-flat.fsx-dark .navx-drawer {
+  background: var(--gsx-surface-dark, rgba(17, 34, 52, 0.94));
+  color: #f1f5ff;
+  border-right-color: rgba(120, 148, 182, 0.22);
+}
+
+body.with-sidebar-flat.fsx-dark .navx-parent,
+body.with-sidebar-flat.fsx-dark .navx-link,
+body.with-sidebar-flat.fsx-dark .navx-child-link {
+  color: rgba(241, 245, 255, 0.86);
+}
+
+body.with-sidebar-flat.fsx-dark .navx-children {
+  border-left-color: rgba(241, 245, 255, 0.12);
+}
+
+body.with-sidebar-flat.fsx-dark .navx-parent:hover,
+body.with-sidebar-flat.fsx-dark .navx-link:hover,
+body.with-sidebar-flat.fsx-dark .navx-child-link:hover {
+  background: rgba(47, 124, 191, 0.26);
+  color: #f7fbff;
+}
+
+body.with-sidebar-flat.fsx-dark .navx-parent[aria-expanded='true'],
+body.with-sidebar-flat.fsx-dark .navx-link[class*='navxLinkActive'],
+body.with-sidebar-flat.fsx-dark .navx-child-link[class*='navxChildLinkActive'] {
+  background: rgba(47, 124, 191, 0.32);
+  color: #f7fbff;
+  box-shadow: inset 0 0 0 1px rgba(207, 228, 255, 0.28);
+}
+
+body.with-sidebar-flat.fsx-dark .navx-call {
+  background: linear-gradient(135deg, rgba(65, 160, 214, 0.96), rgba(47, 124, 191, 0.96));
+  color: white;
+}
