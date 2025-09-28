@@ -62,6 +62,32 @@ body {
   @apply bg-[--skye-50];
 }
 
+.header-cta {
+  @apply inline-flex h-12 items-center justify-center gap-2 rounded-xl px-5 text-sm font-semibold transition;
+}
+
+.header-cta svg {
+  @apply size-4;
+}
+
+.header-cta--secondary {
+  @apply border border-[--skye-200] bg-[var(--foam)] text-[var(--skye-700)] shadow-[0_8px_24px_rgba(18,60,84,0.08)];
+}
+
+.header-cta--secondary:hover {
+  @apply border-[--skye-300] bg-[var(--skye-100)];
+}
+
+.header-cta--primary {
+  background: linear-gradient(90deg, var(--skye-600), var(--skye-400));
+  @apply text-white shadow-[0_10px_28px_rgba(18,60,84,0.16)];
+}
+
+.header-cta--primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 32px rgba(18, 60, 84, 0.22);
+}
+
 .card {
   @apply rounded-2xl border border-black/5 bg-white shadow-[0_8px_30px_rgba(0,0,0,.06)];
 }

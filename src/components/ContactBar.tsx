@@ -8,18 +8,18 @@ export default function ContactBar() {
         <div className="flex flex-wrap items-center justify-center gap-2 py-1.5 sm:justify-end">
           <Link
             href="sms:+14154978008"
-            className="btn flex-1 justify-center border border-[var(--skye-200)] bg-[var(--foam)] text-[var(--skye-700)] shadow-sm transition hover:border-[var(--skye-300)] hover:bg-[var(--skye-100)] sm:flex-initial sm:min-w-[11rem]"
+            className="header-cta header-cta--secondary flex-1 justify-center sm:flex-initial sm:min-w-[11rem]"
             aria-label="Send us an SMS now"
           >
-            <MessageCircle className="mr-2 size-4" aria-hidden="true" />
+            <MessageCircle className="mr-2" aria-hidden="true" />
             Text Us Now
           </Link>
           <Link
             href="tel:+14154978008"
-            className="btn btn-primary flex-1 justify-center sm:flex-initial sm:min-w-[11rem]"
+            className="header-cta header-cta--primary flex-1 justify-center sm:flex-initial sm:min-w-[11rem]"
             aria-label="Call us now"
           >
-            <Phone className="mr-2 size-4" aria-hidden="true" />
+            <Phone className="mr-2" aria-hidden="true" />
             Call Now
           </Link>
         </div>

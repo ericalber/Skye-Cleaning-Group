@@ -73,13 +73,13 @@ export default function Header() {
 
   const renderDesktopNav = () => (
     <NavigationMenu.Root
-      className="relative flex items-center gap-4 text-sm"
+      className="relative hidden items-center text-sm lg:flex"
       value={openDesktopItem ?? undefined}
       onValueChange={(value) => setOpenDesktopItem(value || null)}
       delayDuration={75}
       skipDelayDuration={150}
     >
-      <NavigationMenu.List className="flex items-center gap-4">
+      <NavigationMenu.List className="flex items-center gap-1 rounded-full border border-white/70 bg-white/75 px-1 py-1 shadow-[0_12px_36px_rgba(15,35,60,0.14)] backdrop-blur">
         {topNavItems.map((item) => {
           if (!item.children?.length) {
             const active = pathname === item.href || pathname.startsWith(`${item.href}/`)
@@ -88,8 +88,10 @@ export default function Header() {
                 <NavigationMenu.Link asChild>
                   <Link
                     href={item.href}
-                    className={`rounded-full px-3 py-1.5 font-medium transition ${
-                      active ? 'bg-[var(--skye-100)] text-[var(--skye-700)]' : 'hover:text-[var(--skye-700)]'
+                    className={`rounded-xl px-3 py-1.5 font-medium transition-colors ${
+                      active
+                        ? 'bg-[var(--foam)] text-[var(--skye-700)] shadow-[inset_0_1px_0_rgba(255,255,255,0.6)]'
+                        : 'text-[var(--ink-900)] hover:text-[var(--skye-700)]'
                     }`}
                   >
                     {item.label}
@@ -114,8 +116,10 @@ export default function Header() {
                 <Link
                   href={item.href}
                   data-menu={item.menuKey}
-                  className={`inline-flex items-center gap-1 rounded-full px-3 py-1.5 font-medium transition ${
-                    active || desktopItemOpen ? 'bg-[var(--skye-100)] text-[var(--skye-700)]' : 'hover:text-[var(--skye-700)]'
+                  className={`inline-flex items-center gap-1 rounded-xl px-3 py-1.5 font-medium transition-colors ${
+                    active || desktopItemOpen
+                      ? 'bg-[var(--foam)] text-[var(--skye-700)] shadow-[inset_0_1px_0_rgba(255,255,255,0.6)]'
+                      : 'text-[var(--ink-900)] hover:text-[var(--skye-700)]'
                   }`}
                   onMouseEnter={() => setOpenDesktopItem(itemId)}
                   onFocus={() => setOpenDesktopItem(itemId)}
@@ -190,36 +194,41 @@ export default function Header() {
           scrolled ? 'bg-white/85 backdrop-blur-md shadow-sm' : 'bg-white/70 backdrop-blur'
         }`}
       >
-        <div className="container-px flex h-16 items-center gap-3" data-navx-header>
-          <Logo />
-          <div className="hidden flex-1 justify-center lg:flex">
-            {renderDesktopNav()}
-          </div>
-          <div className="ml-auto hidden items-center gap-2 lg:flex">
-            <Link
-              href="sms:+14154978008"
-              className="btn border border-[var(--skye-200)] bg-[var(--foam)] text-[var(--skye-700)]"
-              aria-label="Send us an SMS now"
-            >
-              <MessageCircle className="mr-2 size-4" aria-hidden="true" />
-              Text Us Now
-            </Link>
-            <Link href="tel:+14154978008" className="btn btn-primary" aria-label="Call us now">
-              <Phone className="mr-2 size-4" aria-hidden="true" />
-              Call Now
-            </Link>
-          </div>
-          <button
-            type="button"
-            className="ml-auto inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 lg:hidden"
-            data-navx-toggle="drawer"
-            aria-expanded={drawerOpen}
-            aria-controls="navx-drawer"
-            aria-label="Toggle navigation menu"
-            onClick={handleMobileToggle}
+        <div className="container-px h-16">
+          <div
+            className="flex h-full w-full items-center gap-3 rounded-2xl border border-white/70 bg-white/80 px-4 shadow-[0_18px_48px_rgba(18,50,84,0.16)] backdrop-blur"
+            data-navx-header
           >
-            {drawerOpen ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
-          </button>
+            <Logo />
+            <div className="hidden flex-1 justify-center lg:flex">
+              {renderDesktopNav()}
+            </div>
+            <div className="ml-auto hidden items-center gap-2 lg:flex">
+              <Link
+                href="sms:+14154978008"
+                className="header-cta header-cta--secondary"
+                aria-label="Send us an SMS now"
+              >
+                <MessageCircle className="mr-2 size-4" aria-hidden="true" />
+                Text Us Now
+              </Link>
+              <Link href="tel:+14154978008" className="header-cta header-cta--primary" aria-label="Call us now">
+                <Phone className="mr-2 size-4" aria-hidden="true" />
+                Call Now
+              </Link>
+            </div>
+            <button
+              type="button"
+              className="ml-auto inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 lg:hidden"
+              data-navx-toggle="drawer"
+              aria-expanded={drawerOpen}
+              aria-controls="navx-drawer"
+              aria-label="Toggle navigation menu"
+              onClick={handleMobileToggle}
+            >
+              {drawerOpen ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
+            </button>
+          </div>
         </div>
       </header>
       <NavMobile items={topNavItems} isOpen={drawerOpen} onClose={handleMobileClose} />
