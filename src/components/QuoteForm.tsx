@@ -84,7 +84,14 @@ export default function QuoteForm({
 
       setSubmitted(true)
       reset({
-        service: defaultService,
+        name: '',
+        email: '',
+        phone: '',
+        zip: '',
+        service: (defaultService ?? undefined) as FormData['service'],
+        bedrooms: undefined,
+        bathrooms: undefined,
+        details: '',
         smsConsent: false,
       })
     } catch (error) {
