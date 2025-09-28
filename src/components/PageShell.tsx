@@ -7,6 +7,7 @@ import type { ReactNode } from 'react'
 import FloatingActionBar from './FloatingActionBar'
 import Footer from './Footer'
 import Header from './Header'
+import ContactBar from './ContactBar'
 
 type PageShellProps = {
   children: ReactNode
@@ -32,6 +33,7 @@ export default function PageShell({ children, mainClassName, bodyClassName }: Pa
   return (
     <>
       <Header />
+      <ContactBar />
       <main className={clsx(mainClassName)}>{children}</main>
       <Footer />
       <FloatingActionBar />

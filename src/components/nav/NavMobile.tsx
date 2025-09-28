@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import type { KeyboardEvent as ReactKeyboardEvent } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { ChevronDown, Phone } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
 import clsx from 'clsx'
 
 import styles from './navmobile.module.css'
@@ -279,12 +279,6 @@ export default function NavMobile({ items, isOpen, onClose }: NavMobileProps) {
               )
             })}
           </ul>
-          <div className={styles.navxFooter}>
-            <Link href="tel:+14154978008" className={clsx('navx-link', styles.navxCall)} onClick={onClose}>
-              <Phone className="mr-2 size-4" aria-hidden="true" />
-              Call Now
-            </Link>
-          </div>
         </nav>
       </aside>
     </>

@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { ChevronDown, Menu, Phone, X } from 'lucide-react'
+import { ChevronDown, Menu, MessageCircle, Phone, X } from 'lucide-react'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
@@ -73,7 +73,7 @@ export default function Header() {
 
   const renderDesktopNav = () => (
     <NavigationMenu.Root
-      className="relative hidden items-center gap-4 text-sm lg:flex"
+      className="relative flex items-center gap-4 text-sm"
       value={openDesktopItem ?? undefined}
       onValueChange={(value) => setOpenDesktopItem(value || null)}
       delayDuration={75}
@@ -190,10 +190,20 @@ export default function Header() {
           scrolled ? 'bg-white/85 backdrop-blur-md shadow-sm' : 'bg-white/70 backdrop-blur'
         }`}
       >
-        <div className="container-px flex h-16 items-center justify-between" data-navx-header>
+        <div className="container-px flex h-16 items-center gap-3" data-navx-header>
           <Logo />
-          {renderDesktopNav()}
-          <div className="hidden items-center gap-2 sm:flex">
+          <div className="hidden flex-1 justify-center lg:flex">
+            {renderDesktopNav()}
+          </div>
+          <div className="ml-auto hidden items-center gap-2 lg:flex">
+            <Link
+              href="sms:+14154978008"
+              className="btn border border-[var(--skye-200)] bg-[var(--foam)] text-[var(--skye-700)]"
+              aria-label="Send us an SMS now"
+            >
+              <MessageCircle className="mr-2 size-4" aria-hidden="true" />
+              Text Us Now
+            </Link>
             <Link href="tel:+14154978008" className="btn btn-primary" aria-label="Call us now">
               <Phone className="mr-2 size-4" aria-hidden="true" />
               Call Now
@@ -201,7 +211,7 @@ export default function Header() {
           </div>
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 lg:hidden"
+            className="ml-auto inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 lg:hidden"
             data-navx-toggle="drawer"
             aria-expanded={drawerOpen}
             aria-controls="navx-drawer"
