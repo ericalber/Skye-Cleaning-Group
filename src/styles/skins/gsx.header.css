@@ -1,4 +1,8 @@
 /* Header polish activated by body.with-grandstar */
+body.with-grandstar header {
+  z-index: 9800;
+}
+
 body.with-grandstar header.sticky {
   background: var(--gsx-surface, rgba(255, 255, 255, 0.9));
   backdrop-filter: saturate(140%) blur(18px);
