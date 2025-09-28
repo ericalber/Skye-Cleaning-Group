@@ -3,64 +3,62 @@ import Link from 'next/link'
 
 import ModalQuote from '@/components/ModalQuote'
 import PageShell from '@/components/PageShell'
+import ServiceAreaMap from '@/components/ServiceAreaMap'
 
 const coverageRegions = [
   {
     name: 'San Francisco Proper',
     summary: 'Ultra-prime residences and executive suites across the city receive rapid crews staged minutes away.',
     cities: ['Pacific Heights', 'Russian Hill', 'Nob Hill', 'Presidio Heights', 'Sea Cliff', 'Mission Bay'],
+    image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80',
   },
   {
     name: 'Marin County',
     summary: 'Estate housekeeping for Tiburon coastlines to Ross valley retreats with yacht and guesthouse add-ons.',
     cities: ['Mill Valley', 'Tiburon', 'Sausalito', 'Larkspur', 'Corte Madera', 'Ross'],
+    image: 'https://images.unsplash.com/photo-1504435364-3c5d3cffe4a3?auto=format&fit=crop&w=1600&q=80',
   },
   {
     name: 'Peninsula Corridor',
     summary: 'Founders, families, and venture hubs enjoy synchronised home and office care from Burlingame to Menlo Park.',
     cities: ['Burlingame', 'Hillsborough', 'San Mateo', 'Menlo Park', 'Redwood City', 'Atherton'],
+    image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80',
   },
   {
     name: 'North Bay',
     summary: 'Winery villas and weekend escapes stay showcase-ready with seasonal resets and guest changeovers.',
     cities: ['Petaluma', 'Santa Rosa', 'Healdsburg', 'Sebastopol', 'Glen Ellen'],
+    image: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1600&q=80',
   },
   {
     name: 'Napa Valley',
     summary: 'Private tastings and investor tours sparkle thanks to finish-safe polishing before and after every harvest event.',
     cities: ['Napa', 'Yountville', 'St. Helena', 'Rutherford', 'Calistoga'],
+    image: 'https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1600&q=80',
   },
   {
     name: 'Sonoma Coast',
     summary: 'Coastal residences and hospitality venues receive salt-air protection, terrace resets, and concierge amenity staging.',
     cities: ['Sonoma', 'Bodega Bay', 'Kenwood', 'Occidental', 'Tomales'],
+    image: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1600&q=80',
   },
 ]
 
-const showcaseZones = [
+const fieldStories = [
   {
-    name: 'San Francisco Proper',
-    neighborhoods: ['Pacific Heights', 'Russian Hill', 'Nob Hill', 'Presidio Heights', 'Sea Cliff'],
-    highlight: 'Fast access crews keep penthouses, boardrooms, and media suites investor-ready at all times.',
-    image: 'https://images.unsplash.com/photo-1545249390-6bdfa286032f?auto=format&fit=crop&w=1600&q=80',
+    title: 'Presidio penthouse takeover',
+    copy: '48-hour mobilisation with marble-safe restoration, wardrobe steaming, and amenity staging before investor arrival.',
+    image: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1400&q=80',
   },
   {
-    name: 'Marin County',
-    neighborhoods: ['Mill Valley', 'Tiburon', 'Sausalito', 'Larkspur', 'Corte Madera'],
-    highlight: 'Estate teams coordinate yacht prep, guest changeovers, and seasonal deep care without disrupting privacy.',
-    image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80',
+    title: 'Napa harvest hospitality',
+    copy: 'Seasonal villa resets with climate-controlled wine storage, terrace polishing, and guest suite rotation.',
+    image: 'https://images.unsplash.com/photo-1509395176047-4a66953fd231?auto=format&fit=crop&w=1400&q=80',
   },
   {
-    name: 'Peninsula',
-    neighborhoods: ['San Mateo', 'Burlingame', 'Hillsborough', 'Redwood City'],
-    highlight: 'Split crews care for founder residences and executive offices with the same concierge choreography.',
-    image: 'https://images.unsplash.com/photo-1541577141970-eebc83ebe30e?auto=format&fit=crop&w=1600&q=80',
-  },
-  {
-    name: 'North Bay',
-    neighborhoods: ['Petaluma', 'Santa Rosa', 'Healdsburg', 'Sebastopol'],
-    highlight: 'Winery villas, weekend homes, and tasting rooms receive harvest-ready resets and amenity staging.',
-    image: 'https://images.unsplash.com/photo-1535914254981-b5012eebbd15?auto=format&fit=crop&w=1600&q=80',
+    title: 'Peninsula boardroom reset',
+    copy: 'Nightly concierge crews restore venture suites with electrostatic sanitising, scent curation, and readiness reporting by 6am.',
+    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1400&q=80',
   },
 ]
 
@@ -92,7 +90,7 @@ const expansionServices = [
 
 export default function ServiceAreasPage() {
   return (
-    <PageShell bodyClassName="with-map-location with-gotravel" mainClassName="space-y-24 pb-24">
+    <PageShell bodyClassName="with-map-location with-gotravel with-service-landing" mainClassName="space-y-24 pb-24">
       <section className="hero-gradient relative overflow-hidden">
         <div
           className="absolute inset-0 z-0 opacity-85"
@@ -128,65 +126,27 @@ export default function ServiceAreasPage() {
       </section>
 
       <section id="coverage" className="container-px">
-        <div className="mlx-layout">
-          <div className="mlx-map">
-            <span className="mlx-map__badge">Bay Area</span>
-            <span className="mlx-map__halo" aria-hidden="true" />
-            <Image
-              src="https://images.unsplash.com/photo-1526481280695-3c4698753238?auto=format&fit=crop&w=1400&q=80"
-              alt="Stylised Bay Area coverage map"
-              fill
-              priority
-              sizes="(min-width: 1024px) 55vw, 100vw"
-              className="mlx-map__image"
-            />
-          </div>
-          <div className="mlx-regions">
-            {coverageRegions.map(({ name, summary, cities }) => (
-              <article key={name} className="mlx-region">
-                <div className="mlx-region__header">
-                  <h2 className="mlx-region__title">{name}</h2>
-                  <span className="mlx-region__count">{cities.length} cities</span>
-                </div>
-                <p className="mt-3 text-sm text-slate-600">{summary}</p>
-                <div className="mlx-city-list">
-                  {cities.map((city) => (
-                    <Link key={city} href="#consult" className="mlx-city">
-                      {city}
-                    </Link>
-                  ))}
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
+        <ServiceAreaMap regions={coverageRegions} />
       </section>
 
       <section id="zones" className="container-px">
         <div className="mx-auto max-w-6xl space-y-12">
           <div className="space-y-4 text-center">
-            <h2 className="text-3xl font-black text-ink-900 sm:text-4xl">Neighbourhood snapshots</h2>
+            <h2 className="text-3xl font-black text-ink-900 sm:text-4xl">Field concierge snapshots</h2>
             <p className="text-sm text-slate-600 sm:text-base">
-              Explore how Skye tailors concierge crews for the Bay Area&apos;s most requested enclaves.
+              A glimpse into the high-touch playbooks we execute across the Bay Area&apos;s most requested enclaves.
             </p>
           </div>
-          <div className="gtx-grid -columns-2">
-            {showcaseZones.map(({ name, neighborhoods, highlight, image }) => (
-              <article key={name} className="gtx-card">
+          <div className="gtx-grid -columns-3">
+            {fieldStories.map(({ title, copy, image }) => (
+              <article key={title} className="gtx-card">
                 <div className="gtx-card__media">
-                  <Image src={image} alt={name} fill className="object-cover" />
+                  <Image src={image} alt={title} fill className="object-cover" />
                 </div>
                 <div className="gtx-card__body text-left">
-                  <span className="gtx-card__meta">Priority coverage</span>
-                  <h3 className="gtx-card__title">{name}</h3>
-                  <p className="gtx-card__excerpt">{highlight}</p>
-                  <div className="gtx-pill-list">
-                    {neighborhoods.map((item) => (
-                      <span key={item} className="gtx-pill">
-                        {item}
-                      </span>
-                    ))}
-                  </div>
+                  <span className="gtx-card__meta">Concierge case study</span>
+                  <h3 className="gtx-card__title">{title}</h3>
+                  <p className="gtx-card__excerpt">{copy}</p>
                 </div>
               </article>
             ))}
