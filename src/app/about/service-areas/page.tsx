@@ -1,39 +1,66 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import PageShell from '@/components/PageShell'
 import ModalQuote from '@/components/ModalQuote'
+import PageShell from '@/components/PageShell'
 
 const coverageRegions = [
   {
     name: 'San Francisco Proper',
-    highlight: 'Ultra-prime residences and executive suites across the city receive rapid crews staged minutes away.',
+    summary: 'Ultra-prime residences and executive suites across the city receive rapid crews staged minutes away.',
     cities: ['Pacific Heights', 'Russian Hill', 'Nob Hill', 'Presidio Heights', 'Sea Cliff', 'Mission Bay'],
   },
   {
     name: 'Marin County',
-    highlight: 'Estate housekeeping for Tiburon coastlines to Ross valley retreats with yacht and guesthouse add-ons.',
+    summary: 'Estate housekeeping for Tiburon coastlines to Ross valley retreats with yacht and guesthouse add-ons.',
     cities: ['Mill Valley', 'Tiburon', 'Sausalito', 'Larkspur', 'Corte Madera', 'Ross'],
   },
   {
     name: 'Peninsula Corridor',
-    highlight: 'Founders, families, and venture hubs from Burlingame to Menlo Park enjoy synchronized home and office care.',
+    summary: 'Founders, families, and venture hubs enjoy synchronised home and office care from Burlingame to Menlo Park.',
     cities: ['Burlingame', 'Hillsborough', 'San Mateo', 'Menlo Park', 'Redwood City', 'Atherton'],
   },
   {
     name: 'North Bay',
-    highlight: 'Winery villas and weekend escapes stay showcase-ready with seasonal resets and guest changeovers.',
+    summary: 'Winery villas and weekend escapes stay showcase-ready with seasonal resets and guest changeovers.',
     cities: ['Petaluma', 'Santa Rosa', 'Healdsburg', 'Sebastopol', 'Glen Ellen'],
   },
   {
     name: 'Napa Valley',
-    highlight: 'Tasting rooms and private estates receive finish-safe polishing before investor tours and harvest events.',
+    summary: 'Private tastings and investor tours sparkle thanks to finish-safe polishing before and after every harvest event.',
     cities: ['Napa', 'Yountville', 'St. Helena', 'Rutherford', 'Calistoga'],
   },
   {
     name: 'Sonoma Coast',
-    highlight: 'Coastal residences and hospitality venues are serviced with salt-air protection and concierge amenities.',
+    summary: 'Coastal residences and hospitality venues receive salt-air protection, terrace resets, and concierge amenity staging.',
     cities: ['Sonoma', 'Bodega Bay', 'Kenwood', 'Occidental', 'Tomales'],
+  },
+]
+
+const showcaseZones = [
+  {
+    name: 'San Francisco Proper',
+    neighborhoods: ['Pacific Heights', 'Russian Hill', 'Nob Hill', 'Presidio Heights', 'Sea Cliff'],
+    highlight: 'Fast access crews keep penthouses, boardrooms, and media suites investor-ready at all times.',
+    image: 'https://images.unsplash.com/photo-1545249390-6bdfa286032f?auto=format&fit=crop&w=1600&q=80',
+  },
+  {
+    name: 'Marin County',
+    neighborhoods: ['Mill Valley', 'Tiburon', 'Sausalito', 'Larkspur', 'Corte Madera'],
+    highlight: 'Estate teams coordinate yacht prep, guest changeovers, and seasonal deep care without disrupting privacy.',
+    image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80',
+  },
+  {
+    name: 'Peninsula',
+    neighborhoods: ['San Mateo', 'Burlingame', 'Hillsborough', 'Redwood City'],
+    highlight: 'Split crews care for founder residences and executive offices with the same concierge choreography.',
+    image: 'https://images.unsplash.com/photo-1541577141970-eebc83ebe30e?auto=format&fit=crop&w=1600&q=80',
+  },
+  {
+    name: 'North Bay',
+    neighborhoods: ['Petaluma', 'Santa Rosa', 'Healdsburg', 'Sebastopol'],
+    highlight: 'Winery villas, weekend homes, and tasting rooms receive harvest-ready resets and amenity staging.',
+    image: 'https://images.unsplash.com/photo-1535914254981-b5012eebbd15?auto=format&fit=crop&w=1600&q=80',
   },
 ]
 
@@ -44,7 +71,7 @@ const logisticPillars = [
     image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80',
   },
   {
-    title: 'Quality controllers on site',
+    title: 'Quality controllers on-site',
     copy: 'Supervisors perform scent, surface, and safety audits, capturing photographic proof for every project.',
     image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=800&q=80',
   },
@@ -83,18 +110,16 @@ export default function ServiceAreasPage() {
             </span>
             <h1 className="text-4xl font-black leading-tight sm:text-5xl">From the Golden Gate to wine country, Skye keeps your spaces inspection-ready.</h1>
             <p className="mx-auto max-w-3xl text-sm text-white/85 sm:text-base">
-              Select a region for coverage notes and priority arrivals. Need a concierge crew outside the map? Tap request expansion and we mobilize travel teams or vetted partners.
+              Select a region for coverage notes and priority arrivals. Need a concierge crew outside the map? Tap request expansion and we mobilise travel teams or vetted partners.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
-              <Link href="#coverage" className="btn btn-primary">
-                Explore coverage
-              </Link>
+              <Link href="#coverage" className="btn btn-primary">Explore coverage</Link>
               <ModalQuote
                 triggerLabel="Request expansion visit"
                 triggerClassName="btn btn-secondary-ghost"
                 initialService="light"
                 title="Plan your expansion visit"
-                description="Tell us about the neighborhood and arrival windows you need."
+                description="Tell us about the neighbourhood and arrival windows you need."
                 compact
               />
             </div>
@@ -106,22 +131,24 @@ export default function ServiceAreasPage() {
         <div className="mlx-layout">
           <div className="mlx-map">
             <span className="mlx-map__badge">Bay Area</span>
+            <span className="mlx-map__halo" aria-hidden="true" />
             <Image
               src="https://images.unsplash.com/photo-1526481280695-3c4698753238?auto=format&fit=crop&w=1400&q=80"
-              alt="Illustrated map of the San Francisco Bay Area"
+              alt="Stylised Bay Area coverage map"
               fill
-              className="object-cover"
               priority
+              sizes="(min-width: 1024px) 55vw, 100vw"
+              className="mlx-map__image"
             />
           </div>
           <div className="mlx-regions">
-            {coverageRegions.map(({ name, highlight, cities }) => (
+            {coverageRegions.map(({ name, summary, cities }) => (
               <article key={name} className="mlx-region">
                 <div className="mlx-region__header">
                   <h2 className="mlx-region__title">{name}</h2>
                   <span className="mlx-region__count">{cities.length} cities</span>
                 </div>
-                <p className="mt-3 text-sm text-slate-600">{highlight}</p>
+                <p className="mt-3 text-sm text-slate-600">{summary}</p>
                 <div className="mlx-city-list">
                   {cities.map((city) => (
                     <Link key={city} href="#consult" className="mlx-city">
@@ -135,10 +162,42 @@ export default function ServiceAreasPage() {
         </div>
       </section>
 
+      <section id="zones" className="container-px">
+        <div className="mx-auto max-w-6xl space-y-12">
+          <div className="space-y-4 text-center">
+            <h2 className="text-3xl font-black text-ink-900 sm:text-4xl">Neighbourhood snapshots</h2>
+            <p className="text-sm text-slate-600 sm:text-base">
+              Explore how Skye tailors concierge crews for the Bay Area&apos;s most requested enclaves.
+            </p>
+          </div>
+          <div className="gtx-grid -columns-2">
+            {showcaseZones.map(({ name, neighborhoods, highlight, image }) => (
+              <article key={name} className="gtx-card">
+                <div className="gtx-card__media">
+                  <Image src={image} alt={name} fill className="object-cover" />
+                </div>
+                <div className="gtx-card__body text-left">
+                  <span className="gtx-card__meta">Priority coverage</span>
+                  <h3 className="gtx-card__title">{name}</h3>
+                  <p className="gtx-card__excerpt">{highlight}</p>
+                  <div className="gtx-pill-list">
+                    {neighborhoods.map((item) => (
+                      <span key={item} className="gtx-pill">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="container-px">
         <div className="mx-auto max-w-6xl space-y-10">
           <div className="space-y-3 text-center">
-            <h2 className="text-3xl font-black text-ink-900 sm:text-4xl">Logistics that keep every promise</h2>
+            <h2 className="text-3xl font-black text-ink-900 sm:text-4xl">Logistics that keep promises</h2>
             <p className="text-sm text-slate-600 sm:text-base">
               Hospitality-grade routing, reporting, and partner alignment keep every visit punctual and discreet.
             </p>
@@ -167,12 +226,10 @@ export default function ServiceAreasPage() {
               <p className="text-sm text-slate-600 sm:text-base">
                 Share your property style, timeline, and preferred level of discretion. We stage preview visits or travel crews in under 48 hours for qualified projects.
               </p>
-              <ul className="space-y-3 text-sm text-slate-600">
+              <ul className="space-y-3 text-sm text-slate-600 rounded-3xl border border-[var(--skye-100)] bg-[var(--foam)] p-6 shadow-[0_18px_36px_rgba(18,60,84,0.12)]">
                 {expansionServices.map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <span className="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-[var(--skye-500)] text-xs font-semibold text-white">
-                      ✓
-                    </span>
+                  <li key={item} className="flex gap-3">
+                    <span className="mt-2 inline-flex h-2 w-2 flex-shrink-0 rounded-full bg-[var(--skye-500)]" aria-hidden="true" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -183,7 +240,7 @@ export default function ServiceAreasPage() {
                 <div className="relative h-72 w-full">
                   <Image
                     src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1600&q=80"
-                    alt="Skye Cleaning Group team reviewing regional coverage"
+                    alt="Skye Cleaning Group team reviewing coverage map"
                     fill
                     className="object-cover"
                   />
@@ -197,11 +254,11 @@ export default function ServiceAreasPage() {
                       Call +1 (415) 497-8008
                     </Link>
                     <ModalQuote
-                      triggerLabel="Request expansion visit"
+                      triggerLabel="Request a planning session"
                       triggerClassName="btn btn-secondary"
-                      initialService="light"
-                      title="Plan your expansion visit"
-                      description="Tell us about the property or event."
+                      initialService="recurring"
+                      title="Schedule a planning session"
+                      description="Share coverage details and our concierge will follow up within one hour."
                       compact
                     />
                   </div>
