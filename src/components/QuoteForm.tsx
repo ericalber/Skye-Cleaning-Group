@@ -6,6 +6,8 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useSearchParams } from 'next/navigation'
 
+import { CheckCircle2 } from 'lucide-react'
+
 import { quoteServiceOptions, type QuoteServiceValue } from '@/data/quoteServices'
 
 const serviceEnum = z.enum(quoteServiceOptions.map((option) => option.value) as [QuoteServiceValue, ...QuoteServiceValue[]])
@@ -40,6 +42,8 @@ export default function QuoteForm({
   const searchParams = useSearchParams()
   const [submitted, setSubmitted] = useState(false)
 
+  const defaultService = initialService && allowedServiceParams.has(initialService) ? initialService : undefined
+
   const {
     register,
     handleSubmit,
@@ -55,15 +59,15 @@ export default function QuoteForm({
   })
 
   useEffect(() => {
-    if (initialService && allowedServiceParams.has(initialService)) {
-      setValue('service', initialService)
+    if (defaultService) {
+      setValue('service', defaultService)
       return
     }
     const serviceParam = searchParams.get('service')
     if (serviceParam && allowedServiceParams.has(serviceParam as FormData['service'])) {
       setValue('service', serviceParam as FormData['service'])
     }
-  }, [initialService, searchParams, setValue])
+  }, [defaultService, initialService, searchParams, setValue])
 
   const onSubmit = async (data: FormData) => {
     setSubmitted(false)
@@ -79,7 +83,10 @@ export default function QuoteForm({
       }
 
       setSubmitted(true)
-      reset({ service: data.service, smsConsent: data.smsConsent })
+      reset({
+        service: defaultService,
+        smsConsent: false,
+      })
     } catch (error) {
       console.error('Quote submission failed', error)
       alert('Something went wrong. Please try again or contact us directly.')
@@ -99,7 +106,9 @@ export default function QuoteForm({
   )
 
   const shellClass = compact ? 'card border border-slate-200/70 bg-white' : 'glass card p-6 sm:p-8 backface-hidden'
-  const successClass = compact ? 'text-[var(--skye-700)]' : 'text-[--skye-50]'
+  const successShell = compact
+    ? 'border border-[var(--skye-200)] bg-[var(--foam)] text-[var(--skye-700)]'
+    : 'border border-white/20 bg-white/10 text-white'
 
   return (
     <div className={`${shellClass} w-full ${compact ? '' : 'max-w-xl'} rounded-2xl`} role="form" aria-label="Request Cleaning">
@@ -183,9 +192,17 @@ export default function QuoteForm({
             {isSubmitting ? 'Sending…' : 'Request Cleaning Now'}
           </button>
           {submitted && (
-            <p className={`mt-2 text-xs ${successClass}`} role="status" aria-live="polite">
-              We received your request and will reach out shortly.
-            </p>
+            <div
+              className={`mt-3 flex items-start gap-3 rounded-2xl px-4 py-3 text-sm font-medium shadow-sm ${successShell}`}
+              role="status"
+              aria-live="polite"
+            >
+              <CheckCircle2 className="mt-0.5 size-5 flex-none" aria-hidden="true" />
+              <div>
+                <p>Your request was sent successfully.</p>
+                <p className="text-xs font-normal opacity-80">Our concierge team will reach out within one business day.</p>
+              </div>
+            </div>
           )}
         </div>
       </form>
