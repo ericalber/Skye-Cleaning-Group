@@ -1,0 +1,39 @@
+/* Grandstar-inspired design tokens scoped behind the with-grandstar flag. */
+body.with-grandstar {
+  /* Radius */
+  --gsx-radius: 14px;
+  --gsx-radius-lg: 22px;
+
+  /* Shadows */
+  --gsx-shadow-sm: 0 8px 20px rgba(17, 27, 44, 0.08);
+  --gsx-shadow-md: 0 18px 42px rgba(12, 23, 41, 0.14);
+
+  /* Spacing scale */
+  --gsx-spacing-1: 0.375rem;
+  --gsx-spacing-2: 0.625rem;
+  --gsx-spacing-3: 0.875rem;
+  --gsx-spacing-4: 1.125rem;
+  --gsx-spacing-5: 1.5rem;
+  --gsx-spacing-6: 2rem;
+
+  /* Surfaces */
+  --gsx-surface: rgba(255, 255, 255, 0.86);
+  --gsx-surface-dark: rgba(17, 34, 52, 0.92);
+  --gsx-border: rgba(12, 42, 71, 0.12);
+
+  /* Timing */
+  --gsx-duration: 220ms;
+
+  /* Palette */
+  --gsx-primary: #2f7cbf;
+  --gsx-primary-contrast: #f5fbff;
+  --gsx-danger: #f45b69;
+  --gsx-success: #2ea97c;
+}
+
+/* Optional dark-mode uplift for sidebar skins */
+body.with-grandstar.fsx-dark {
+  --gsx-surface: rgba(18, 27, 41, 0.85);
+  --gsx-surface-dark: rgba(9, 16, 28, 0.94);
+  --gsx-border: rgba(92, 122, 158, 0.22);
+}

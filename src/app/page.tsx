@@ -1,0 +1,35 @@
+import { Suspense } from 'react'
+
+import Header from '@/components/Header'
+import Hero from '@/components/Hero'
+import TrustBar from '@/components/TrustBar'
+import Services from '@/components/Services'
+import Process from '@/components/Process'
+import Reviews from '@/components/Reviews'
+import FAQ from '@/components/FAQ'
+import ServiceArea from '@/components/ServiceArea'
+import QuickActions from '@/components/QuickActions'
+import Footer from '@/components/Footer'
+import FloatingActionBar from '@/components/FloatingActionBar'
+
+export default function Page() {
+  return (
+    <>
+      <Header />
+      <main id="quote" className="page-home pb-24 md:pb-0" data-page="home">
+        <Hero />
+        <TrustBar />
+        <Services />
+        <Process />
+        <Reviews />
+        <FAQ />
+        <ServiceArea />
+        <Suspense fallback={null}>
+          <QuickActions />
+        </Suspense>
+      </main>
+      <Footer />
+      <FloatingActionBar />
+    </>
+  )
+}

@@ -1,0 +1,100 @@
+/* Optional button presets. Attach to elements manually when with-grandstar flag is present. */
+body.with-grandstar .gsx-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gsx-spacing-2, 0.625rem);
+  padding-inline: var(--gsx-spacing-4, 1.125rem);
+  padding-block: 0.7rem;
+  border-radius: var(--gsx-radius, 14px);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  line-height: 1.1;
+  transition: transform var(--gsx-duration, 200ms) ease,
+    box-shadow var(--gsx-duration, 200ms) ease,
+    background var(--gsx-duration, 200ms) ease,
+    color var(--gsx-duration, 200ms) ease,
+    border-color var(--gsx-duration, 200ms) ease;
+}
+
+body.with-grandstar .gsx-btn:focus-visible {
+  outline: 3px solid rgba(47, 124, 191, 0.38);
+  outline-offset: 2px;
+}
+
+body.with-grandstar .gsx-btn:hover {
+  transform: translateY(-1px);
+}
+
+body.with-grandstar .gsx-btn.-primary {
+  color: var(--gsx-primary-contrast, #f5fbff);
+  background: var(--gsx-primary, #2f7cbf);
+  box-shadow: var(--gsx-shadow-sm, 0 8px 20px rgba(17, 27, 44, 0.08));
+}
+
+body.with-grandstar .gsx-btn.-primary:hover {
+  box-shadow: var(--gsx-shadow-md, 0 18px 42px rgba(12, 23, 41, 0.14));
+}
+
+body.with-grandstar .gsx-btn.-secondary {
+  background: rgba(47, 124, 191, 0.08);
+  color: var(--gsx-primary, #2f7cbf);
+  border-color: rgba(47, 124, 191, 0.18);
+}
+
+body.with-grandstar .gsx-btn.-ghost {
+  background: transparent;
+  border-color: rgba(47, 124, 191, 0.18);
+  color: var(--gsx-primary, #2f7cbf);
+}
+
+body.with-grandstar .gsx-btn.-link {
+  background: transparent;
+  border-color: transparent;
+  color: var(--gsx-primary, #2f7cbf);
+  padding-inline: 0;
+}
+
+body.with-grandstar .gsx-btn.-danger {
+  background: rgba(244, 91, 105, 0.12);
+  color: var(--gsx-danger, #f45b69);
+  border-color: rgba(244, 91, 105, 0.3);
+}
+
+body.with-grandstar .gsx-btn.-success {
+  background: rgba(46, 169, 124, 0.14);
+  color: var(--gsx-success, #2ea97c);
+  border-color: rgba(46, 169, 124, 0.34);
+}
+
+/* Size modifiers */
+body.with-grandstar .gsx-btn.-xs {
+  padding-inline: var(--gsx-spacing-2, 0.625rem);
+  padding-block: 0.45rem;
+  font-size: 0.75rem;
+}
+
+body.with-grandstar .gsx-btn.-sm {
+  padding-inline: var(--gsx-spacing-3, 0.875rem);
+  padding-block: 0.55rem;
+  font-size: 0.82rem;
+}
+
+body.with-grandstar .gsx-btn.-md {
+  font-size: 0.9rem;
+}
+
+body.with-grandstar .gsx-btn.-lg {
+  padding-inline: var(--gsx-spacing-5, 1.5rem);
+  padding-block: 0.85rem;
+  font-size: 1rem;
+}
+
+body.with-grandstar .gsx-btn.-xl {
+  padding-inline: var(--gsx-spacing-6, 2rem);
+  padding-block: 1rem;
+  font-size: 1.1rem;
+}

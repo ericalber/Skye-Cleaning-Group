@@ -1,0 +1,124 @@
+/* Service Landing inspired sections. Activate via body.with-service-landing */
+body.with-service-landing .slx-section {
+  position: relative;
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 3rem);
+  align-items: center;
+  border-radius: clamp(2rem, 5vw, 3.5rem);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(26, 74, 110, 0.08);
+  box-shadow: 0 32px 72px rgba(18, 60, 84, 0.12);
+  padding: clamp(1.5rem, 4vw, 2.75rem);
+}
+
+@media (min-width: 1024px) {
+  body.with-service-landing .slx-section {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+body.with-service-landing .slx-section.--split {
+  background: linear-gradient(135deg, rgba(243, 248, 253, 0.95), rgba(226, 240, 252, 0.9));
+}
+
+body.with-service-landing .slx-section__media {
+  position: relative;
+  border-radius: clamp(1.75rem, 4vw, 3rem);
+  overflow: hidden;
+  min-height: clamp(220px, 30vw, 340px);
+  box-shadow: 0 24px 60px rgba(18, 60, 84, 0.16);
+}
+
+body.with-service-landing .slx-section__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 400ms ease;
+}
+
+body.with-service-landing .slx-section:hover .slx-section__media img {
+  transform: scale(1.04);
+}
+
+body.with-service-landing .slx-section__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-size: 0.98rem;
+  color: rgba(16, 33, 54, 0.82);
+}
+
+body.with-service-landing .slx-section__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(40, 122, 169, 0.85);
+}
+
+body.with-service-landing .slx-section__title {
+  font-size: clamp(1.4rem, 3vw, 2.1rem);
+  font-weight: 700;
+  color: var(--ink-900, #102136);
+  line-height: 1.25;
+}
+
+body.with-service-landing .slx-section__list {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  color: rgba(16, 33, 54, 0.78);
+}
+
+body.with-service-landing .slx-steps {
+  display: grid;
+  gap: clamp(1rem, 3vw, 2rem);
+  border-radius: clamp(2rem, 6vw, 3.5rem);
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(26, 74, 110, 0.08);
+  box-shadow: 0 24px 60px rgba(18, 60, 84, 0.14);
+  padding: clamp(2rem, 4vw, 3rem);
+}
+
+@media (min-width: 768px) {
+  body.with-service-landing .slx-steps {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+body.with-service-landing .slx-step {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  text-align: left;
+}
+
+body.with-service-landing .slx-step__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(40, 122, 169, 0.12), rgba(47, 124, 191, 0.5));
+  color: var(--skye-700, #287aa9);
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: inset 0 0 0 1px rgba(47, 124, 191, 0.28);
+}
+
+body.with-service-landing .slx-step__title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink-900, #102136);
+}
+
+body.with-service-landing .slx-step__copy {
+  font-size: 0.92rem;
+  color: rgba(16, 33, 54, 0.76);
+  line-height: 1.55;
+}
