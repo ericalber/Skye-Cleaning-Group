@@ -1,3 +1,7 @@
 node_modules/
 .next/
 .vercel/
+
+# snapshot cleanup
+_snapshot/_next/
+_snapshot/.DS_Store
