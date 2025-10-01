@@ -72,7 +72,7 @@ function useMarqueeController(
   const posRef = useRef(0)
   const widthRef = useRef(0)
   const pausedRef = useRef(false)
-  const animationRef = useRef<number>()
+  const animationRef = useRef<number | null>(null)
   const dirMultiplier = direction === 'left' ? 1 : -1
 
   const apply = useCallback(() => {
@@ -147,7 +147,7 @@ function useMarqueeController(
 
     return () => {
       window.removeEventListener('resize', measure)
-      if (animationRef.current) cancelAnimationFrame(animationRef.current)
+      if (animationRef.current !== null) cancelAnimationFrame(animationRef.current)
     }
   }, [dirMultiplier, loop, reducedMotionRef, setPosition])
 
