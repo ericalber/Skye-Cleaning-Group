@@ -173,8 +173,8 @@ export default function TestimonialsMarquee({ primaryReviews, secondaryReviews }
   const [manualPaused, setManualPaused] = useState(false)
   const manualPausedRef = useRef(false)
   const countersRef = useRef({ hover: 0, focus: 0, drag: 0 })
-  const highlightTimerRef = useRef<number>()
-  const highlightClearRef = useRef<number>()
+  const highlightTimerRef = useRef<number | null>(null)
+  const highlightClearRef = useRef<number | null>(null)
   const lastHighlightRef = useRef<HighlightTarget | null>(null)
   const [highlight, setHighlight] = useState<HighlightTarget | null>(null)
   const topWrapRef = useRef<HTMLDivElement>(null)
@@ -307,7 +307,7 @@ export default function TestimonialsMarquee({ primaryReviews, secondaryReviews }
     }
 
     const scheduleHighlight = () => {
-      if (highlightTimerRef.current) window.clearTimeout(highlightTimerRef.current)
+      if (highlightTimerRef.current !== null) window.clearTimeout(highlightTimerRef.current)
       const delay = Math.floor(Math.random() * (HIGHLIGHT_DELAY_MAX - HIGHLIGHT_DELAY_MIN)) + HIGHLIGHT_DELAY_MIN
 
       highlightTimerRef.current = window.setTimeout(() => {
@@ -324,7 +324,7 @@ export default function TestimonialsMarquee({ primaryReviews, secondaryReviews }
         setHighlight(target)
         lastHighlightRef.current = target
 
-        if (highlightClearRef.current) window.clearTimeout(highlightClearRef.current)
+        if (highlightClearRef.current !== null) window.clearTimeout(highlightClearRef.current)
         highlightClearRef.current = window.setTimeout(() => {
           setHighlight(null)
           scheduleHighlight()
@@ -335,8 +335,8 @@ export default function TestimonialsMarquee({ primaryReviews, secondaryReviews }
     scheduleHighlight()
 
     return () => {
-      if (highlightTimerRef.current) window.clearTimeout(highlightTimerRef.current)
-      if (highlightClearRef.current) window.clearTimeout(highlightClearRef.current)
+      if (highlightTimerRef.current !== null) window.clearTimeout(highlightTimerRef.current)
+      if (highlightClearRef.current !== null) window.clearTimeout(highlightClearRef.current)
     }
   }, [top, bottom])
 
