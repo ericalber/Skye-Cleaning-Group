@@ -61,34 +61,34 @@ export default function HomeCleanTipsPreview() {
               className="-mx-3 flex snap-x snap-mandatory gap-6 overflow-x-auto px-3 pb-2 pt-1"
             >
               {previewTips.map(({ slug, title, hook, hero }) => (
-                <Card
+                <Link
                   key={slug}
-                  as={Link}
                   href={`/clean-tips/${slug}`}
-                  className="group relative flex min-w-[260px] max-w-[320px] flex-col overflow-hidden snap-start sm:min-w-[280px] md:min-w-[300px]"
-                  padding="p-0"
+                  className="group relative block min-w-[260px] max-w-[320px] snap-start sm:min-w-[280px] md:min-w-[300px]"
                 >
-                  <div className="relative aspect-square w-full overflow-hidden">
-                    <Image
-                      src={hero}
-                      alt={title}
-                      fill
-                      loading="lazy"
-                      className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
-                    />
-                  </div>
-                  <div className="flex flex-1 flex-col gap-3 p-6">
-                    <span className="text-xs font-semibold uppercase tracking-[0.28em] text-[color-mix(in_oklab,var(--skye-600)_84%,black)]">
-                      Premium Insight
-                    </span>
-                    <h3 className="text-lg font-semibold text-ink-900 line-clamp-2">{title}</h3>
-                    <p className="text-sm text-slate-600 line-clamp-3">{hook}</p>
-                    <span className="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-[var(--skye-700)]">
-                      Learn more
-                      <span aria-hidden="true">→</span>
-                    </span>
-                  </div>
-                </Card>
+                  <Card className="flex flex-col overflow-hidden" padding="p-0">
+                    <div className="relative aspect-square w-full overflow-hidden">
+                      <Image
+                        src={hero}
+                        alt={title}
+                        fill
+                        loading="lazy"
+                        className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+                      />
+                    </div>
+                    <div className="flex flex-1 flex-col gap-3 p-6">
+                      <span className="text-xs font-semibold uppercase tracking-[0.28em] text-[color-mix(in_oklab,var(--skye-600)_84%,black)]">
+                        Premium Insight
+                      </span>
+                      <h3 className="text-lg font-semibold text-ink-900 line-clamp-2">{title}</h3>
+                      <p className="text-sm text-slate-600 line-clamp-3">{hook}</p>
+                      <span className="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-[var(--skye-700)]">
+                        Learn more
+                        <span aria-hidden="true">→</span>
+                      </span>
+                    </div>
+                  </Card>
+                </Link>
               ))}
             </div>
           </div>

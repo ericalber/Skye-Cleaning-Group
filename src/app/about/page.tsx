@@ -196,19 +196,21 @@ export default function AboutPage() {
           </p>
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {institutionalCards.map(({ title, description, image, href }) => (
-              <Card key={title} as={Link} href={href} className="p-0 text-left" tone="foam">
-                <div className="relative h-48 w-full overflow-hidden">
-                  <Image src={image} alt={title} fill loading="lazy" className="object-cover transition duration-500 ease-out hover:scale-105" />
-                </div>
-                <div className="flex flex-1 flex-col gap-3 p-6">
-                  <h3 className="text-xl font-semibold text-ink-900">{title}</h3>
-                  <p className="text-sm text-slate-600">{description}</p>
-                  <span className="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-[var(--skye-700)]">
-                    Explore {title}
-                    <span aria-hidden="true">→</span>
-                  </span>
-                </div>
-              </Card>
+              <Link key={title} href={href} className="group block h-full">
+                <Card className="h-full p-0 text-left" tone="foam">
+                  <div className="relative h-48 w-full overflow-hidden">
+                    <Image src={image} alt={title} fill loading="lazy" className="object-cover transition duration-500 ease-out group-hover:scale-105" />
+                  </div>
+                  <div className="flex flex-1 flex-col gap-3 p-6">
+                    <h3 className="text-xl font-semibold text-ink-900">{title}</h3>
+                    <p className="text-sm text-slate-600">{description}</p>
+                    <span className="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-[var(--skye-700)]">
+                      Explore {title}
+                      <span aria-hidden="true">→</span>
+                    </span>
+                  </div>
+                </Card>
+              </Link>
             ))}
           </div>
         </div>

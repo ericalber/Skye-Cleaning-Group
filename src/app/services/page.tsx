@@ -200,29 +200,30 @@ export default function ServicesPage() {
           </div>
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {serviceDetails.map((service) => (
-              <Card
+              <Link
                 key={service.slug}
-                as={Link}
                 href={`/services/${service.slug}`}
-                className="group flex h-full flex-col overflow-hidden p-0 transition-transform duration-300 hover:-translate-y-1"
+                className="group block h-full transition-transform duration-300 hover:-translate-y-1"
               >
-                <div className="relative h-48 w-full overflow-hidden">
-                  <Image
-                    src={service.heroImage}
-                    alt={service.heroAlt}
-                    fill
-                    loading="lazy"
-                    className="object-cover transition duration-500 ease-out group-hover:scale-110"
-                  />
-                </div>
-                <div className="flex flex-1 flex-col gap-3 p-6">
-                  <span className="text-xs font-semibold uppercase tracking-[0.3em] text-[var(--skye-600)]">
-                    {service.eyebrow}
-                  </span>
-                  <h3 className="text-xl font-semibold text-ink-900">{service.name}</h3>
-                  <p className="text-sm text-slate-600">{getServiceSummary(service.subheading, service.intro)}</p>
-                </div>
-              </Card>
+                <Card className="flex h-full flex-col overflow-hidden p-0" tone="foam">
+                  <div className="relative h-48 w-full overflow-hidden">
+                    <Image
+                      src={service.heroImage}
+                      alt={service.heroAlt}
+                      fill
+                      loading="lazy"
+                      className="object-cover transition duration-500 ease-out group-hover:scale-110"
+                    />
+                  </div>
+                  <div className="flex flex-1 flex-col gap-3 p-6">
+                    <span className="text-xs font-semibold uppercase tracking-[0.3em] text-[var(--skye-600)]">
+                      {service.eyebrow}
+                    </span>
+                    <h3 className="text-xl font-semibold text-ink-900">{service.name}</h3>
+                    <p className="text-sm text-slate-600">{getServiceSummary(service.subheading, service.intro)}</p>
+                  </div>
+                </Card>
+              </Link>
             ))}
           </div>
         </div>

@@ -78,24 +78,19 @@ export default async function CleanTipDetail({ params }: { params: Promise<{ slu
               <h3 className="text-lg font-semibold text-ink-900">Services that pair with this routine</h3>
               <div className="grid gap-4 md:grid-cols-2">
                 {related.map((service) => (
-                  <Card
-                    key={service.slug}
-                    as={Link}
-                    href={`/services/${service.slug}`}
-                    padding="p-5"
-                    tone="foam"
-                    className="h-full rounded-[1.75rem]"
-                  >
-                    <span className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--skye-600)]">
-                      Concierge Service
-                    </span>
-                    <h4 className="mt-2 text-lg font-semibold text-ink-900">{service.name}</h4>
-                    <p className="mt-2 text-sm text-slate-600">{getServiceSummary(service.subheading, service.intro)}</p>
-                    <span className="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-[var(--skye-700)]">
-                      View service
-                      <span aria-hidden="true">→</span>
-                    </span>
-                  </Card>
+                  <Link key={service.slug} href={`/services/${service.slug}`} className="group block h-full">
+                    <Card padding="p-5" tone="foam" className="h-full rounded-[1.75rem]">
+                      <span className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--skye-600)]">
+                        Concierge Service
+                      </span>
+                      <h4 className="mt-2 text-lg font-semibold text-ink-900">{service.name}</h4>
+                      <p className="mt-2 text-sm text-slate-600">{getServiceSummary(service.subheading, service.intro)}</p>
+                      <span className="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-[var(--skye-700)]">
+                        View service
+                        <span aria-hidden="true">→</span>
+                      </span>
+                    </Card>
+                  </Link>
                 ))}
               </div>
             </div>

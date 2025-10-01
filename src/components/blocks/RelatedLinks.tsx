@@ -34,14 +34,16 @@ export default function RelatedLinks({ eyebrow, title, description, links, class
       )}
       <div className="grid gap-4 md:grid-cols-3">
         {links.map((link) => (
-          <Card key={link.href} as={Link} href={link.href} padding="p-6" tone="foam" className="group flex h-full flex-col">
-            <h3 className="text-lg font-semibold text-ink-900">{link.title}</h3>
-            {link.description ? <p className="mt-2 text-sm text-slate-600">{link.description}</p> : null}
-            <span className="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-[var(--skye-700)]">
-              Learn more
-              <ArrowUpRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
-            </span>
-          </Card>
+          <Link key={link.href} href={link.href} className="group block h-full">
+            <Card padding="p-6" tone="foam" className="flex h-full flex-col">
+              <h3 className="text-lg font-semibold text-ink-900">{link.title}</h3>
+              {link.description ? <p className="mt-2 text-sm text-slate-600">{link.description}</p> : null}
+              <span className="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-[var(--skye-700)]">
+                Learn more
+                <ArrowUpRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
+              </span>
+            </Card>
+          </Link>
         ))}
       </div>
     </section>

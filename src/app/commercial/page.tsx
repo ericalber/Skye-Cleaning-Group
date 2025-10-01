@@ -34,17 +34,19 @@ export default function CommercialPage() {
 
       <section className="container-px">
         <div className="mx-auto max-w-4xl">
-          <Card as={Link} href="/services/light-commercial" padding="p-6 sm:p-8">
-            <span className="text-xs font-semibold uppercase tracking-[0.3em] text-[var(--skye-600)]">Explore the spoke</span>
-            <h2 className="mt-2 text-2xl font-semibold text-ink-900 sm:text-3xl">Light Commercial Service Overview</h2>
-            <p className="mt-4 text-sm text-slate-600 sm:text-base">
-              Review the full concierge program, including scheduling choreography, reporting dashboards, compliance safeguards, and crosslinks to related services.
-            </p>
-            <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--skye-700)]">
-              View light commercial details
-              <span aria-hidden="true">→</span>
-            </span>
-          </Card>
+          <Link href="/services/light-commercial" className="group block">
+            <Card padding="p-6 sm:p-8">
+              <span className="text-xs font-semibold uppercase tracking-[0.3em] text-[var(--skye-600)]">Explore the spoke</span>
+              <h2 className="mt-2 text-2xl font-semibold text-ink-900 sm:text-3xl">Light Commercial Service Overview</h2>
+              <p className="mt-4 text-sm text-slate-600 sm:text-base">
+                Review the full concierge program, including scheduling choreography, reporting dashboards, compliance safeguards, and crosslinks to related services.
+              </p>
+              <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--skye-700)]">
+                View light commercial details
+                <span aria-hidden="true">→</span>
+              </span>
+            </Card>
+          </Link>
         </div>
       </section>
     </PageShell>
