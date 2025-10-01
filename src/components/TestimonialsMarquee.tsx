@@ -39,7 +39,7 @@ const highlightVariants = {
 
 type MarqueeController = {
   items: Review[]
-  trackRef: React.RefObject<HTMLUListElement>
+  trackRef: React.RefObject<HTMLUListElement | null>
   pause: () => void
   play: () => void
   seek: (delta: number) => void
@@ -66,7 +66,7 @@ function useMarqueeController(
   direction: Direction,
   reducedMotionRef: React.MutableRefObject<boolean>
 ): MarqueeController {
-  const trackRef = useRef<HTMLUListElement>(null)
+  const trackRef = useRef<HTMLUListElement | null>(null)
   const length = reviews.length
   const items = useMemo(() => Array.from({ length: COPIES }).flatMap(() => reviews), [reviews])
   const posRef = useRef(0)
