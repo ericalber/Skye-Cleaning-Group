@@ -41,6 +41,65 @@ body.with-gotravel .gtx-card__body {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  position: relative;
+  border-radius: clamp(1.4rem, 3vw, 2rem);
+  background:
+    linear-gradient(150deg, rgba(255, 255, 255, 0.96), rgba(233, 244, 255, 0.92));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 18px 38px rgba(12, 42, 74, 0.12);
+  overflow: hidden;
+}
+
+body.with-gotravel .gtx-card__body::before,
+body.with-gotravel .gtx-card__body::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: transform 620ms cubic-bezier(0.19, 1, 0.22, 1), opacity 420ms ease;
+}
+
+body.with-gotravel .gtx-card__body::before {
+  background:
+    radial-gradient(120% 160% at 15% 10%, rgba(110, 188, 255, 0.28), transparent 60%),
+    radial-gradient(130% 120% at 85% -10%, rgba(255, 255, 255, 0.55), transparent 70%);
+  opacity: 0.78;
+  transform: translate3d(0, 18px, 0) scale(1.04);
+}
+
+body.with-gotravel .gtx-card__body::after {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.52), transparent 72%);
+  opacity: 0.55;
+  transform: translate3d(0, 24px, 0);
+  mix-blend-mode: screen;
+}
+
+body.with-gotravel .gtx-card:hover .gtx-card__body {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 22px 46px rgba(12, 42, 74, 0.18);
+}
+
+body.with-gotravel .gtx-card:hover .gtx-card__body::before {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+body.with-gotravel .gtx-card:hover .gtx-card__body::after {
+  opacity: 0.75;
+  transform: translate3d(0, -8px, 0);
+}
+
+body.with-gotravel .gtx-card__body h2,
+body.with-gotravel .gtx-card__body h3,
+body.with-gotravel .gtx-card__body h4 {
+  color: rgba(12, 32, 52, 0.98);
+  text-shadow: 0 6px 18px rgba(12, 42, 74, 0.18);
+}
+
+body.with-gotravel .gtx-card__body p {
+  color: rgba(58, 84, 110, 0.92);
 }
 
 body.with-gotravel .gtx-card__title {

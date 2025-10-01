@@ -2,262 +2,280 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import PageShell from '@/components/PageShell'
-import ModalQuote from '@/components/ModalQuote'
+import PageBanner from '@/components/PageBanner'
+import Card from '@/components/ui-kits/Card'
+import Button from '@/components/ui-kits/Button'
+import Accordion from '@/components/ui-kits/Accordion'
+import EditorialTwoUp, { type EditorialTwoUpItem } from '@/components/blocks/EditorialTwoUp'
+import MetricStrip from '@/components/blocks/MetricStrip'
+import ProcessSteps from '@/components/blocks/ProcessSteps'
+import RelatedLinks from '@/components/blocks/RelatedLinks'
 import { serviceDetails } from '@/data/servicePages'
 
-const heroHighlights = [
+const hubEditorial = [
   {
-    title: 'Residences prepared for magazine shoots',
-    copy: 'From urban lofts to coastal villas we stage every room with layered detailing and microfiber precision so guests step into a fresh signature scent.',
-    image:
-      'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=800&q=80',
+    title: 'The concierge blueprint behind every request',
+    body:
+      'Every Skye engagement starts with immersion. We tour your property, study the finishes that demand specialty choreography, and interview the stakeholders who rely on our reports. The result becomes your concierge blueprint: access instructions, elevator rhythms, scent preferences, hospitality etiquette, and escalation protocols. The document lives inside our command center and updates after every visit so choreography adapts to travel calendars, investor tours, or last-minute family gatherings without breaking stride.',
   },
   {
-    title: 'Commercial suites with concierge polish',
-    copy: 'Boutique offices and showrooms receive white glove protocols that protect finishes while keeping schedules undisrupted.',
-    image:
-      'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80',
+    title: 'Operations engineered for zero guesswork',
+    body:
+      'Once the blueprint is approved, a lead concierge handpicks a core crew trained to protect your environment like an internal team. They arrive with finish-safe chemistries, microfiber coded by zone, and a run sheet synchronized to minimize disruption. Terrace furniture realigns before sunrise, wellness suites reset between appointments, and executive boardrooms are camera ready before the first handshake. Supervisors log air-quality readings, linen longevity, and supply usage into your private dashboard so you can prove ROI with a single link.',
   },
   {
-    title: 'Health grade discipline',
-    copy: 'Medical suites and wellness studios rely on our surface safe disinfection sequences vetted by infection control consultants.',
-    image:
-      'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=800&q=80',
+    title: 'Specialists ready when the script expands',
+    body:
+      'High-profile properties experience surprises: art installations arriving overnight, livestreams confirmed minutes before broadcast, consulate events extending past midnight. Because the blueprint lives centrally, we plug in strike teams for textiles, post-event resets, stone restoration, or scent design without repeating onboarding. Confidentiality covenants, NDAs, and access passes are already documented, letting us deploy help within hours while protecting continuity.',
+  },
+  {
+    title: 'Sustainability and governance woven into each visit',
+    body:
+      'Concierge cleaning must reinforce ESG commitments and compliance obligations. Our chemistries include Green Seal and EPA Safer Choice formulations, waste streams are sorted with photographic proof, and linen rotations are logged to extend asset life. OSHA, HIPAA, and NDA acknowledgements sit in the same reporting portal as your visit recaps so legal teams and building security have assurance without chasing files or vendors.',
+  },
+  {
+    title: 'Reports your stakeholders actually circulate',
+    body:
+      'Results matter when ownership, family offices, or compliance teams ask for evidence. After every visit you receive a photographic recap highlighting completed zones, proactive maintenance notes, and curated recommendations to keep the property in peak condition between concierge sessions. Share the recap with leadership decks, attach it to investor updates, or forward it to planners to prove the Skye standard is being upheld without handholding.',
+  },
+  {
+    title: 'A concierge desk that scales with you',
+    body:
+      'Scale your service like a luxury brand. Whether you add a second residence, expand floorplates, or host seasonal events, your concierge manager calibrates scheduling, chemistries, and staffing so every arrival feels rehearsed. Strike teams arrive with the same hospitality scripts, reporting cadence, and finish-safe methodology implemented at the flagship property. Consistency becomes your competitive edge, and Skye is the silent partner keeping it polished.',
   },
 ]
 
-const servicePrograms = [
+const faqs = [
   {
-    title: 'Recurring Maintenance',
-    image: 'https://images.unsplash.com/photo-1604014237865-245c22e53985?auto=format&fit=crop&w=1600&q=80',
-    description: 'Weekly or biweekly visits with microfiber zoning, HEPA filtration, refresh of high touch points and signature Skye scenting rituals.'
+    title: 'How is the right concierge crew assigned?',
+    content:
+      'We evaluate the property profile, desired cadence, privacy requirements, and onsite partners. A lead concierge then trains a dedicated crew on your Skye blueprint so you see the same specialists each visit, supplemented only when a certified window or textile technician is required.',
   },
   {
-    title: 'Deep Reset',
-    image: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1600&q=80',
-    description: 'Detailing for millwork, art, and behind furniture plus steam sanitation for bathrooms and kitchen equipment.'
+    title: 'Can residential and commercial services be combined?',
+    content:
+      'Yes. Many clients operate mixed environments - penthouse offices, boutique medical suites, executive residences. We coordinate scheduling, chemistry, and reporting so each space receives the correct treatment without overlap.',
   },
   {
-    title: 'Move In Preparation',
-    image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80',
-    description: 'Post construction dust removal, appliance revival, grout whitening, and a final walkthrough checklist with your site manager.'
+    title: 'How quickly can Skye mobilize?',
+    content:
+      'Standard onboarding takes five business days, including property walk-through, documentation, and kit assembly. For pressing resets we can deploy an interim strike team within twenty-four hours while the full concierge program is finalized.',
+  },
+]
+
+const crosslinks = [
+  {
+    title: 'Meet the specialists behind the shine',
+    description: 'Visit the About hub to understand how Skye recruits, trains, and safeguards concierge teams.',
+    href: '/about',
   },
   {
-    title: 'Hospitality Changeover',
-    image: 'https://images.unsplash.com/photo-1600585154340-0ef3c08ede06?auto=format&fit=crop&w=1600&q=80',
-    description: 'Setups for luxury rentals with linen logistics, minibar resets, spa amenity staging, and energy saving turn down service.'
+    title: 'Extend the standard between visits',
+    description: 'Explore Cleaning Tips for concierge routines you can apply between scheduled appointments.',
+    href: '/clean-tips',
+  },
+]
+
+const serviceMetrics = [
+  { label: 'NPS', value: '4.9/5', caption: 'Average satisfaction across Bay Area engagements.' },
+  { label: 'Site Visits', value: '+2k/yr', caption: 'Concierge crews dispatched across homes and workplaces.' },
+  { label: 'Incident Rate', value: '0.01%', caption: 'Reportable events thanks to layered safety choreography.' },
+  { label: 'Turnaround', value: '24 hrs', caption: 'Rapid deployment window for urgent resets.' },
+]
+
+const serviceProcess = [
+  {
+    title: 'Book your concierge blueprint',
+    description:
+      'Share the property roster, access rules, and stakeholder priorities. We respond within one business hour with discovery slots.',
+  },
+  {
+    title: 'We stage the choreography',
+    description:
+      'Site tours, safety walk-throughs, and chemistry mapping culminate in a living blueprint synced to your calendar.',
+  },
+  {
+    title: 'Enjoy the Skye reveal',
+    description:
+      'Crew arrives in sync with your schedule, delivers the polish you expect, and logs metrics you can forward to leadership.',
+  },
+]
+
+const editorialDeepDive: EditorialTwoUpItem[] = [
+  {
+    eyebrow: 'Inside the command center',
+    title: 'Why the blueprint meeting changes everything',
+    body: [
+      'Our onboarding meeting is part hospitality, part operations lab. We gather decision makers on-site or virtually and walk room by room capturing the rituals that make your space feel personal. Elevator keycards, valet protocols, art conservation preferences, even how you prefer audio zones to fade at night—everything enters the Skye blueprint. That document becomes the single source of truth for every visit, every swing shift, and every specialty crew you request later.',
+      'During the session we calibrate scent programs, agree on photographic boundaries, and log sustainability requisites. The more nuance you share, the more precisely we protect your brand. Facilities leads love that they can pull up the blueprint before budget meetings and show how Skye handles compliance, ESG, and guest experience in one controlled workflow.',
+    ],
+    image: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1600&q=80',
+  },
+  {
+    eyebrow: 'Life on the floor',
+    title: 'How concierge crews choreograph a reveal',
+    body: [
+      'A visit begins long before the first knock. Supervisors review the latest blueprint updates, chemistries are batch-tested in the lab, and the concierge desk reconfirms access windows with security. Once onsite, the crew splits into micro-zones: textiles, stone, glass, wellness, outdoor. Each specialist carries a mobile checklist linked to your dashboard, uploading timestamps, air-quality readings, and amenity notes in real time.',
+      'Before departure, the supervisor performs a reverse tour—lights dimmed to the scene you specified, fragrance diffusers set to the agreed intensity, smart-home panels wiped and reprogrammed. A photographic recap hits your inbox before we leave the driveway so you can forward proof of performance to whoever needs it most.',
+    ],
+    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80',
+  },
+]
+
+function getServiceSummary(subheading: string, intro: string[]) {
+  if (subheading) return subheading
+  if (intro?.length) {
+    const sentence = intro[0].split('. ').slice(0, 2).join('. ')
+    return sentence.length ? `${sentence}.` : 'Discover how this program elevates your property.'
   }
-]
-
-const specialtyVerticals = [
-  {
-    title: 'Estate Housekeeping',
-    copy: 'Concierge support for estates with art, wine collections, and specialty flooring. Includes day of event standby teams and valet style supply management.',
-    image: 'https://images.unsplash.com/photo-1616594039964-94ae4e99970c?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    title: 'Corporate Suites',
-    copy: 'Executive floors, venture studios, and design agencies receive rapid evening resets, scent zoning, and presentation trays aligned with brand guidelines.',
-    image: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    title: 'Medical and Wellness',
-    copy: 'Boutique clinics, dental practices, and med spas rely on our OSHA aligned disinfection routines, instrument prep assistance, and air quality monitoring logs.',
-    image: 'https://images.unsplash.com/photo-1587370560942-ad2a04eabb6d?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    title: 'Retail and Showrooms',
-    copy: 'Flagship spaces stay camera ready with fingerprint sweeps, lighting polish, and merchandising support delivered before store hours.',
-    image: 'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=800&q=80',
-  },
-]
-
-const enhancementAddOns = [
-  'Crystal, silver, and fine china finishing by trained handlers',
-  'Outdoor lounge refresh with upholstery extraction and teak reconditioning',
-  'Laundry concierge with pressing and closet restyling',
-  'Pet friendly deodorizing and fur control protocols',
-  'Eco portfolio audits recommending greener supplies without compromising performance'
-]
+  return 'Discover how this program elevates your property.'
+}
 
 export default function ServicesPage() {
   return (
     <PageShell bodyClassName="with-gotravel with-service-landing" mainClassName="space-y-24 pb-24">
-      <section className="hero-gradient relative overflow-hidden">
-        <div
-          className="absolute inset-0 z-0 opacity-85"
-          style={{
-            backgroundImage:
-              'linear-gradient(180deg, rgba(7,18,28,0.50), rgba(13,36,56,0.78)), url(https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=1600&q=80)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
-          }}
-        />
-        <div className="relative z-[1] container-px py-24 text-white sm:py-32">
-          <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
-            <div className="space-y-6">
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1 text-xs uppercase tracking-[0.3em] text-white/80">
-                Our Services
-              </span>
-              <h1 className="text-4xl font-black leading-tight sm:text-5xl">Concierge cleaning programs for estates, workplaces, and wellness spaces.</h1>
-              <p className="text-sm text-white/85 sm:text-base">
-                Every engagement begins with a site study so we can engineer the right schedule, tools, and specialists. The result is a property that feels curated every single visit.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <Link href="/portfolio" className="btn btn-primary">
-                  View transformations
-                </Link>
-                <ModalQuote triggerClassName="btn btn-secondary-ghost" triggerLabel="Build my service plan" compact />
-              </div>
+      <PageBanner
+        eyebrow="Services"
+        title="Concierge cleaning that presents like a private members club."
+        description="Select a program that protects your brand, extends asset life, and keeps every arrival feeling as polished as opening night."
+        image="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=1600&q=80"
+      />
+
+      <section className="container-px">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-[var(--skye-600)]">
+            Every visit staged, every arrival rehearsed
+          </p>
+        </div>
+      </section>
+
+      <section className="container-px">
+        <div className="mx-auto max-w-4xl space-y-8 text-sm text-slate-600 sm:text-base">
+          {hubEditorial.map(({ title, body }) => (
+            <div key={title} className="space-y-3">
+              <h2 className="text-2xl font-semibold text-ink-900 sm:text-3xl">{title}</h2>
+              <p>{body}</p>
             </div>
-            <div className="grid gap-4">
-              {heroHighlights.map(({ title, copy, image }) => (
-                <div
-                  key={title}
-                  className="rounded-[2rem] border border-white/25 bg-white/10 p-5 text-white shadow-[0_18px_48px_rgba(4,16,32,0.36)] backdrop-blur"
-                >
-                  <div className="relative mb-4 h-32 overflow-hidden rounded-[1.5rem] border border-white/20">
-                    <Image src={image} alt={title} fill className="object-cover" />
-                  </div>
-                  <h2 className="text-lg font-semibold text-white">{title}</h2>
-                  <p className="mt-2 text-sm text-white/80">{copy}</p>
-                </div>
-              ))}
-            </div>
+          ))}
+          <div className="flex flex-wrap items-center gap-3">
+            <Button variant="primary" size="lg" href="/#quote">
+              Build my concierge plan
+            </Button>
+            <Link
+              href="/portfolio"
+              className="text-sm font-semibold text-[var(--skye-700)] hover:text-[var(--skye-900)]"
+            >
+              View recent transformations →
+            </Link>
           </div>
         </div>
       </section>
 
-      <section className="container-px pt-16" id="service-directory">
-        <div className="mx-auto max-w-6xl space-y-8">
+      <section className="container-px">
+        <div className="mx-auto max-w-6xl">
+          <MetricStrip
+            eyebrow="Performance you can measure"
+            items={serviceMetrics}
+            description="Your property deserves a concierge partner that treats presentation like a metric, not a maybe."
+          />
+        </div>
+      </section>
+
+      <section className="container-px">
+        <div className="mx-auto max-w-6xl">
+          <EditorialTwoUp
+            eyebrow="Behind the curtain"
+            items={[editorialDeepDive[0], editorialDeepDive[1]] as [EditorialTwoUpItem, EditorialTwoUpItem]}
+          />
+        </div>
+      </section>
+
+      <section className="container-px" id="service-directory">
+        <div className="mx-auto max-w-6xl space-y-10">
           <div className="space-y-3 text-center">
-            <h2 className="text-3xl font-black text-ink-900 sm:text-4xl">Explore our concierge services</h2>
-            <p className="text-sm text-slate-600 sm:text-base">Handpick the program that mirrors your property narrative and discover how our specialists turn every visit into measurable value.</p>
+            <h2 className="text-3xl font-black text-ink-900 sm:text-4xl">Choose the concierge program that fits your property</h2>
+            <p className="text-sm text-slate-600 sm:text-base">
+              Each tile opens a spoke page with detailed choreography, behind-the-scenes imagery, and reporting expectations.
+            </p>
           </div>
-          <div className="gtx-grid -columns-3">
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {serviceDetails.map((service) => (
-              <Link
+              <Card
                 key={service.slug}
+                as={Link}
                 href={`/services/${service.slug}`}
-                className="gtx-card group overflow-hidden"
+                className="group flex h-full flex-col overflow-hidden p-0 transition-transform duration-300 hover:-translate-y-1"
               >
-                <div className="gtx-card__media">
+                <div className="relative h-48 w-full overflow-hidden">
                   <Image
                     src={service.heroImage}
                     alt={service.heroAlt}
                     fill
-                    className="object-cover transition duration-500 group-hover:scale-105"
+                    loading="lazy"
+                    className="object-cover transition duration-500 ease-out group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/0" aria-hidden="true" />
                 </div>
-                <div className="gtx-card__body text-left">
-                  <h3 className="gtx-card__title transition group-hover:text-[var(--skye-700)]">{service.name}</h3>
-                  <p className="gtx-card__excerpt">{service.subheading}</p>
-                  <span className="gtx-card__cta">
-                    Discover the service
-                    <span aria-hidden="true">→</span>
+                <div className="flex flex-1 flex-col gap-3 p-6">
+                  <span className="text-xs font-semibold uppercase tracking-[0.3em] text-[var(--skye-600)]">
+                    {service.eyebrow}
                   </span>
+                  <h3 className="text-xl font-semibold text-ink-900">{service.name}</h3>
+                  <p className="text-sm text-slate-600">{getServiceSummary(service.subheading, service.intro)}</p>
                 </div>
-              </Link>
+              </Card>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="container-px" id="programs">
-        <div className="mx-auto max-w-6xl space-y-12">
-          <div className="space-y-4 text-center">
-            <h2 className="text-3xl font-black text-ink-900 sm:text-4xl">Signature service programs</h2>
-            <p className="text-sm text-slate-600 sm:text-base">
-              Select the cadence that matches your property profile. We scale crews, equipment, and reporting around your needs.
-            </p>
-          </div>
-          <div className="grid gap-8 md:grid-cols-2">
-            {servicePrograms.map(({ title, image, description }) => (
-              <article key={title} className="card-premium overflow-hidden">
-                <div className="card-premium__body">
-                  <div className="relative h-56 w-full">
-                    <Image src={image} alt={title} fill className="object-cover" />
-                  </div>
-                  <div className="space-y-2 p-6">
-                    <h3 className="text-xl font-semibold text-ink-900">{title}</h3>
-                    <p className="text-sm text-slate-600">{description}</p>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
+      <section className="container-px">
+        <div className="mx-auto max-w-6xl">
+          <ProcessSteps
+            eyebrow="From inquiry to reveal"
+            steps={serviceProcess}
+            description="Three simple movements take you from curiosity to concierge polish."
+          />
         </div>
       </section>
 
-      <section className="container-px" id="verticals">
-        <div className="mx-auto max-w-5xl space-y-10 rounded-[2.5rem] bg-[--foam] px-10 py-12 text-ink-900 shadow-[0_28px_68px_rgba(15,60,90,0.12)]">
-          <div className="space-y-3 text-center">
-            <h2 className="text-3xl font-black">Specialty vertical expertise</h2>
-            <p className="text-sm text-slate-600 sm:text-base">
-              Dedicated leads oversee training, checklists, and equipment tailored to each environment.
-            </p>
-          </div>
-          <div className="grid gap-8 md:grid-cols-2">
-            {specialtyVerticals.map(({ title, copy, image }) => (
-              <article
-                key={title}
-                className="overflow-hidden rounded-3xl border border-[var(--skye-100)] bg-white shadow-[0_18px_36px_rgba(30,80,110,0.08)]"
-              >
-                <div className="relative h-48 w-full">
-                  <Image src={image} alt={title} fill className="object-cover" />
-                </div>
-                <div className="space-y-3 p-6">
-                  <h3 className="text-lg font-semibold text-ink-900">{title}</h3>
-                  <p className="text-sm text-slate-600">{copy}</p>
-                </div>
-              </article>
-            ))}
-          </div>
+      <section className="container-px">
+        <div className="mx-auto max-w-5xl space-y-6">
+          <h2 className="text-3xl font-black text-ink-900 sm:text-4xl text-center">
+            Frequently asked questions about Skye services
+          </h2>
+          <Accordion
+            items={faqs.map((faq) => ({
+              title: faq.title,
+              content: <p>{faq.content}</p>,
+            }))}
+          />
         </div>
       </section>
 
-      <section className="container-px" id="consult">
-        <div className="mx-auto max-w-6xl rounded-[2rem] bg-white px-8 py-12 text-ink-900 shadow-[0_24px_60px_rgba(18,60,84,0.14)] sm:px-10">
-          <div className="grid gap-10 lg:grid-cols-[1.05fr_minmax(0,0.95fr)] lg:items-start">
-            <div className="space-y-8">
-              <div className="space-y-3 text-center lg:text-left">
-                <h2 className="text-3xl font-black">Enhance every visit</h2>
-                <p className="text-sm text-slate-600 sm:text-base">
-                  Layer these add ons to create a bespoke plan that captures every detail of your space.
-                </p>
-              </div>
-              <ul className="grid gap-4 text-sm text-slate-600 sm:grid-cols-2">
-                {enhancementAddOns.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-3 rounded-2xl border border-[var(--skye-100)] bg-[var(--foam)] px-5 py-4 text-left shadow-[0_14px_24px_rgba(22,70,100,0.08)]"
-                  >
-                    <span
-                      className="mt-1 inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--skye-500)] text-lg font-semibold leading-none text-white"
-                      aria-hidden="true"
-                    >
-                      ★
-                    </span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="flex flex-col items-center gap-4 text-center text-sm text-slate-600 sm:flex-row sm:justify-between">
-                <div>
-                  <p className="font-semibold text-ink-900">Ready for a site walkthrough</p>
-                  <p>Call us to reserve a consultation window that fits your schedule.</p>
-                </div>
-                <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-                  <Link href="tel:+14154978008" className="btn btn-primary flex-1 justify-center sm:flex-none">
-                    Call +1 (415) 497-8008
-                  </Link>
-                  <ModalQuote triggerClassName="btn btn-secondary flex-1 justify-center sm:flex-none" triggerLabel="Build my service plan" compact />
-                </div>
-              </div>
-            </div>
-          </div>
+      <section className="container-px">
+        <div className="mx-auto max-w-6xl">
+          <RelatedLinks
+            eyebrow="Continue the tour"
+            links={crosslinks}
+          />
         </div>
+      </section>
+
+      <section className="container-px">
+        <Card padding="p-10 sm:p-12" tone="midnight" className="mx-auto max-w-4xl text-center">
+          <h2 className="text-3xl font-black text-white sm:text-4xl">Ready to choreograph your next concierge visit?</h2>
+          <p className="mt-4 text-sm text-white/80 sm:text-base">
+            Our concierge desk aligns availability, chemistries, and reporting in one conversation. Book a discovery call and we will tailor the Skye blueprint to your property within days.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <Button variant="primary" size="lg" href="/#quote">
+              Build my concierge plan
+            </Button>
+            <Button variant="secondary" size="lg" href="mailto:contact@skyecgroup.com">
+              Speak with our concierge
+            </Button>
+          </div>
+        </Card>
       </section>
     </PageShell>
   )

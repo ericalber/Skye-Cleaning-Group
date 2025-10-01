@@ -1,0 +1,16 @@
+<svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="smsGradient" x1="6" y1="6" x2="50" y2="50" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#63B3ED" />
+      <stop offset="1" stop-color="#2B6CB0" />
+    </linearGradient>
+    <filter id="smsShadow" x="0" y="0" width="56" height="56" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="rgba(18,60,84,0.28)" />
+    </filter>
+  </defs>
+  <g filter="url(#smsShadow)">
+    <path d="M44 12H12C9.79086 12 8 13.7909 8 16V36C8 38.2091 9.79086 40 12 40H35.1716L42.5858 47.4142C43.5118 48.3403 45 47.6843 45 46.4142V40H44C46.2091 40 48 38.2091 48 36V16C48 13.7909 46.2091 12 44 12Z" fill="url(#smsGradient)" />
+    <path d="M19 22H37" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M19 28H31" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+</svg>

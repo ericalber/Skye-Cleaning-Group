@@ -1,7 +1,6 @@
 'use client'
 
-import { useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import Accordion from '@/components/ui-kits/Accordion'
 
 const faqs = [
   {
@@ -27,46 +26,26 @@ const faqs = [
 ]
 
 export default function FAQ() {
-  const [active, setActive] = useState<number | null>(0)
-
   return (
     <section id="faq" className="container-px py-16">
-      <div className="mx-auto max-w-2xl text-center">
-        <h2 className="text-3xl font-black sm:text-4xl">FAQs</h2>
-        <p className="mt-3 text-slate-600">Transparent answers so you know exactly what to expect from Skye Cleaning Group.</p>
-      </div>
-      <div className="mx-auto mt-8 max-w-3xl space-y-3">
-        {faqs.map(({ question, answer }, index) => {
-          const isOpen = active === index
-          return (
-            <div key={question} className="card-premium overflow-hidden text-ink-900">
-              <button
-                type="button"
-                className="card-premium__body flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
-                onClick={() => setActive(isOpen ? null : index)}
-                aria-expanded={isOpen}
-              >
-                <span className="text-sm font-semibold text-ink-900">{question}</span>
-                <span className="text-xl text-[var(--skye-600)]" aria-hidden="true">
-                  {isOpen ? '–' : '+'}
-                </span>
-              </button>
-              <AnimatePresence initial={false}>
-                {isOpen && (
-                  <motion.div
-                    key="content"
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.2, ease: 'easeOut' }}
-                  >
-                    <p className="px-5 pb-5 text-sm text-slate-600">{answer}</p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          )
-        })}
+      <div className="mx-auto max-w-4xl space-y-8 text-center">
+        <div className="space-y-3">
+          <span className="inline-flex items-center justify-center rounded-full border border-[var(--skye-100)] bg-white/70 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-[var(--skye-600)]">
+            Frequently Asked Questions
+          </span>
+          <h2 className="text-3xl font-black sm:text-4xl">FAQs</h2>
+          <p className="text-slate-600">
+            Transparent answers so you know exactly what to expect from Skye Cleaning Group before, durante e depois de cada visita.
+          </p>
+        </div>
+        <Accordion
+          allowMultiple
+          className="space-y-4"
+          items={faqs.map(({ question, answer }) => ({
+            title: question,
+            content: <p className="pb-5 text-sm leading-relaxed text-slate-600 sm:text-base">{answer}</p>,
+          }))}
+        />
       </div>
     </section>
   )

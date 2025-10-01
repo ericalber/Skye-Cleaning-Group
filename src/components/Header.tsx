@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { ChevronDown, Menu, MessageCircle, Phone, X } from 'lucide-react'
+import { ChevronDown, Menu, Phone, X } from 'lucide-react'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
@@ -79,7 +79,7 @@ export default function Header() {
       delayDuration={75}
       skipDelayDuration={150}
     >
-      <NavigationMenu.List className="flex items-center gap-1 rounded-full border border-white/70 bg-white/75 px-1 py-1 shadow-[0_12px_36px_rgba(15,35,60,0.14)] backdrop-blur">
+      <NavigationMenu.List className="flex items-center gap-1 rounded-full border border-white/60 bg-white/90 px-1.5 py-1 shadow-[0_16px_44px_rgba(12,32,64,0.16)] backdrop-blur-xl transition">
         {topNavItems.map((item) => {
           if (!item.children?.length) {
             const active = pathname === item.href || pathname.startsWith(`${item.href}/`)
@@ -88,10 +88,10 @@ export default function Header() {
                 <NavigationMenu.Link asChild>
                   <Link
                     href={item.href}
-                    className={`rounded-xl px-3 py-1.5 font-medium transition-colors ${
+                    className={`rounded-full px-4 py-2 font-medium tracking-[0.01em] transition-all duration-200 ${
                       active
-                        ? 'bg-[var(--foam)] text-[var(--skye-700)] shadow-[inset_0_1px_0_rgba(255,255,255,0.6)]'
-                        : 'text-[var(--ink-900)] hover:text-[var(--skye-700)]'
+                        ? 'bg-white text-[var(--skye-700)] shadow-[0_6px_16px_rgba(12,32,64,0.16)]'
+                        : 'text-[var(--ink-900)] hover:-translate-y-[1px] hover:bg-white/80 hover:text-[var(--skye-700)] hover:shadow-[0_10px_24px_rgba(12,32,64,0.14)]'
                     }`}
                   >
                     {item.label}
@@ -116,10 +116,10 @@ export default function Header() {
                 <Link
                   href={item.href}
                   data-menu={item.menuKey}
-                  className={`inline-flex items-center gap-1 rounded-xl px-3 py-1.5 font-medium transition-colors ${
+                  className={`inline-flex items-center gap-1 rounded-full px-4 py-2 font-medium tracking-[0.01em] transition-all duration-200 ${
                     active || desktopItemOpen
-                      ? 'bg-[var(--foam)] text-[var(--skye-700)] shadow-[inset_0_1px_0_rgba(255,255,255,0.6)]'
-                      : 'text-[var(--ink-900)] hover:text-[var(--skye-700)]'
+                      ? 'bg-white text-[var(--skye-700)] shadow-[0_6px_16px_rgba(12,32,64,0.16)]'
+                      : 'text-[var(--ink-900)] hover:-translate-y-[1px] hover:bg-white/80 hover:text-[var(--skye-700)] hover:shadow-[0_10px_24px_rgba(12,32,64,0.14)]'
                   }`}
                   onMouseEnter={() => setOpenDesktopItem(itemId)}
                   onFocus={() => setOpenDesktopItem(itemId)}
@@ -145,7 +145,7 @@ export default function Header() {
               </NavigationMenu.Trigger>
               <NavigationMenu.Content asChild>
                 <div
-                  className="absolute left-0 top-full z-[60] mt-1 w-64 max-h-[70vh] overflow-y-auto rounded-2xl border border-black/5 bg-white p-4 shadow-[0_16px_40px_rgba(15,30,45,0.14)]"
+                  className="absolute left-0 top-full z-[60] mt-2 w-72 max-h-[70vh] overflow-y-auto rounded-3xl border border-white/70 bg-white/95 p-5 shadow-[0_26px_60px_rgba(12,32,64,0.18)] backdrop-blur"
                   style={{ WebkitOverflowScrolling: 'touch' }}
                   role="menu"
                   onMouseLeave={() => setOpenDesktopItem(null)}
@@ -153,7 +153,7 @@ export default function Header() {
                   <div className="flex flex-col gap-2 text-sm">
                     <Link
                       href={item.href}
-                      className={`rounded-xl px-3 py-2 font-semibold transition hover:bg-[var(--foam)] ${
+                      className={`rounded-2xl px-3 py-2 font-semibold transition-all duration-200 hover:bg-[var(--foam)] hover:text-[var(--skye-700)] ${
                         active ? 'bg-[var(--foam)] text-[var(--skye-700)]' : 'text-[var(--skye-700)]'
                       }`}
                     >
@@ -166,8 +166,8 @@ export default function Header() {
                           key={child.href}
                           href={child.href}
                           role="menuitem"
-                          className={`rounded-xl px-3 py-2 transition hover:bg-[var(--foam)] ${
-                            childActive ? 'bg-[var(--foam)] font-semibold text-[var(--skye-700)]' : ''
+                          className={`rounded-2xl px-3 py-2 transition-all duration-200 hover:bg-[var(--foam)] ${
+                            childActive ? 'bg-[var(--foam)] font-semibold text-[var(--skye-700)]' : 'text-[var(--skye-700)]'
                           }`}
                         >
                           {child.label}
@@ -190,28 +190,22 @@ export default function Header() {
   return (
     <>
       <header
-        className={`sticky top-0 z-50 border-b transition ${
-          scrolled ? 'bg-white/85 backdrop-blur-md shadow-sm' : 'bg-white/70 backdrop-blur'
+        className={`sticky top-0 z-50 border-b bg-white transition-all duration-300 ${
+          scrolled
+            ? 'shadow-[0_18px_60px_rgba(12,32,64,0.12)]'
+            : 'shadow-[0_24px_68px_rgba(12,32,64,0.08)]'
         }`}
       >
-        <div className="container-px h-16">
+        <div className="container-px h-16 sm:h-20">
           <div
-            className="flex h-full w-full items-center gap-3 rounded-2xl border border-white/70 bg-white/80 px-4 shadow-[0_18px_48px_rgba(18,50,84,0.16)] backdrop-blur"
+            className="flex h-full w-full items-center gap-4 px-3 py-2 transition-all duration-300 sm:px-5"
             data-navx-header
           >
-            <Logo />
+            <Logo className="-ml-2 sm:-ml-3" />
             <div className="hidden flex-1 justify-center lg:flex">
               {renderDesktopNav()}
             </div>
-            <div className="ml-auto hidden items-center gap-2 lg:flex">
-              <Link
-                href="sms:+14154978008"
-                className="header-cta header-cta--secondary"
-                aria-label="Send us an SMS now"
-              >
-                <MessageCircle className="mr-2 size-4" aria-hidden="true" />
-                Text Us Now
-              </Link>
+            <div className="ml-auto hidden items-center lg:flex">
               <Link href="tel:+14154978008" className="header-cta header-cta--primary" aria-label="Call us now">
                 <Phone className="mr-2 size-4" aria-hidden="true" />
                 Call Now
@@ -219,7 +213,7 @@ export default function Header() {
             </div>
             <button
               type="button"
-              className="ml-auto inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 lg:hidden"
+              className="ml-auto inline-flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(18,60,84,0.16)] bg-white/90 text-[var(--skye-800)] shadow-[0_16px_38px_rgba(12,32,64,0.14)] transition hover:-translate-y-[1px] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[var(--skye-200)] lg:hidden"
               data-navx-toggle="drawer"
               aria-expanded={drawerOpen}
               aria-controls="navx-drawer"

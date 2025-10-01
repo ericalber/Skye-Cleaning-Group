@@ -1,8 +1,6 @@
-import Image from 'next/image'
-import TestimonialsMarquee from './TestimonialsMarquee'
-import type { Review } from './TestimonialsMarquee'
+import TestimonialsMarquee, { Review } from './TestimonialsMarquee'
 
-const reviews: Review[] = [
+const topReviews: Review[] = [
   {
     name: 'Alex Morgan',
     location: 'Pacific Heights • San Francisco',
@@ -34,7 +32,7 @@ const reviews: Review[] = [
     name: 'Olivia Hart',
     location: 'Cow Hollow • San Francisco',
     quote:
-      'They polished every corner before our hosted dinner. Scheduling was effortless and the follow-up impeccable.',
+      'They polished every corner before our hosted dinner. Scheduling was effortless and the follow-up stayed on script.',
     color: 'bg-slate-500',
     accent: 'rose',
   },
@@ -64,55 +62,108 @@ const reviews: Review[] = [
   },
 ]
 
-const reviewSources = [
+const bottomReviews: Review[] = [
   {
-    label: 'Google Reviews',
-    description: '4.9 ★ rating from Bay Area clients',
-    logo: '/logos/Google-3d.png',
-    alt: 'Google reviews 3D logo',
-    href: 'https://maps.app.goo.gl/SkyeCleaningGroup',
+    name: 'Isabella Ruiz',
+    location: 'Presidio Heights • San Francisco',
+    quote:
+      'Weekly maintenance with Skye feels like checking into a luxury hotel. Every surface gleams and our art stays pristine.',
+    color: 'bg-skye-600',
+    accent: 'emerald',
   },
   {
-    label: 'Yelp',
-    description: 'People Love Us on Yelp',
-    logo: '/logos/yelp.png',
-    alt: 'Yelp logo',
-    href: 'https://www.yelp.com/biz/skye-cleaning-group-san-francisco',
+    name: 'Grant Whitman',
+    location: 'Russian Hill • San Francisco',
+    quote:
+      'Their teams arrive with military precision. Reports land in my inbox before I ask, and the scent signature is unforgettable.',
+    color: 'bg-slate-700',
+    accent: 'violet',
+  },
+  {
+    name: 'Elena Laurent',
+    location: 'Tiburon • Marin',
+    quote:
+      'Flawless post-event resets every time. They coordinate florists, catering, and waste removal without disrupting guests.',
+    color: 'bg-skye-500',
+    accent: 'emerald',
+  },
+  {
+    name: 'Marcus Hale',
+    location: 'Menlo Park • Peninsula',
+    quote:
+      'Boardroom refreshes look stage-ready. Even investors mention the polish before presentations begin.',
+    color: 'bg-slate-600',
+    accent: 'rose',
+  },
+  {
+    name: 'Jasmine Clarke',
+    location: 'St. Helena • Napa Valley',
+    quote:
+      'Harvest season gets hectic, but Skye keeps the villa presentation-perfect for guests and investors every single week.',
+    color: 'bg-skye-700',
+    accent: 'violet',
+  },
+  {
+    name: 'Theo Bennett',
+    location: 'Palo Alto • Peninsula Corridor',
+    quote:
+      'Our executive suites always smell crisp and look reset for the next pitch. The team documents everything flawlessly.',
+    color: 'bg-skye-500',
+    accent: 'emerald',
+  },
+]
+
+const additionalReviews: Review[] = [
+  {
+    name: 'Sophia Becker',
+    location: 'Belmont • Peninsula',
+    quote: 'Coordenam nossas visitas semanais com discrição absoluta. Até nossos pets respondem aos mesmos rituais.',
+    color: 'bg-skye-500',
+    accent: 'gold',
+  },
+  {
+    name: 'Daniel Cho',
+    location: 'Mission Bay • San Francisco',
+    quote: 'A equipe entende a dinâmica do nosso escritório híbrido. Chegamos e tudo já está coreografado.',
+    color: 'bg-slate-600',
+    accent: 'emerald',
+  },
+  {
+    name: 'Lucia Ferraro',
+    location: 'Napa Vineyard Estates',
+    quote: 'Nos eventos de colheita, eles orquestram limpeza, lavanderia e logística com a mesma elegância da recepção.',
+    color: 'bg-skye-700',
+    accent: 'rose',
+  },
+  {
+    name: 'Henry Wallace',
+    location: 'Jackson Square • San Francisco',
+    quote: 'Do lobby ao boardroom, cada detalhe respira hospitalidade. Os relatórios fotográficos encantam os stakeholders.',
+    color: 'bg-slate-700',
+    accent: 'violet',
   },
 ]
 
 export default function Reviews() {
+  const extendedTop = [...topReviews, additionalReviews[0], additionalReviews[1]]
+  const extendedBottom = [...bottomReviews, additionalReviews[2], additionalReviews[3]]
+
   return (
-    <section id="reviews" className="bg-white py-16">
+    <section id="reviews" className="bg-white py-20">
       <div className="container-px">
-        <div className="mx-auto max-w-2xl text-center">
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            {reviewSources.map(({ label, logo, alt, href }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                className="inline-flex"
-              >
-                <Image
-                  src={logo}
-                  alt={alt}
-                  width={256}
-                  height={256}
-                  className="h-12 w-24 object-contain opacity-85 transition-opacity hover:opacity-100 mix-blend-multiply"
-                />
-              </a>
-            ))}
-          </div>
-          <h2 className="mt-4 text-3xl font-black sm:text-4xl">Clients who trust the Skye standard.</h2>
-          <p className="mt-3 text-slate-600">
-            Real stories from Bay Area homes and boutique businesses welcoming our team.
+        <div className="mx-auto max-w-3xl space-y-3 text-center">
+          <span className="inline-flex items-center justify-center rounded-full border border-[var(--skye-100)] bg-white/70 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-[var(--skye-600)] shadow-sm">
+            Reviews • ★★★★★
+          </span>
+          <h2 className="text-3xl font-black sm:text-4xl">Clients who trust the Skye standard.</h2>
+          <p className="text-slate-600">
+            Real stories from residences and corporate suites that depend on our concierge cleaning rituals every week.
           </p>
         </div>
       </div>
-      <TestimonialsMarquee reviews={reviews} />
+      <div className="mt-10 space-y-12">
+        <TestimonialsMarquee primaryReviews={extendedTop} secondaryReviews={extendedBottom} />
+      </div>
     </section>
   )
 }

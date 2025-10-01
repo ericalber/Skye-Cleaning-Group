@@ -42,11 +42,6 @@ export default function Hero() {
             <p className="mt-3 inline-flex items-center rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white/90">
               Skye Done-Right Promise: if anything isn’t perfect, we return at no cost.
             </p>
-            <div className="mt-5 flex flex-wrap gap-2">
-              <span className="chip">Background-checked team</span>
-              <span className="chip">Safe, eco-friendly supplies</span>
-              <span className="chip">No long-term contracts</span>
-            </div>
           </motion.div>
           <motion.div
             variants={containerVariants}

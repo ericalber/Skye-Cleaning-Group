@@ -239,7 +239,7 @@ export const serviceDetails: ServiceDetail[] = [
       {
         title: 'Security deposit protection with inspector-grade detail',
         body: [
-          'Our supervisors conduct a granular walkthrough mapping every surface, tile joint, and fixture. We tackle high-betrayal zones—behind appliances, inside window tracks, under sink basins—using detail brushes, HEPA vacuums, and enzyme cleaners. Each area is photographed before and after so property managers can demonstrate compliance with lease clauses, dramatically reducing deposit disputes.',
+          'Our supervisors conduct a granular walkthrough mapping every surface, tile joint, and fixture. We tackle high-betrayal zones - behind appliances, inside window tracks, under sink basins - using detail brushes, HEPA vacuums, and enzyme cleaners. Each area is photographed before and after so property managers can demonstrate compliance with lease clauses, dramatically reducing deposit disputes.',
           'We also log maintenance opportunities such as worn weather stripping or loose hardware, giving asset managers the intel needed to prioritize repairs before new occupants notice. It is a concierge-level audit disguised as a cleaning service.',
         ],
         image: 'https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=1200&q=80',
@@ -446,7 +446,7 @@ export const serviceDetails: ServiceDetail[] = [
         title: 'Sustainable protection for long-term ROI',
         body: [
           'After cleaning, we apply eco-certified fiber protectants that repel spills without altering texture or sheen. Maintenance plans outline spot care protocols, recommended vacuum frequencies, and quarterly refresh schedules. Your textiles stay vibrant longer, reducing replacement costs and supporting ESG commitments.',
-          'If incidents occur—red wine on a cashmere sofa or ink across a conference chair—we offer emergency stain command, arriving with specialty solvents and neutralizing agents to reverse damage before it sets.',
+          'If incidents occur - red wine on a cashmere sofa or ink across a conference chair - we offer emergency stain command, arriving with specialty solvents and neutralizing agents to reverse damage before it sets.',
         ],
         image: 'https://images.unsplash.com/photo-1520880867055-1e30d1cb001c?auto=format&fit=crop&w=1200&q=80',
         imagePosition: 'left',
@@ -625,7 +625,7 @@ export const serviceDetails: ServiceDetail[] = [
         title: 'Employee experience amplified',
         body: [
           'A pristine workplace fuels retention and productivity. We service ergonomic furniture, sanitize tech hubs, and refresh wellness amenities so teams feel cared for. Breakrooms sparkle, nap pods smell calming, and executive lounges maintain a boutique ambiance, impressing VIP visitors instantly.',
-          'We adopt your brand tone—digital signage, scent cues, and concierge scripts align with internal culture. The cleaning team becomes an extension of guest services.',
+          'We adopt your brand tone - digital signage, scent cues, and concierge scripts align with internal culture. The cleaning team becomes an extension of guest services.',
         ],
         image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80',
         imagePosition: 'right',
@@ -702,7 +702,7 @@ export const serviceDetails: ServiceDetail[] = [
     intro: [
       'Boutique businesses thrive on differentiation. Our light commercial cleaning in the Bay Area packages luxury detail with flexible scheduling so your studio, gallery, or clinic stays unforgettable. We operate as your silent brand ambassador, ensuring every guest, patient, or investor is greeted by a spotless, on-message environment.',
       'From Pilates studios with mirrored walls to cosmetic dermatology suites with delicate equipment, we customize SOPs that protect finishes, respect privacy, and sustain compliance. Our teams memorize brand voice, lighting preferences, and scent guidelines so each visit feels curated, not clinical.',
-      'We also understand the hustle. Early-morning opens, late-night events, pop-up collabs—we align service windows to your calendar, even splitting the crew to manage double-shifts. Consumables are tracked, floors stay gleaming, and restrooms feel like spa sanctuaries.',
+      'We also understand the hustle. Early-morning opens, late-night events, pop-up collabs - we align service windows to your calendar, even splitting the crew to manage double-shifts. Consumables are tracked, floors stay gleaming, and restrooms feel like spa sanctuaries.',
       'Clients love the marketing boost: spaces photograph beautifully, surfaces stay sanitized, and your Google reviews mention cleanliness as frequently as service quality.',
     ],
     sections: [
@@ -822,7 +822,7 @@ export const serviceDetails: ServiceDetail[] = [
         title: 'Seasonal concierge options',
         body: [
           'Heading to Tahoe or Napa for a season? We offer residence hibernation and reactivation packages. Ventilation cycles are scheduled, plants watered, and mail forwarded. Before you return, we restock pantry essentials, press linens, and calibrate climate control so the home feels as if you never left.',
-          'For frequent travelers, our housekeeping log captures requests—fresh pressed shirts, luggage airing, pet treat restocking—so recurring visits anticipate needs without reminders.',
+          'For frequent travelers, our housekeeping log captures requests - fresh pressed shirts, luggage airing, pet treat restocking - so recurring visits anticipate needs without reminders.',
         ],
         image: 'https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1200&q=80',
         imagePosition: 'right',
@@ -886,10 +886,10 @@ export const serviceDetails: ServiceDetail[] = [
     eyebrow: 'Rapid Reset Task Force',
     headline: 'Post-event refresh that transforms chaos into order before sunrise.',
     subheading:
-      'Galas, product launches, investor dinners—our strike teams reset venues and residences so the only evidence of the night is the buzz it created.',
+      'Galas, product launches, investor dinners - our strike teams reset venues and residences so the only evidence of the night is the buzz it created.',
     intro: [
       'Events launch brands, close deals, and celebrate milestones, but the aftermath can dull the memory. Our post-event cleaning in San Francisco deploys a rapid strike team that erases every cocktail drip, glitter speck, and confetti remnants before the sun rises. The next morning, hosts wake to a space that looks better than it did pre-party.',
-      'We collaborate with planners, caterers, and AV crews to build a minute-by-minute teardown plan. Waste streams are sorted, rentals are staged for pickup, and emergency repairs—scuffed floors, lipstick on linens, wine rings on marble—are handled on the spot.',
+      'We collaborate with planners, caterers, and AV crews to build a minute-by-minute teardown plan. Waste streams are sorted, rentals are staged for pickup, and emergency repairs - scuffed floors, lipstick on linens, wine rings on marble - are handled on the spot.',
       'Hospitality protocols keep our teams quiet and discreet. Guests still mingling barely notice the transition as we move through service areas, kitchens, and restrooms to restore order. Scent diffusers neutralize lingering aromas so fresh air greets the next group of stakeholders.',
       'Need to flip a ballroom for a breakfast summit or prepare a penthouse for real estate showings? Our crews work through the night with the energy of stagehands striking a Broadway show, ensuring your venue is inspection-ready come dawn.',
     ],
@@ -897,7 +897,7 @@ export const serviceDetails: ServiceDetail[] = [
       {
         title: 'Precision breakdown and inventory control',
         body: [
-          'We begin with an asset scan—glassware counts, rental furniture checks, and technology inventory. Lost items are logged and routed to planner HQ. Rentals are consolidated, linens bagged, and catering supplies organized for pickup. Nothing goes missing on our watch.',
+          'We begin with an asset scan - glassware counts, rental furniture checks, and technology inventory. Lost items are logged and routed to planner HQ. Rentals are consolidated, linens bagged, and catering supplies organized for pickup. Nothing goes missing on our watch.',
           'Floors receive immediate triage: spot treating spills, neutralizing acids, and vacuuming confetti before it embeds. By the time vendors arrive to collect equipment, the venue feels calm and controlled.',
         ],
         image: 'https://images.unsplash.com/photo-1478479474071-8a3014ad0d82?auto=format&fit=crop&w=1200&q=80',

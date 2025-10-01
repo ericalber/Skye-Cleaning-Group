@@ -63,10 +63,10 @@ export async function POST(request: Request) {
 <p><strong>Phone:</strong> ${data.phone}</p>
 <p><strong>ZIP:</strong> ${data.zip}</p>
 <p><strong>Service:</strong> ${data.service}</p>
-<p><strong>Bedrooms:</strong> ${data.bedrooms ?? '—'}</p>
-<p><strong>Bathrooms:</strong> ${data.bathrooms ?? '—'}</p>
+<p><strong>Bedrooms:</strong> ${data.bedrooms ?? ' - '}</p>
+<p><strong>Bathrooms:</strong> ${data.bathrooms ?? ' - '}</p>
 <p><strong>Details:</strong></p>
-<p>${data.details ?? '—'}</p>`,
+<p>${data.details ?? ' - '}</p>`,
           replyTo: data.email,
         })
       } catch (error) {
