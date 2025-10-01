@@ -201,7 +201,7 @@ export default function Header() {
             className="flex h-full w-full items-center gap-4 px-3 py-2 transition-all duration-300 sm:px-5"
             data-navx-header
           >
-            <Logo className="-ml-2 sm:-ml-3" />
+            <Logo className="-ml-3 sm:-ml-6" />
             <div className="hidden flex-1 justify-center lg:flex">
               {renderDesktopNav()}
             </div>

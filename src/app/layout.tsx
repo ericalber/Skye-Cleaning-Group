@@ -16,6 +16,24 @@ export const metadata: Metadata = {
   title: 'Skye Cleaning Group - Residential & Light Commercial Cleaning',
   description:
     'Skye Cleaning Group delivers premium residential and light commercial cleaning across San Francisco and the North Bay with trusted teams and our Skye Done-Right Guarantee.',
+  openGraph: {
+    title: 'Skye Cleaning Group',
+    description: 'Soluções de limpeza premium para San Francisco e Marin County.',
+    url: 'https://www.skyecgroup.com',
+    type: 'website',
+    images: [
+      {
+        url: 'https://www.skyecgroup.com/logo-skye.png',
+        alt: 'Skye Cleaning Group logo',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Skye Cleaning Group',
+    description: 'Soluções de limpeza premium para San Francisco e Marin County.',
+    images: ['https://www.skyecgroup.com/logo-skye.png'],
+  },
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
