@@ -10,6 +10,7 @@ import MetricStrip, { type MetricItem } from '@/components/blocks/MetricStrip'
 import ProcessSteps, { type ProcessStep } from '@/components/blocks/ProcessSteps'
 import RelatedLinks, { type RelatedLink } from '@/components/blocks/RelatedLinks'
 import { serviceDetails } from '@/data/servicePages'
+import type { ServiceDetail } from '@/data/servicePages'
 
 const supportingMedia: Record<string, { src: string; caption: string }[]> = {
   'recurring-cleaning': [
