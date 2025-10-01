@@ -28,12 +28,12 @@ const highlightVariants = {
   rest: {
     scale: 1,
     boxShadow: '0 28px 64px rgba(18, 60, 84, 0.12)',
-    transition: { duration: 0.6, ease: 'easeInOut' },
+    transition: { duration: 0.6, ease: 'easeInOut' as const },
   },
   highlight: {
     scale: 1.05,
     boxShadow: '0 42px 120px rgba(12, 42, 74, 0.24)',
-    transition: { duration: 0.6, ease: 'easeInOut' },
+    transition: { duration: 0.6, ease: 'easeInOut' as const },
   },
 }
 
