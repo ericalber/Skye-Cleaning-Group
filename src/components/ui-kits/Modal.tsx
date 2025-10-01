@@ -1,7 +1,7 @@
 'use client'
 
 import { X } from 'lucide-react'
-import type { ReactNode } from 'react'
+import type { MouseEventHandler, ReactNode } from 'react'
 import { cloneElement, isValidElement, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import clsx from 'clsx'
@@ -53,12 +53,10 @@ export default function Modal({ trigger, title, description, children, size = 'l
 
   const handleOpen = () => setOpen(true)
 
-  const triggerNode = isValidElement(trigger)
+  const triggerNode = isValidElement<{ onClick?: MouseEventHandler }>(trigger)
     ? cloneElement(trigger, {
-        onClick: (event: React.MouseEvent) => {
-          if (typeof trigger.props.onClick === 'function') {
-            trigger.props.onClick(event)
-          }
+        onClick: (event) => {
+          trigger.props.onClick?.(event)
           if (!event.defaultPrevented) {
             handleOpen()
           }
