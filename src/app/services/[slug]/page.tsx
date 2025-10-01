@@ -230,7 +230,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         <ol className="mx-auto flex max-w-5xl flex-wrap items-center gap-2">
           {spokeBreadcrumb.map((crumb, index) => (
             <li key={crumb.label} className="flex items-center gap-2">
-              {crumb.href ? (
+              {'href' in crumb ? (
                 <Link href={crumb.href} className="font-semibold text-[var(--skye-700)] hover:text-[var(--skye-900)]">
                   {crumb.label}
                 </Link>
