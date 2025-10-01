@@ -61,15 +61,9 @@ const Card = forwardRef<HTMLElement, CardProps>(function Card(
   { as: Component = 'div', className, active, children, padding = innerPadding, tone = 'default', spotlight = true, ...rest },
   ref
 ) {
-  return (
-    <Component
-      ref={ref as Ref<HTMLDivElement | HTMLButtonElement | HTMLAnchorElement>}
-      className={clsx(baseClasses, toneClasses[tone], tripTakerMotion, active && activeClasses, className)}
-      data-card-active={active || undefined}
-      data-card-tone={tone}
-      aria-pressed={Component === 'button' ? active : undefined}
-      {...(rest as Record<string, unknown>)}
-    >
+  const sharedClassName = clsx(baseClasses, toneClasses[tone], tripTakerMotion, active && activeClasses, className)
+  const sharedChildren = (
+    <>
       <span
         aria-hidden="true"
         className={clsx(
@@ -94,7 +88,51 @@ const Card = forwardRef<HTMLElement, CardProps>(function Card(
         style={ANGLED_CUT as Record<string, string>}
       />
       <div className={clsx('relative z-[1] flex h-full flex-col', padding)}>{children}</div>
-    </Component>
+    </>
+  )
+
+  if (Component === 'button') {
+    const buttonProps = rest as Omit<ComponentPropsWithoutRef<'button'>, 'className'>
+    return (
+      <button
+        ref={ref as Ref<HTMLButtonElement>}
+        className={sharedClassName}
+        data-card-active={active || undefined}
+        data-card-tone={tone}
+        aria-pressed={active}
+        {...buttonProps}
+      >
+        {sharedChildren}
+      </button>
+    )
+  }
+
+  if (Component === 'a') {
+    const anchorProps = rest as Omit<ComponentPropsWithoutRef<'a'>, 'className'>
+    return (
+      <a
+        ref={ref as Ref<HTMLAnchorElement>}
+        className={sharedClassName}
+        data-card-active={active || undefined}
+        data-card-tone={tone}
+        {...anchorProps}
+      >
+        {sharedChildren}
+      </a>
+    )
+  }
+
+  const divProps = rest as Omit<ComponentPropsWithoutRef<'div'>, 'className'>
+  return (
+    <div
+      ref={ref as Ref<HTMLDivElement>}
+      className={sharedClassName}
+      data-card-active={active || undefined}
+      data-card-tone={tone}
+      {...divProps}
+    >
+      {sharedChildren}
+    </div>
   )
 })
 
