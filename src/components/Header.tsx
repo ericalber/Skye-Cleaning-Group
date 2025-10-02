@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { ChevronDown, Menu, Phone, X } from 'lucide-react'
+import { ChevronDown, Menu, X } from 'lucide-react'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
@@ -73,7 +73,7 @@ export default function Header() {
 
   const renderDesktopNav = () => (
     <NavigationMenu.Root
-      className="relative hidden items-center text-sm lg:flex"
+      className="relative hidden text-sm md:flex md:items-center"
       value={openDesktopItem ?? undefined}
       onValueChange={(value) => setOpenDesktopItem(value || null)}
       delayDuration={75}
@@ -190,38 +190,44 @@ export default function Header() {
   return (
     <>
       <header
-        className={`sticky top-0 z-50 border-b bg-white transition-all duration-300 ${
+        className={`fixed top-0 inset-x-0 z-50 bg-white/90 backdrop-blur border-b border-white/20 transition-all duration-300 ${
           scrolled
             ? 'shadow-[0_18px_60px_rgba(12,32,64,0.12)]'
             : 'shadow-[0_24px_68px_rgba(12,32,64,0.08)]'
         }`}
       >
-        <div className="container-px h-16 sm:h-20">
-          <div
-            className="flex h-full w-full items-center gap-4 px-3 py-2 transition-all duration-300 sm:px-5"
-            data-navx-header
-          >
-            <Logo className="-ml-3 sm:-ml-6" />
-            <div className="hidden flex-1 justify-center lg:flex">
+        <div className="max-w-7xl mx-auto h-16 sm:h-20 px-4 sm:px-6 lg:px-8">
+          <div className="flex h-full items-center justify-between" data-navx-header>
+            <Logo className="-ml-12 sm:-ml-20 lg:-ml-24 shrink-0" />
+            <nav className="hidden flex-1 justify-center md:flex">
               {renderDesktopNav()}
-            </div>
-            <div className="ml-auto hidden items-center lg:flex">
-              <Link href="tel:+14154978008" className="header-cta header-cta--primary" aria-label="Call us now">
-                <Phone className="mr-2 size-4" aria-hidden="true" />
+            </nav>
+            <div className="flex items-center gap-2">
+              <a
+                href="tel:+14154978008"
+                className="inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium bg-[#2E7DD7] text-white shadow-sm transition hover:bg-[#256fbe]"
+                aria-label="Call us now"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" className="opacity-90" aria-hidden="true">
+                  <path
+                    fill="currentColor"
+                    d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.21 2.2z"
+                  />
+                </svg>
                 Call Now
-              </Link>
+              </a>
+              <button
+                type="button"
+                className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white/80 transition hover:bg-white"
+                data-navx-toggle="drawer"
+                aria-expanded={drawerOpen}
+                aria-controls="navx-drawer"
+                aria-label={drawerOpen ? 'Close menu' : 'Open menu'}
+                onClick={handleMobileToggle}
+              >
+                {drawerOpen ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
+              </button>
             </div>
-            <button
-              type="button"
-              className="ml-auto inline-flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(18,60,84,0.16)] bg-white/90 text-[var(--skye-800)] shadow-[0_16px_38px_rgba(12,32,64,0.14)] transition hover:-translate-y-[1px] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[var(--skye-200)] lg:hidden"
-              data-navx-toggle="drawer"
-              aria-expanded={drawerOpen}
-              aria-controls="navx-drawer"
-              aria-label="Toggle navigation menu"
-              onClick={handleMobileToggle}
-            >
-              {drawerOpen ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
-            </button>
           </div>
         </div>
       </header>

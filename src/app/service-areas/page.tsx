@@ -198,14 +198,12 @@ export default function ServiceAreasPage() {
                     <Link href="tel:+14154978008" className="btn btn-primary">
                       Call +1 (415) 497-8008
                     </Link>
-                    <ModalQuote
-                      triggerLabel="Request a planning session"
-                      triggerClassName="btn btn-secondary"
-                      initialService="recurring"
-                      title="Schedule a planning session"
-                      description="Share coverage details and our concierge will follow up within one hour."
-                      compact
-                    />
+                    <a
+                      href="mailto:contact@skyecgroup.com?subject=Request%20a%20Planning%20-%20Skye%20Cleaning%20Group&body=Hello%20team,%20I%20would%20like%20to%20request%20a%20planning%20session%20for%20cleaning%20services."
+                      className="btn btn-secondary"
+                    >
+                      Request a planning session
+                    </a>
                   </div>
                 </div>
               </div>

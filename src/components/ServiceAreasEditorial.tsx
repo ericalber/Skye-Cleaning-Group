@@ -159,9 +159,12 @@ export default function ServiceAreasEditorial() {
                 <Link href="tel:+14154978008" className="btn btn-primary sm:min-w-[14rem]">
                   Call +1 (415) 497-8008
                 </Link>
-                <Link href="/quote" className="btn btn-secondary sm:min-w-[14rem]">
+                <a
+                  href="mailto:contact@skyecgroup.com?subject=Request%20a%20Planning%20-%20Skye%20Cleaning%20Group&body=Hello%20team,%20I%20would%20like%20to%20request%20a%20planning%20session%20for%20cleaning%20services."
+                  className="btn btn-secondary sm:min-w-[14rem]"
+                >
                   Request a planning session
-                </Link>
+                </a>
               </div>
             </div>
           </div>
