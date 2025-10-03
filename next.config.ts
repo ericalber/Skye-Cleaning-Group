@@ -2,10 +2,8 @@ import type { NextConfig } from 'next'
 import createNextIntlPlugin from 'next-intl/plugin'
 
 const withNextIntl = createNextIntlPlugin({
-  locales: ['en', 'es'],
-  defaultLocale: 'en',
-  localePrefix: 'as-needed',
   messagesDir: './messages',
+  localePrefix: 'as-needed',
 })
 
 const nextConfig: NextConfig = {
@@ -14,6 +12,10 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   experimental: {
     optimizeCss: true,
+  },
+  i18n: {
+    locales: ['en', 'es'],
+    defaultLocale: 'en',
   },
   images: {
     remotePatterns: [
