@@ -6,7 +6,8 @@
     "dev": "next dev --port 4000",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sitemap": "next-sitemap"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -16,10 +17,15 @@
     "framer-motion": "^12.23.18",
     "lucide-react": "^0.544.0",
     "next": "15.5.3",
+    "next-intl": "^4.3.9",
+    "next-seo": "^6.8.0",
+    "next-sitemap": "^4.2.3",
     "nodemailer": "^6.9.13",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-hook-form": "^7.63.0",
+    "react-schemaorg": "^2.0.0",
+    "schema-dts": "^1.1.5",
     "zod": "^4.1.11"
   },
   "devDependencies": {

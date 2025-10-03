@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.skyecgroup.com
+
+# Sitemaps
+Sitemap: https://www.skyecgroup.com/sitemap.xml
