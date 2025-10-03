@@ -22,7 +22,7 @@ export const defaultSeo: DefaultSeoProps = {
     title: defaultTitle,
     description: defaultDescription,
     locale: 'en_US',
-    alternateLocales: ['es_US'],
+    localeAlternate: ['es_US'],
     images: [
       {
         url: `${siteUrl}/logo-skye.png`,
@@ -36,3 +36,5 @@ export const defaultSeo: DefaultSeoProps = {
     cardType: 'summary_large_image',
   },
 }
+
+export default defaultSeo
