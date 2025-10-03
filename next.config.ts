@@ -1,10 +1,7 @@
 import type { NextConfig } from 'next'
 import createNextIntlPlugin from 'next-intl/plugin'
 
-const withNextIntl = createNextIntlPlugin({
-  messagesDir: './messages',
-  localePrefix: 'as-needed',
-})
+const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts')
 
 const nextConfig: NextConfig = {
   outputFileTracingRoot: __dirname,
@@ -12,10 +9,6 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   experimental: {
     optimizeCss: true,
-  },
-  i18n: {
-    locales: ['en', 'es'],
-    defaultLocale: 'en',
   },
   images: {
     remotePatterns: [
