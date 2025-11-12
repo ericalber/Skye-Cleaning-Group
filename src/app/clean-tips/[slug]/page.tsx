@@ -67,7 +67,7 @@ export default async function CleanTipDetail({ params }: { params: Promise<{ slu
       <section className="container-px">
         <div className="mx-auto flex max-w-4xl flex-col gap-6 text-slate-700">
           <div className="relative h-72 w-full overflow-hidden rounded-[1.75rem] shadow-[0_28px_80px_rgba(18,60,84,0.18)]">
-            <Image src={tip.hero} alt={tip.title} fill className="object-cover" priority />
+            <Image src={tip.hero} alt={tip.title} fill sizes="100vw" className="object-cover" unoptimized priority />
           </div>
           {tip.body.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>

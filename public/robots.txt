@@ -1,12 +1,9 @@
+# *
 User-agent: *
-Disallow: /_next/
-Disallow: /author/
-Disallow: /category/
-Disallow: /*?tkit-ajax-request=
-Allow: /$
-Allow: /services
-Allow: /services/
-Allow: /services/*
-Allow: /services-areas
-Allow: /clean-tips
+Allow: /
+
+# Host
+Host: https://www.skyecgroup.com
+
+# Sitemaps
 Sitemap: https://www.skyecgroup.com/sitemap.xml

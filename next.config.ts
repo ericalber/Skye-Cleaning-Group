@@ -10,7 +10,17 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizeCss: true,
   },
+  allowedDevOrigins: [
+    // Localhost variants
+    'http://localhost',
+    'http://localhost:4005',
+    // LAN/IP variants used during dev
+    'http://10.0.0.111',
+    'http://10.0.0.111:4005',
+    'http://10.0.0.111:4022',
+  ],
   images: {
+    // Use Next/Image optimizer in dev and prod to keep SSR/CSR consistent
     remotePatterns: [
       {
         protocol: 'https',

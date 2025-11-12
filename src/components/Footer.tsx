@@ -33,7 +33,7 @@ export default function Footer() {
       <div className="footer-gradient__inner container-px py-16">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr_1fr]">
           <div className="space-y-4">
-            <Image src="/logo-skye.png" alt="SkyeC Group logo" width={140} height={52} className="h-12 w-auto object-contain" />
+            <Image src="/logo-skye.png" alt="SkyeC Group logo" width={140} height={52} className="h-12 w-auto object-contain" unoptimized />
             <p className="max-w-sm text-sm text-white/80">
               SkyeC Group - Residential &amp; Light Commercial Cleaning in the Bay Area and North Bay. Based in San Francisco,
               we deliver concierge-level care for residences and boutique commercial spaces.
@@ -52,7 +52,7 @@ export default function Footer() {
                     target={external ? '_blank' : undefined}
                   >
                     <span className="relative flex h-7 w-7 items-center justify-center overflow-hidden rounded-full">
-                      <Image src={icon} alt={alt} width={24} height={24} className={`h-6 w-6 object-contain ${iconClass ?? ''}`} />
+                      <Image src={icon} alt={alt} width={24} height={24} className={`h-6 w-6 object-contain ${iconClass ?? ''}`} unoptimized />
                     </span>
                     <span>{label}</span>
                   </a>

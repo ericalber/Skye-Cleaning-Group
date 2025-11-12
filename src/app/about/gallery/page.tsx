@@ -146,13 +146,13 @@ export default function GalleryPage() {
               <Card key={item.title} className="p-0 text-left">
                 <div className="grid grid-cols-1 gap-1">
                   <figure className="relative aspect-square w-full overflow-hidden">
-                    <Image src={item.before} alt={`${item.title} - before`} fill loading="lazy" className="object-cover opacity-90" />
+                    <Image src={item.before} alt={`${item.title} - before`} fill sizes="100vw" loading="lazy" className="object-cover opacity-90" />
                     <figcaption className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-[var(--skye-700)] shadow-sm">
                       Before
                     </figcaption>
                   </figure>
                   <figure className="relative aspect-square w-full overflow-hidden">
-                    <Image src={item.after} alt={`${item.title} - after`} fill loading="lazy" className="object-cover" />
+                    <Image src={item.after} alt={`${item.title} - after`} fill sizes="100vw" loading="lazy" className="object-cover" />
                     <figcaption className="absolute left-3 top-3 rounded-full bg-white px-3 py-1 text-xs font-semibold text-[var(--skye-700)] shadow-sm">
                       After
                     </figcaption>

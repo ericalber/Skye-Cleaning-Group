@@ -18,7 +18,7 @@ type Direction = 'left' | 'right'
 
 type HighlightLane = 'top' | 'bottom'
 
-const SPEED = 0.36
+const SPEED = 0.7
 const HIGHLIGHT_DURATION = 1500
 const HIGHLIGHT_DELAY_MIN = 5200
 const HIGHLIGHT_DELAY_MAX = 9800
@@ -373,6 +373,7 @@ export default function TestimonialsMarquee({ primaryReviews, secondaryReviews }
                       height={64}
                       loading="lazy"
                       className="h-full w-full object-cover"
+                      unoptimized
                     />
                   ) : (
                     <span className={`testimonial-avatar__initials ${item.color}`}>{initials}</span>

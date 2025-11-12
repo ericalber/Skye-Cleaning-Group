@@ -12,38 +12,52 @@ import RelatedLinks from '@/components/blocks/RelatedLinks'
 
 const narrativeSections = [
   {
-    title: 'From boutique beginnings to Bay Area benchmark',
+    title: 'Our Story',
     paragraphs: [
-      'Skye Cleaning Group began as a family-run concierge team serving a handful of luxury residences along the Embarcadero. Clients were founders, art collectors, and hospitality executives who cared about immaculate presentation but needed a partner willing to memorize the small rituals that make a space feel personal. As referrals grew, we formalized our promise: every engagement receives a dedicated account manager, a living property playbook, and access to a bench of specialists in windows, textiles, post-event resets, and sanitizing emergencies so every arrival still feels like opening night.',
-      'Today we support estates across San Francisco, Marin, Napa, and Sonoma while caring for executive suites, private clinics, and boutique showrooms. The scale may be larger, yet the ethos remains the same—show up discreetly, read the property like an insider, execute with finish-safe precision, and deliver proof that every decision defended the client’s reputation.',
+      'It all began with a simple dream filled with purpose, to offer cleaning with the same care and love we have in our own home.',
+      'In 2009, our Brazilian family made the United States our new home, guided by faith and the desire to start over.',
+      'In 2018, my husband Eric Alberto joined me on this journey, and since then every challenge has become a seed for growth.',
+      'When our daughter Rachel Skye was born, we realized that the love that united us could also inspire other families.',
+      'In 2021, Skye Cleaning Group Solutions was born, not only as a business but as an extension of our home.',
     ],
   },
   {
-    title: 'Precision engineered around each property script',
+    title: 'Experience and Trust',
     paragraphs: [
-      'Every new engagement starts with immersion. We walk the property, catalog finishes, audit scent and audio expectations, and capture rhythms that matter: investor briefings, virtual broadcasts, travel windows, wellness appointments. The findings become the Skye Blueprint, a living dossier that choreographs arrival windows, microfiber sequencing, chemistries, and reporting cadence. If plans change—perhaps a product launch extends into the evening—the operations center updates the blueprint across every team device so the choreography adapts without skipping a beat.',
-      'That orchestration keeps the experience predictable. Household staff know exactly when terraces will be reset, facilities directors can schedule HVAC maintenance without guesswork, and concierge desks trust that our crew will coexist with security, valet, and engineering teams without friction. Consistency protects assets and makes every stakeholder look prepared.',
+      'With more than 15 years of experience in the cleaning industry, I have learned that true shine is not only found on surfaces, but in intentions.',
+      'Before founding Skye Cleaning Group LLC, I had the privilege of working as a personal assistant for musician Bob Weir and for businesswoman Darcy Mackay, two inspiring examples of professionalism and excellence.',
+      'Those experiences taught me that serving well is an art and that trust is the fragrance that remains long after the work is done.',
+      'Eric brought new strength to that purpose with vision, structure, and sensitivity. Together we turned experience into legacy, and legacy into service.',
     ],
   },
   {
-    title: 'Teams trained like luxury hotel staff and security detail',
+    title: 'What Makes Us Different',
     paragraphs: [
-      'Skye specialists progress through our concierge academy covering hospitality scripts, confidentiality, stone preservation, textile science, infection prevention, and emergency logistics. They are coached to read the room like a five-star butler: align terrace furniture to skyline sightlines, refresh amenity trays before the espresso machines cool, and log any detail that could jeopardize a reveal. Supervisors are former hotel directors, facility chiefs, or estate managers who understand the stakes and actively mentor every crew member on-site.',
-      'During each visit supervisors calibrate scent intensity, verify lighting cues, and test air-quality readings while crews execute the checklist. The discipline creates a familiar rhythm for residents and employees while still delivering the surprise-and-delight touches people notice—fluffed throws, restocked turndown amenities, sparkling elevator rails, and freshly steamed linens waiting on the dressing bench.',
+      'More than a company, we are a family serving other families.',
+      'We believe every client has a story, and every home carries an energy that deserves to be cared for.',
+      'We created a selective and personalized training program to prepare professionals who understand more than cleaning techniques, they understand people.',
+      'Our service adapts to different lifestyles, expectant mothers, single parents, students, seniors, luxury homeowners, and Airbnb hosts.',
+      'Our commitment is simple, to care for every space as if it were our own, with respect, empathy, and excellence.',
     ],
   },
   {
-    title: 'Innovation, sustainability, and governance built into the job',
+    title: 'Care that Inspires',
     paragraphs: [
-      'Our in-house lab tests every chemistry on replica materials before it touches a client property. We log Green Seal and EPA Safer Choice certifications, track consumption to minimize waste, and maintain rope-access, aerial-lift, and GBAC credentials for complex jobs. Dashboards capture particulate counts, allergen metrics, and linen longevity so clients can demonstrate ESG progress without building new spreadsheets or chasing vendor documentation.',
-      'Compliance teams appreciate that NDAs, OSHA acknowledgements, HIPAA requirements, and security protocols share the same portal as our service recaps. Premium presentation only stays sustainable when paperwork is airtight and instantly exportable for legal teams, boards, or homeowners associations. Skye treats documentation with the same rigor as polishing marble or restoring glass clarity.',
+      'At Skye Cleaning Group Solutions, we believe cleaning is not just about removing dust, it is about restoring harmony.',
+      'Every touch, every detail, and every action are guided by purpose.',
+      'When we clean a space, we bring back what time and routine have taken away, peace, balance, and beauty.',
+      'A clean environment is not only a pleasant place, it is an invitation to lightness, renewal, and new beginnings.',
     ],
   },
   {
-    title: 'Documentation stakeholders actually circulate',
+    title: 'Purpose and Future',
     paragraphs: [
-      'Every visit concludes with a photographic recap highlighting completed zones, proactive maintenance suggestions, and curated service add-ons to consider. Estate managers forward the recap to owners, corporate directors attach it to quarterly governance decks, and event planners share it with sponsors as proof the venue is guest-ready again. Because the report feels tailored—not a generic checklist—it reinforces the value of concierge care even when decision makers are traveling.',
-      'Clients trust that Skye protects their brand when they are off-site, which is why retention consistently exceeds ninety percent and referrals keep fueling expansion. The combination of meticulous execution and transparent storytelling makes our work easy to defend in boardrooms, investor meetings, and family councils alike.',
+      'Each day we renew our commitment to grow without losing our essence.',
+      'We balance work and family life with the same care we dedicate to each client.',
+      'The recognition we receive from those who trust us is a reflection of the love we put into every task.',
+      'We believe that a clean home is the first step toward a lighter life, and that is why our mission goes beyond cleaning.',
+      'We want to transform spaces into places where life blossoms, dreams breathe, and hope finds a home.',
+      'Skye Cleaning Group Solutions, we clean so you can live better.',
     ],
   },
 ]
@@ -72,7 +86,7 @@ const aboutEditorial = [
       'Before anyone steps into a client property they progress through our academy: hospitality scripts, couture textile science, infection prevention, rope access, and luxury confidentiality. Each module ends with live simulations inside our lab loft where trainers throw curveballs—a CEO drops in unannounced, a gallery delivery arrives early, an HVAC alarm chirps mid service.',
       'Graduates learn to read a room, predict the next request, and stage a reveal that feels choreographed but never forced. By the time they receive a Skye badge, you can trust they operate like five-star hotel captains who also understand compliance and reporting.',
     ],
-    image: 'https://images.unsplash.com/photo-1517227396671-985d0fc394db?auto=format&fit=crop&w=1600&q=80',
+    image: 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=1600&q=80',
   },
 ]
 
@@ -125,13 +139,13 @@ const institutionalCards = [
   {
     title: 'Safer Products',
     description: 'Explore the chemistries, scent capsules, and compliance logs curated by our in-house lab for every premium finish.',
-    image: 'https://images.unsplash.com/photo-1580281657521-4c5ea04f0b1b?auto=format&fit=crop&w=1600&q=80',
+    image: 'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=1600&q=80',
     href: '/about/products',
   },
   {
     title: 'Gallery',
     description: 'Tour before-and-after reveals, behind-the-scenes coverage, and video walk-throughs from our most demanding projects.',
-    image: 'https://images.unsplash.com/photo-1529429617124-aee8095725cb?auto=format&fit=crop&w=1600&q=80',
+    image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80',
     href: '/about/gallery',
   },
   {
@@ -156,7 +170,7 @@ export default function AboutPage() {
         align="left"
         title="Turning luxury properties into effortless first impressions."
         description="Meet the concierge cleaning partner trusted by Bay Area estates, founders, and boutique workplaces to deliver presentation-ready spaces every visit."
-        image="https://images.unsplash.com/photo-1503387762-592deb58ef4?auto=format&fit=crop&w=1920&q=80"
+        image="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1920&q=80"
       />
 
       <section className="container-px">
@@ -199,7 +213,7 @@ export default function AboutPage() {
               <Link key={title} href={href} className="group block h-full">
                 <Card className="h-full p-0 text-left" tone="foam">
                   <div className="relative h-48 w-full overflow-hidden">
-                    <Image src={image} alt={title} fill loading="lazy" className="object-cover transition duration-500 ease-out group-hover:scale-105" />
+                    <Image src={image} alt={title} fill sizes="100vw" loading="lazy" className="object-cover transition duration-500 ease-out group-hover:scale-105" unoptimized />
                   </div>
                   <div className="flex flex-1 flex-col gap-3 p-6">
                     <h3 className="text-xl font-semibold text-ink-900">{title}</h3>
@@ -239,7 +253,7 @@ export default function AboutPage() {
               Build my concierge plan
             </Button>
             <Button variant="secondary" size="lg" href="/clean-tips">
-              Visit Cleaning Tips hub
+              Visit Cleaning Tips
             </Button>
           </div>
         </Card>

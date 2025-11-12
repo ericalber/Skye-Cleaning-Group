@@ -165,7 +165,7 @@ export default function LicensedInsuredPage() {
           {mediaHighlights.map(({ title, description, image }) => (
             <Card key={title} className="p-0 text-left" tone="foam">
               <div className="relative aspect-square w-full overflow-hidden">
-                <Image src={image} alt={title} fill loading="lazy" className="object-cover" />
+                <Image src={image} alt={title} fill sizes="100vw" loading="lazy" className="object-cover" />
               </div>
               <div className="flex flex-1 flex-col gap-3 p-6">
                 <h3 className="text-lg font-semibold text-ink-900">{title}</h3>

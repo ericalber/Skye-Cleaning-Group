@@ -39,7 +39,7 @@ export default function EditorialTwoUp({ eyebrow, title, description, items, cla
         {items.map((item) => (
           <Card key={item.slug ?? item.title} padding="p-0" className="flex h-full flex-col overflow-hidden" tone="foam">
             <div className="relative aspect-square w-full overflow-hidden">
-              <Image src={item.image} alt={item.title} fill className="object-cover" loading="lazy" />
+              <Image src={item.image} alt={item.title} fill sizes="100vw" className="object-cover" loading="lazy" unoptimized />
             </div>
             <div className="flex flex-1 flex-col gap-4 p-6">
               {item.eyebrow ? (

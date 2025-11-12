@@ -21,6 +21,7 @@ export default function ServiceMediaSection({ section, index }: Props) {
             src={section.image}
             alt={section.title}
             fill
+            sizes="100vw"
             className="object-cover"
             priority={index === 0}
           />

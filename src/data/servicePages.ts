@@ -505,7 +505,7 @@ export const serviceDetails: ServiceDetail[] = [
     name: 'Window Cleaning',
     navLabel: 'Window Cleaning',
     heroImage:
-      'https://images.unsplash.com/photo-1478479474071-8a3014ad0d82?auto=format&fit=crop&w=1920&q=80',
+      'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1920&q=80',
     heroAlt: 'Technician polishing expansive glass windows with skyline view',
     eyebrow: 'Skyline Clarity Program',
     headline: 'Window cleaning that changes perception in seconds.',
@@ -524,7 +524,7 @@ export const serviceDetails: ServiceDetail[] = [
           'We deploy deionized water systems that leave zero spotting, even on expansive glass walls. For interior panels, our crews use lint-free microfiber, squeegee choreography, and track detailing tools to remove dust and debris. Hardware, hinges, and blinds are wiped, ensuring the entire window assembly feels brand new.',
           'For heritage properties, we respect original glazing and leaded glass, using neutral pH solutions that keep historic elements intact.',
         ],
-        image: 'https://images.unsplash.com/photo-1478479474071-8a3014ad0d82?auto=format&fit=crop&w=1200&q=80',
+        image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80',
         imagePosition: 'right',
       },
       {
@@ -900,7 +900,7 @@ export const serviceDetails: ServiceDetail[] = [
           'We begin with an asset scan - glassware counts, rental furniture checks, and technology inventory. Lost items are logged and routed to planner HQ. Rentals are consolidated, linens bagged, and catering supplies organized for pickup. Nothing goes missing on our watch.',
           'Floors receive immediate triage: spot treating spills, neutralizing acids, and vacuuming confetti before it embeds. By the time vendors arrive to collect equipment, the venue feels calm and controlled.',
         ],
-        image: 'https://images.unsplash.com/photo-1478479474071-8a3014ad0d82?auto=format&fit=crop&w=1200&q=80',
+        image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80',
         imagePosition: 'left',
       },
       {

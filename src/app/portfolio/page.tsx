@@ -147,13 +147,13 @@ export default function PortfolioPage() {
                 <div className="space-y-4">
                   <div className="grid gap-4 sm:grid-cols-2">
                     <figure className="relative h-48 rounded-[1.5rem] bg-black/10">
-                      <Image src={before} alt={`${title} before`} fill className="rounded-[1.5rem] object-cover" />
+                      <Image src={before} alt={`${title} before`} fill sizes="100vw" className="rounded-[1.5rem] object-cover" />
                       <figcaption className="absolute bottom-3 left-3 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-ink-900">
                         Before
                       </figcaption>
                     </figure>
                     <figure className="relative h-48 rounded-[1.5rem] bg-black/10">
-                      <Image src={after} alt={`${title} after`} fill className="rounded-[1.5rem] object-cover" />
+                      <Image src={after} alt={`${title} after`} fill sizes="100vw" className="rounded-[1.5rem] object-cover" />
                       <figcaption className="absolute bottom-3 left-3 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-ink-900">
                         After
                       </figcaption>

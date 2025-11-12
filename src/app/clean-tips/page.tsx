@@ -29,6 +29,7 @@ export default function CleanTipsPage() {
                       fill
                       loading="lazy"
                       className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+                      unoptimized
                     />
                   </div>
                   <div className="flex flex-1 flex-col gap-3 p-6">

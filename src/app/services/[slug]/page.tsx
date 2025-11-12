@@ -277,7 +277,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           {pills.map(({ src, caption }, index) => (
             <Card key={index} padding="p-0">
               <div className="relative aspect-square w-full overflow-hidden">
-                <Image src={src} alt={caption} fill loading="lazy" className="object-cover" />
+                <Image src={src} alt={caption} fill sizes="100vw" loading="lazy" className="object-cover" />
               </div>
               <div className="p-6 text-sm text-slate-600">
                 <p>{caption}</p>
@@ -306,7 +306,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               <div className="order-1 md:order-none">
             <Card className="p-0">
               <div className="relative h-80 w-full overflow-hidden rounded-[2.25rem]">
-                <Image src={section.image} alt={section.title} fill loading="lazy" className="object-cover" />
+                <Image src={section.image} alt={section.title} fill sizes="100vw" loading="lazy" className="object-cover" />
               </div>
             </Card>
               </div>
@@ -323,7 +323,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               <div className="order-1 md:order-none">
                 <Card className="p-0">
                   <div className="relative h-80 w-full overflow-hidden rounded-[2.25rem]">
-                    <Image src={section.image} alt={section.title} fill loading="lazy" className="object-cover" />
+                    <Image src={section.image} alt={section.title} fill sizes="100vw" loading="lazy" className="object-cover" />
                   </div>
                 </Card>
               </div>

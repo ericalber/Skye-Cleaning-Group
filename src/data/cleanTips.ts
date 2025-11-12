@@ -48,7 +48,7 @@ export const cleanTips: CleanTip[] = [
     title: "How Crystal Clear Windows Can Change Investor Impressions In Seconds",
     hook: "Sparkling glass is more than aesthetic. It is a business trigger.",
     excerpt: "Understand the psychology, maintenance cadence, and marketing benefits of high rise window cleaning executed to luxury standards.",
-    hero: "https://images.unsplash.com/photo-1478479474071-8a3014ad0d82?auto=format&fit=crop&w=1600&q=80",
+    hero: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1600&q=80",
     body: [
       "Investors judge skyline offices by their windows. Psychologists call it the reflective halo effect: when glass sparkles, visitors assume operations inside are equally sharp. High rise window cleaning in San Francisco must be scheduled like a board presentation. Start with quarterly deep cleans using deionized water and rope access technicians to erase mineral deposits that accumulate in coastal climates.",
       "Install interior glass touch up kits so staff can spot clean fingerprints between visits. Include microfiber mitts, approved glass cleaners, and a short training video. Empowered employees protect the investment. Encourage leadership to praise teams when they report a smudge rather than ignore it.",
