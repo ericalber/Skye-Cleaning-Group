@@ -32,6 +32,33 @@ body {
   overflow-x: hidden;
 }
 
+/* Sticky header: enforce fixed positioning and subtle shadow */
+header.fixed {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 9999;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Reserve space below the fixed header to avoid overlap */
+:root {
+  --app-header-height: 64px;
+}
+@media (min-width: 640px) {
+  :root {
+    --app-header-height: 80px;
+  }
+}
+/* Apply spacing only when a fixed header precedes the main */
+/* Se existir qualquer elemento (ex.: nav mobile) entre o header e o main,
+   ainda assim removemos a faixa branca extra */
+header.fixed ~ main {
+  margin-top: 0 !important;
+}
+
 ::selection {
   background: var(--skye-200);
   color: var(--ink-900);
