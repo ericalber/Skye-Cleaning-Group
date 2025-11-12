@@ -32,6 +32,13 @@ body {
   overflow-x: hidden;
 }
 
+/* Header: fundo mais sólido (sobrepõe transparência) */
+
+/* Remover camada branca extra abaixo do header, mesmo com elementos entre eles */
+header.fixed ~ main {
+  margin-top: 0 !important;
+}
+
 ::selection {
   background: var(--skye-200);
   color: var(--ink-900);
