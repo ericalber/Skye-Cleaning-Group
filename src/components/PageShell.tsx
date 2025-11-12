@@ -33,7 +33,7 @@ export default function PageShell({ children, mainClassName, bodyClassName }: Pa
   return (
     <>
       <Header />
-      <main className={clsx(mainClassName)}>{children}</main>
+      <main className={clsx('mt-16 sm:mt-20', mainClassName)}>{children}</main>
       <Footer />
       <FloatingActionBar />
       <CookieConsent />

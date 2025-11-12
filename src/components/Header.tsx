@@ -190,7 +190,7 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 inset-x-0 z-50 bg-white/90 backdrop-blur border-b border-white/20 transition-all duration-300 ${
+        className={`fixed top-0 inset-x-0 z-[9999] bg-white/90 backdrop-blur border-b border-white/20 transition-all duration-300 [--header-height:64px] sm:[--header-height:80px] ${
           scrolled
             ? 'shadow-[0_18px_60px_rgba(12,32,64,0.12)]'
             : 'shadow-[0_24px_68px_rgba(12,32,64,0.08)]'
