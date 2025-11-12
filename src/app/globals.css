@@ -32,6 +32,17 @@ body {
   overflow-x: hidden;
 }
 
+/* Garantir que o header fique fixo no topo em todas as páginas */
+body > header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 9999;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
 /* Header: fundo mais sólido (sobrepõe transparência) */
 
 /* Remover camada branca extra abaixo do header, mesmo com elementos entre eles */
