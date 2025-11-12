@@ -19,7 +19,7 @@ export default function Page() {
   return (
     <>
       <Header />
-      <main id="quote" className="page-home pb-24 md:pb-0" data-page="home">
+      <main id="quote" className="page-home pb-24 md:pb-0 mt-16 sm:mt-20" data-page="home">
         <Hero />
         <HomeServiceButtons />
         <HomeVideoSpot />
