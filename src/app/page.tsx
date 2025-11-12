@@ -1,6 +1,5 @@
 import { Suspense } from 'react'
-
-import Header from '@/components/Header'
+import PageShell from '@/components/PageShell'
 import Hero from '@/components/Hero'
 import TrustBar from '@/components/TrustBar'
 import Services from '@/components/Services'
@@ -12,30 +11,25 @@ import HomeServiceButtons from '@/components/HomeServiceButtons'
 import HomeVideoSpot from '@/components/HomeVideoSpot'
 import HomeCleanTipsPreview from '@/components/HomeCleanTipsPreview'
 import QuickActions from '@/components/QuickActions'
-import Footer from '@/components/Footer'
-import FloatingActionBar from '@/components/FloatingActionBar'
 
 export default function Page() {
   return (
-    <>
-      <Header />
-      <main id="quote" className="page-home pb-24 md:pb-0 mt-16 sm:mt-20" data-page="home">
-        <Hero />
-        <HomeServiceButtons />
-        <HomeVideoSpot />
-        <TrustBar />
-        <Services />
-        <Process />
-        <Reviews />
-        <FAQ />
-        <ServiceArea />
-        <HomeCleanTipsPreview />
-        <Suspense fallback={null}>
-          <QuickActions />
-        </Suspense>
-      </main>
-      <Footer />
-      <FloatingActionBar />
-    </>
+    <PageShell mainClassName="page-home pb-24 md:pb-0">
+      {/* Anchor target for buttons linking to /#quote */}
+      <span id="quote" />
+      <Hero />
+      <HomeServiceButtons />
+      <HomeVideoSpot />
+      <TrustBar />
+      <Services />
+      <Process />
+      <Reviews />
+      <FAQ />
+      <ServiceArea />
+      <HomeCleanTipsPreview />
+      <Suspense fallback={null}>
+        <QuickActions />
+      </Suspense>
+    </PageShell>
   )
 }
