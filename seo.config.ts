@@ -3,7 +3,7 @@ import type { DefaultSeoProps } from 'next-seo'
 export const siteUrl = 'https://www.skyecgroup.com'
 
 const defaultTitle = 'Skye Cleaning Group'
-const defaultDescription = 'Soluções de limpeza premium para San Francisco e Marin County.'
+const defaultDescription = 'Premium concierge cleaning for San Francisco and the North Bay.'
 
 export const defaultSeo: DefaultSeoProps = {
   titleTemplate: '%s | Skye Cleaning Group',

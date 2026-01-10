@@ -7,6 +7,7 @@ import type { ReactNode } from 'react'
 import PageShell from '@/components/PageShell'
 import ModalQuote from '@/components/ModalQuote'
 import { createFaqSchema, createItemListSchema, createLocalBusinessSchema, createServiceSchema } from '@/seo/schema'
+import { buildPageMetadata } from '@/seo/metadata'
 import { siteUrl } from '../../../seo.config'
 
 const phoneHref = 'tel:+14154978008'
@@ -426,7 +427,7 @@ const areaSections: AreaSection[] = [
 const areaPlaceList = areaSections.map((area) => ({
   '@type': 'Place' as const,
   name: `${area.title.replace('Luxury House & Office Cleaning in ', '')}, CA`,
-  url: `${siteUrl}/services-areas#${area.id}`,
+  url: `${siteUrl}/service-areas#${area.id}`,
 }))
 
 const localBusinessSchema = createLocalBusinessSchema({
@@ -478,7 +479,7 @@ const itemListSchema = createItemListSchema({
     '@type': 'ListItem',
     position: index + 1,
     name: area.title.replace('Luxury House & Office Cleaning in ', ''),
-    url: `${siteUrl}/services-areas#${area.id}`,
+    url: `${siteUrl}/service-areas#${area.id}`,
   })),
 })
 
@@ -647,44 +648,16 @@ const faqSchema = createFaqSchema({
 })
 
 export const metadata: Metadata = {
-  title: 'Luxury Cleaning Service Areas across San Francisco Bay Area | Skye Cleaning Group',
-  description:
-    'Explore Skye Cleaning Group’s concierge-level cleaning services across Belvedere, Tiburon, Stinson Beach, Napa, Sonoma, and San Francisco’s most exclusive neighborhoods.',
-  alternates: {
-    canonical: `${siteUrl}/services-areas`,
-    languages: {
-      'en-US': `${siteUrl}/services-areas`,
-      'es-US': `${siteUrl}/es/services-areas`,
-      'x-default': `${siteUrl}/services-areas`,
-    },
-  },
+  ...buildPageMetadata({
+    title: 'Luxury Cleaning Service Areas in San Francisco Bay Area | Skye Cleaning Group',
+    description:
+      'Explore Skye Cleaning Group’s concierge-level cleaning services across Belvedere, Tiburon, Stinson Beach, Napa, Sonoma, and San Francisco’s most exclusive neighborhoods.',
+    path: '/service-areas',
+    ogImage: `${siteUrl}/og/service-areas?title=Skye%20Cleaning%20Group&subtitle=Luxury%20Service%20Areas%20Across%20SF%20Bay%20Area`,
+  }),
   robots: {
     index: true,
     follow: true,
-  },
-  openGraph: {
-    url: `${siteUrl}/services-areas`,
-    title: 'San Francisco Bay Area Luxury Cleaning Service Areas',
-    description:
-      'Skye Cleaning Group serves Belvedere, Tiburon, Napa, Sonoma, Pacific Heights, and more with luxury home, office, and winery cleaning programs.',
-    images: [
-      {
-        url: `${siteUrl}/og/service-areas?title=Skye%20Cleaning%20Group&subtitle=Luxury%20Service%20Areas%20Across%20SF%20Bay%20Area`,
-        width: 1200,
-        height: 630,
-        alt: 'San Francisco Bay Area luxury cleaning service areas',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Luxury Cleaning Coverage | Skye Cleaning Group',
-    description:
-      'Concierge cleaning across Marin, Napa, Sonoma, and San Francisco’s most exclusive neighborhoods.',
-  },
-  other: {
-    'preconnect-google-fonts': 'https://fonts.googleapis.com',
-    'preconnect-google-static': 'https://fonts.gstatic.com',
   },
 }
 
@@ -736,6 +709,25 @@ export default function ServiceAreasPage() {
             </h1>
             <p className="mx-auto max-w-3xl text-sm text-white/85 sm:text-base">
               Select a neighborhood below to explore luxury home, office, and hospitality cleaning programs tailored to San Francisco Bay Area lifestyles. Need support beyond the map? We coordinate vetted travel crews and partner vendors on request.
+            </p>
+            <p className="mx-auto max-w-3xl text-sm text-white/80 sm:text-base">
+              Start with
+              <Link href="/services/recurring-cleaning" className="ml-1 font-semibold text-white underline decoration-dotted">
+                house cleaning in San Francisco
+              </Link>
+              ,
+              <Link href="/services/one-time-deep-clean" className="ml-1 font-semibold text-white underline decoration-dotted">
+                deep cleaning in San Francisco
+              </Link>
+              ,
+              <Link href="/services/move-in-move-out" className="ml-1 font-semibold text-white underline decoration-dotted">
+                move-out cleaning for San Francisco apartments
+              </Link>
+              , or
+              <Link href="/services/janitorial-commercial" className="ml-1 font-semibold text-white underline decoration-dotted">
+                commercial cleaning services in San Francisco
+              </Link>
+              to align service scope with your location.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <Link href="#coverage" className="btn btn-primary">

@@ -38,18 +38,18 @@ export const serviceDetails: ServiceDetail[] = [
       'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1920&q=80',
     heroAlt: 'Luxury living room prepared by Skye Cleaning Group',
     eyebrow: 'Concierge Maintenance Program',
-    headline: 'Recurring cleaning that keeps San Francisco addresses investor-ready, every week.',
+    headline: 'House Cleaning in San Francisco',
     subheading:
-      'Our concierge cleaning teams handle the rhythm of high-profile homes and offices so executives walk into a space that sells success before the first handshake.',
+      'Licensed & insured, vetted concierge teams deliver discreet, white-glove house cleaning across San Francisco residences.',
     intro: [
-      'Imagine arriving to your penthouse, private office, or executive suite and feeling as if the grand opening never ended. Our recurring cleaning in San Francisco delivers that emotion every single visit. We engineer a maintenance calendar around investor meetings, family travel, and even art deliveries so the environment always whispers boutique-hotel polish.',
-      'Your dedicated account manager conducts quarterly walk-throughs with decision makers, capturing micro-preferences from how the marble foyer should reflect natural light to the precise tension on freshly pressed linens. We translate those details into checklists that live inside our mobile command center, guaranteeing the same perfection no matter which concierge team member is onsite.',
+      'Recurring house cleaning in San Francisco should feel invisible yet exacting. Our licensed, insured concierge teams care for private residences, penthouses, and executive suites with a cadence tuned to travel calendars, board meetings, and family rhythms. Every visit protects the calm, elevated atmosphere your guests and stakeholders expect.',
+      'Your dedicated account manager conducts an on-site walkthrough, documents finish sensitivities, and builds a recurring checklist in the Skye command center. The same vetted crew returns whenever possible, supported by background checks, NDAs, and quality-control touchpoints before you receive photo summaries and maintenance notes.',
       'Each visit is scored against measurable KPIs: air quality readings, scent audits, fabric longevity, and asset condition. Those metrics populate your executive dashboard so facilities directors can demonstrate the ROI of an immaculate presentation to boards, investors, or discerning homeowners associations without breaking stride.',
       'Because property care touches brand perception, every specialist is trained in hospitality scripts, security protocols, and finish-safe chemistry. We coordinate discreetly with concierge, valet, and building engineering staff to protect privacy while making sure orchids are rotated, turndown trays are restocked, and signature amenities feel effortless.',
     ],
     sections: [
       {
-        title: 'Predictable sparkle backed by executive reporting',
+        title: 'San Francisco cadence with executive reporting',
         body: [
           'You receive a recurring cleaning blueprint designed around famous launch schedules, quarterly earnings calls, and family entertaining seasons. Our operations team layers in auto-reminders for wardrobe steaming, cellar dusting, and technology sanitizing so nothing slips through the cracks. After every visit you receive a photographic report with timestamps, supply usage, and pro recommendations for maintaining the Skye standard between sessions.',
           'The platform tracks trending flags such as grout fatigue, sensor malfunctions, or traffic flow hotspots. That insight empowers estate managers and workplace directors to plan upgrades before they become urgent, protecting capital expenditure budgets while impressing stakeholders with proactive oversight.',
@@ -58,7 +58,7 @@ export const serviceDetails: ServiceDetail[] = [
         imagePosition: 'left',
       },
       {
-        title: 'Microfiber choreography for every surface and schedule',
+        title: 'Finish-safe choreography for homes and executive schedules',
         body: [
           'Recurring cleaning excellence depends on choreography. We assign the same elite crew whenever possible, cross-trained in stone restoration, fabric preservation, and confidentiality agreements. They arrive in silent, sensor-friendly footwear and follow micro-zoned routines that respect sound curfews, family schooling, and executive conference calls. Specialized carts carry finish-safe chemistries, color-coded for hardwood, lacquer, metals, and wellness equipment.',
           'Expect meticulous touches: elevator rails fingerprint-free within seconds, terrace furniture aligned to architectural sightlines, and espresso machines purged before nightfall. We even log the aroma intensity of signature diffusers so your environment greets principals with the same first impression, day after day.',
@@ -67,13 +67,22 @@ export const serviceDetails: ServiceDetail[] = [
         imagePosition: 'right',
       },
       {
-        title: 'Private-label discretion for families, founders, and consulates',
+        title: 'Vetted, insured discretion for private households',
         body: [
           'Our concierge teams operate with the precision of a luxury hotel housekeeping department blended with the trust of a private butler. Non-disclosure agreements are standard, background checks are rerun annually, and every team member completes cultural sensitivity and “invisible presence” training. We coordinate service windows with chauffeurs, nannies, and chiefs of staff to eliminate interruptions while preserving the rhythm of your household or C-suite.',
           'Should an unexpected visit from investors or dignitaries arise, a rapid-response refresh can be activated from the Skye command app. Within an hour, we dispatch a detail unit to reset living areas, verify restrooms, and stage welcome amenities, ensuring your reputation remains immaculate without breaking a sweat.',
         ],
         image: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1200&q=80',
         imagePosition: 'left',
+      },
+      {
+        title: 'Local service coverage in San Francisco and Marin',
+        body: [
+          'We focus recurring house cleaning across San Francisco, including the Marina District, Presidio, Broadway corridor, Divisadero corridor, and homes near the Golden Gate where discretion and timing matter most.',
+          'For principals with multiple residences, we also serve Marin County including Tiburon, Belvedere, Sausalito, San Rafael, Larkspur, Greenbrae, and Novato, aligning standards so every address feels equally curated.',
+        ],
+        image: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=80',
+        imagePosition: 'right',
       },
     ],
     inclusions: [
@@ -132,18 +141,18 @@ export const serviceDetails: ServiceDetail[] = [
       'https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1920&q=80',
     heroAlt: 'Deep cleaning specialists preparing a luxury kitchen',
     eyebrow: 'Signature Deep Detox',
-    headline: 'One-time deep cleaning that resets penthouses, villas, and boardrooms to showroom ready.',
+    headline: 'Deep Cleaning in San Francisco',
     subheading:
-      'When reputation depends on immaculate detail, our deep cleaning teams stage every surface for the spotlight in a single strategic surge.',
+      'Licensed & insured specialists provide white-glove deep cleaning for San Francisco homes and executive residences with vetted teams and finish-safe protocols.',
     intro: [
-      'Launch parties, home stagings, family arrivals, and executive inspections share one thing in common: nobody forgives a fingerprint. Our one-time deep cleaning in San Francisco delivers a dramatic reset that feels like dialing back the clock on your property. We orchestrate a specialty task force that treats marble, velvet, stainless, and smart tech with white-glove precision, leaving every asset camera ready.',
-      'Your deep cleaning concierge conducts a virtual or in-person discovery to map traffic flows, identify fragile finishes, and schedule access with building management. From there we design a minute-by-minute playbook that layers Whole Home revival, Window brilliance, Carpet and Upholstery renewal, Airbnb turnover finesse, and Post-Event reset choreography into a single seamless operation.',
+      'When a San Francisco property needs a dramatic reset, our one-time deep cleaning brings white-glove precision across every surface. We treat marble, velvet, stainless, and smart tech with finish-safe protocols so listings, VIP arrivals, and executive inspections feel showroom-ready.',
+      'Your deep cleaning concierge conducts an on-site or virtual discovery to map traffic flows, identify fragile finishes, and schedule access with building management. From there we build a minute-by-minute playbook and deploy vetted specialists, ensuring every zone is completed, documented, and verified in a single strategic surge.',
       'Each specialist carries certifications in stone restoration, antimicrobial sanitation, and textile preservation. We harness HEPA-filtered extraction, pH-balanced chemistries, and detail brushes sourced from luxury automotive detailing so fixtures shimmer, grout returns to its original shade, and hardware glows like new.',
       'Expect a Hollywood-style grand reveal. Lighting cues are reset, signature scent diffusers are calibrated, and hospitality amenities await on side tables. The result: guests, investors, or VIP tenants walk in and experience the kind of polish that closes deals in seconds.',
     ],
     sections: [
       {
-        title: 'Whole Home orchestration with zero guesswork',
+        title: 'San Francisco deep clean orchestration with zero guesswork',
         body: [
           'We break the property into micro-zones, sequencing high, mid, and low cleaning so no particle crosses a freshly perfected surface. Crown moldings are detail-brushed, art glass is cleaned using museum-approved polish, and built-in appliances receive disassembly-level attention. Our supervisors log every finished zone in real time, pushing updates to your tablet so you always know when it is safe to stage florals or bring in catering.',
           'For homes marketed to discerning buyers or relocation VIPs, we integrate fragrance zoning, climate balancing, and staging support. Throws are fluffed, bookshelves rebalanced, and ambient playlists queued so the space is ready for immediate occupancy or open-house magic.',
@@ -152,7 +161,7 @@ export const serviceDetails: ServiceDetail[] = [
         imagePosition: 'right',
       },
       {
-        title: 'Glass, textiles, and air purified to luxury standards',
+        title: 'Glass, textiles, and air restored to luxury standards',
         body: [
           'Our window detailing crew leverages deionized water-fed poles for exteriors and streak-free microfiber choreography inside. We polish handles, tracks, and mullions so natural light returns full strength, boosting property value and mood. Simultaneously, carpet and upholstery artisans deploy encapsulation formulas and low-moisture extraction that lift soil without warping delicate fibers or leaving chemical residue.',
           'We finish by fogging high-touch zones with hospital-grade botanical disinfectants and running ionizing purifiers for a final crisp finish. Investors immediately feel the freshness difference and residents notice how the environment literally breathes easier.',
@@ -161,13 +170,22 @@ export const serviceDetails: ServiceDetail[] = [
         imagePosition: 'left',
       },
       {
-        title: 'Event aftermath erased in less than 24 hours',
+        title: 'Rapid resets for post-event or pre-listing deadlines',
         body: [
           'From tech summits to private fundraisers, we restore calm after the last guest departs. Our rapid-response unit sorts waste streams, documents damage, and coordinates with vendors for glassware pickup or linen retrieval. Sticky floors, champagne drips, confetti surprises, and lingering scents disappear, leaving only the curated ambience your brand promises.',
           'If the property will flip to short-term rental or executive lodging, we mesh hotel housekeeping protocols with your amenity list. Mini bars are restocked, smart locks are sanitized, and welcome folios are placed with gloves. It is the elite reset hospitality teams swear by when reputation is on the line.',
         ],
         image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80',
         imagePosition: 'right',
+      },
+      {
+        title: 'Local service coverage in San Francisco and Marin',
+        body: [
+          'We deliver deep cleaning across San Francisco, with frequent projects in the Marina District, Presidio, Broadway corridor, Divisadero corridor, and homes near the Golden Gate that demand meticulous finish care.',
+          'For clients who split time in Marin County, we also serve Tiburon, Belvedere, Sausalito, San Rafael, Larkspur, Greenbrae, and Novato with the same inspection-grade standards and reporting.',
+        ],
+        image: 'https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=1200&q=80',
+        imagePosition: 'left',
       },
     ],
     inclusions: [
@@ -226,18 +244,18 @@ export const serviceDetails: ServiceDetail[] = [
       'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1920&q=80',
     heroAlt: 'Moving crew inspecting pristine interior prepared for handover',
     eyebrow: 'White-Glove Turnover Strategy',
-    headline: 'Move-in and move-out cleaning that adds value before keys change hands.',
+    headline: 'Move-Out Cleaning in San Francisco',
     subheading:
-      'We transform turnovers into brand showcases by combing every inch, logging every win, and handing over a property that earns applause from brokers, tenants, or buyers.',
+      'Licensed & insured teams handle move-in and move-out cleaning across San Francisco with vetted crews, discreet access, and inspection-ready detail.',
     intro: [
-      'Your property deserves to tell a success story the moment the door swings open. Our move in move out cleaning in the Bay Area packages luxury detailing, inspection documentation, and proactive maintenance notes into one frictionless service. Whether you are marketing a listing, handing an asset to new tenants, or retrieving a security deposit, we deliver a space that presents as flawlessly as a grand opening.',
-      'We partner with relocation specialists, brokers, and family offices to design a turnover checklist that mirrors the standards of five-star residences. Closets are vacuum-detailed, cabinet interiors are sanitized, and appliances are stripped down to their showroom sheen. Every improvement is recorded in a digital punch list so you can forward proof-of-condition within seconds.',
+      'Move-in and move-out cleaning in San Francisco should protect property value and reputation. Our licensed, insured crews deliver white-glove turnovers for listings, leases, and relocations, staging every surface so handoffs feel flawless.',
+      'We partner with relocation specialists, brokers, and property managers to build an inspector-ready checklist and coordinate with movers and painters. Vetted crews follow finish-safe protocols, photograph results, and record proof-of-condition so approvals move quickly.',
       'Because speed matters, we align with movers, painters, and inspectors to orchestrate a precise dance. Our teams glide in once the final box exits, tackling residual dust plumes, wall scuffs, and adhesive ghosts. When staging furniture or new decor arrives, the environment already sparkles and the air reads crisp, boosting perceived value instantly.',
       'For incoming residents, we stage a welcome worthy of a corporate relocation package. Linen closets are folded hotel-style, fragrance is balanced to neutral, and every light switch, remote, and smart thermostat is disinfected. The message is clear: this property was curated for a seamless arrival.',
     ],
     sections: [
       {
-        title: 'Security deposit protection with inspector-grade detail',
+        title: 'San Francisco move-out detail for deposit protection',
         body: [
           'Our supervisors conduct a granular walkthrough mapping every surface, tile joint, and fixture. We tackle high-betrayal zones - behind appliances, inside window tracks, under sink basins - using detail brushes, HEPA vacuums, and enzyme cleaners. Each area is photographed before and after so property managers can demonstrate compliance with lease clauses, dramatically reducing deposit disputes.',
           'We also log maintenance opportunities such as worn weather stripping or loose hardware, giving asset managers the intel needed to prioritize repairs before new occupants notice. It is a concierge-level audit disguised as a cleaning service.',
@@ -246,7 +264,7 @@ export const serviceDetails: ServiceDetail[] = [
         imagePosition: 'left',
       },
       {
-        title: 'Luxury arrivals that feel curated, not rushed',
+        title: 'Luxury move-in staging for buyer-ready arrivals',
         body: [
           'Before new principals arrive, we layer boutique touches: closets lined with cedar sachets, pantry shelves reset with shelf liners, and bathroom amenities aligned as if a five-star hotel turndown team had visited. Our specialists polish faucets, steam draperies, and stage accent pillows so the property photographs like editorial content.',
           'Need specialty requests? We coordinate with wine cellar managers, art handlers, and IT concierge teams to make sure delicate systems are respected while the environment receives its final sparkle. Even the fridge seals and appliance gaskets are sanitized for a sense of pristine care.',
@@ -255,13 +273,22 @@ export const serviceDetails: ServiceDetail[] = [
         imagePosition: 'right',
       },
       {
-        title: 'Strategic documentation that accelerates closings',
+        title: 'Documentation that accelerates San Francisco closings',
         body: [
           'Every move out cleaning concludes with a digital handoff package. Expect timestamped photos, supply logs, scent profiles, and a short narrative summarizing readiness. Brokers have leveraged these reports to reassure buyers that homes were maintained like assets, while property managers forward them to corporate HR teams as evidence of five-star relocation support.',
           'If a punch list exists, our crew checks items off in real time, collaborating with contractors when needed. The smoother the documentation, the faster keys trade hands, and the more confident everyone feels signing on the dotted line.',
         ],
         image: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=80',
         imagePosition: 'left',
+      },
+      {
+        title: 'Local service coverage in San Francisco and Marin',
+        body: [
+          'Our turnover teams serve San Francisco homes and apartments in the Marina District, Presidio, Broadway corridor, Divisadero corridor, and neighborhoods near the Golden Gate where listings must shine on first entry.',
+          'For relocation portfolios that include Marin County, we also handle handovers in Tiburon, Belvedere, Sausalito, San Rafael, Larkspur, Greenbrae, and Novato with the same proof-of-condition documentation.',
+        ],
+        image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80',
+        imagePosition: 'right',
       },
     ],
     inclusions: [
@@ -299,11 +326,11 @@ export const serviceDetails: ServiceDetail[] = [
       },
     ],
     quoteService: 'move',
-    seoTitle: 'Move In Move Out Cleaning Bay Area | Skye Cleaning Group',
+    seoTitle: 'Move In Move Out Cleaning San Francisco | Skye Cleaning Group',
     seoDescription:
-      'White-glove move in move out cleaning in the Bay Area. Protect deposits, wow buyers, and deliver luxury-ready handovers with Skye Cleaning Group.',
+      'White-glove move in move out cleaning in San Francisco. Protect deposits, wow buyers, and deliver luxury-ready handovers with Skye Cleaning Group.',
     keywords: [
-      'move out cleaning Bay Area',
+      'move out cleaning San Francisco',
       'move in cleaning San Francisco',
       'turnover cleaning service',
       'real estate cleaning concierge',
@@ -542,7 +569,7 @@ export const serviceDetails: ServiceDetail[] = [
           'We collaborate with marketing and visual merchandising leads to schedule cleans before major product launches, investor visits, or gala events. Our team polishes frames, signage, and lighting housings so the entire storefront glows. We even supply next-day rain touch-ups to guarantee the sheen survives unpredictable coastal weather.',
           'For residences, we align cleaning with interior styling appointments so drapery steaming and floral installations land in a light-filled environment ready for photography or resale.',
         ],
-        image: 'https://images.unsplash.com/photo-1529429617124-aee8095725cb?auto=format&fit=crop&w=1200&q=80',
+        image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80',
         imagePosition: 'right',
       },
     ],
@@ -602,18 +629,18 @@ export const serviceDetails: ServiceDetail[] = [
       'https://images.unsplash.com/photo-1483478550801-ceba5fe50e8e?auto=format&fit=crop&w=1920&q=80',
     heroAlt: 'Corporate lobby maintained by professional janitorial team',
     eyebrow: 'Enterprise Facilities Command',
-    headline: 'Janitorial programs engineered for boardrooms, biotech labs, and brand headquarters.',
+    headline: 'Commercial & Office Cleaning in San Francisco',
     subheading:
-      'We operate like an internal facilities department, delivering spotless environments, compliance-ready documentation, and concierge responsiveness around the clock.',
+      'Licensed & insured janitorial teams serve San Francisco workplaces with vetted professionals, discreet scheduling, and compliance-ready standards.',
     intro: [
-      'Corporate environments demand more than a mop-and-bucket routine. Our janitorial services in San Francisco fuse hospitality-level presentation with enterprise compliance. Think daily touchpoint sanitizing, audit-ready logs, and technicians who greet executives by name while remaining discreet.',
-      'We begin with a discovery sprint, interviewing facilities leaders, HR, and compliance teams. Together we design SOPs that address cleanroom thresholds, executive suites, wellness rooms, and collaborative lounges. Every technician is cross-trained in confidentiality, ergonomic safety, and brand language.',
+      'Commercial cleaning in San Francisco demands more than a mop-and-bucket routine. Our licensed, insured janitorial teams support headquarters, venture offices, and medical-adjacent suites with hospitality-level presentation and secure access protocols.',
+      'We begin with a discovery sprint with facilities leaders, HR, and compliance teams. Together we design SOPs for cleanroom thresholds, executive suites, wellness rooms, and collaborative lounges, then assign vetted crews trained in confidentiality, safety, and brand standards.',
       'Data drives our performance. Sensors measure restock levels, visitor traffic, and air quality. Dashboards give you instant insight into consumable usage, issue resolution times, and cleanliness scores for each zone. Executives finally receive the metrics they need to defend budgets and celebrate wins.',
       'From sunrise openings to overnight resets, we function as the heartbeat of your building. Whiteboards gleam, glass walls stay fingerprint-free, and huddle rooms smell fresh even after marathon innovation sessions.',
     ],
     sections: [
       {
-        title: 'Compliance-ready cleanliness',
+        title: 'San Francisco compliance-ready commercial cleaning',
         body: [
           'Biotech labs, financial trading floors, and healthcare-adjacent clinics rely on consistent documentation. We maintain SOP binders, digital checklists, and chemical SDS libraries accessible to auditors. Environmental swabs, ATP testing, and HVAC vent cleaning keep wellness at the forefront while satisfying OSHA and FDA-aligned expectations.',
           'Our crews wear color-coded uniforms keyed to building access levels. Sensitive areas receive restricted teams vetted with deeper background checks for peace of mind.',
@@ -622,7 +649,7 @@ export const serviceDetails: ServiceDetail[] = [
         imagePosition: 'left',
       },
       {
-        title: 'Employee experience amplified',
+        title: 'Employee experience and brand presentation',
         body: [
           'A pristine workplace fuels retention and productivity. We service ergonomic furniture, sanitize tech hubs, and refresh wellness amenities so teams feel cared for. Breakrooms sparkle, nap pods smell calming, and executive lounges maintain a boutique ambiance, impressing VIP visitors instantly.',
           'We adopt your brand tone - digital signage, scent cues, and concierge scripts align with internal culture. The cleaning team becomes an extension of guest services.',
@@ -631,13 +658,22 @@ export const serviceDetails: ServiceDetail[] = [
         imagePosition: 'right',
       },
       {
-        title: 'Rapid resolution and strategic reporting',
+        title: 'Rapid response and executive reporting',
         body: [
           'Our command center monitors service tickets, leak alerts, and VIP meeting schedules. If a coffee spill hits the trading floor or a product lab needs emergency sanitizing, a rapid-response unit is dispatched instantly. Meanwhile, monthly executive decks summarize wins, improvement opportunities, and budget optimization ideas.',
           'We embed supervisors onsite for large campuses, ensuring accountability and clear communication with facility leaders.',
         ],
         image: 'https://images.unsplash.com/photo-1483478550801-ceba5fe50e8e?auto=format&fit=crop&w=1200&q=80',
         imagePosition: 'left',
+      },
+      {
+        title: 'Local service coverage for San Francisco and North Bay commerce',
+        body: [
+          'We prioritize San Francisco workplaces in the Marina District, Presidio, Broadway corridor, Divisadero corridor, and offices near the Golden Gate where privacy and precision matter. Marin County operations in Tiburon, Belvedere, Sausalito, San Rafael, Larkspur, Greenbrae, and Novato receive the same compliance-led playbooks.',
+          'Commercial expansion support extends to Sausalito offices, Petaluma business districts, Napa and Sonoma wineries, Santa Rosa and Rohnert Park facilities, and Berkeley commercial suites, with scheduling built around production windows and guest-facing hours.',
+        ],
+        image: 'https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=1200&q=80',
+        imagePosition: 'right',
       },
     ],
     inclusions: [
@@ -815,7 +851,7 @@ export const serviceDetails: ServiceDetail[] = [
           'Urban residences often blend luxury finishes with compact footprints. We maximize every inch by organizing entryway drop zones, resetting kitchen islands, and steaming draperies that frame skyline views. Terrace furniture gets wiped, planters refreshed, and grills polished so outdoor spaces stay entertaining-ready.',
           'Inside, we manage wardrobe care, sheet pressing, and spa bathroom detailing. If a housekeeping closet needs reconfiguration, we label containers and suggest storage solutions.',
         ],
-        image: 'https://images.unsplash.com/photo-1529429617124-aee8095725cb?auto=format&fit=crop&w=1200&q=80',
+        image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80',
         imagePosition: 'left',
       },
       {

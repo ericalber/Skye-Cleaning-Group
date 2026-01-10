@@ -40,7 +40,7 @@ const pressData = {
   ],
   urls: {
     website: siteUrl,
-    serviceAreas: `${siteUrl}/services-areas`,
+    serviceAreas: `${siteUrl}/service-areas`,
     pressKit: `${siteUrl}/press`,
     rss: `${siteUrl}/press.rss`,
   },

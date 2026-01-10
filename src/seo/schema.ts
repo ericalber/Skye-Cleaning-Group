@@ -74,3 +74,48 @@ export const createReviewSchema = (input: Partial<WithContext<Review>>): WithCon
 
   return Object.assign(base, input)
 }
+
+export const skyePostalAddress = {
+  '@type': 'PostalAddress',
+  streetAddress: '873 2nd Street Suite 102',
+  addressLocality: 'Novato',
+  addressRegion: 'CA',
+  postalCode: '94945',
+  addressCountry: 'US',
+} as const
+
+export const skyeSameAs = [
+  'https://www.skyecgroup.com',
+  'https://www.linkedin.com/company/skye-cleaning-group',
+  'https://www.facebook.com/SkyeCleaningGroup',
+  'https://www.instagram.com/skyecleaninggroup',
+  'https://www.yelp.com/biz/skye-cleaning-group-novato',
+  'https://www.thumbtack.com/ca/novato/house-cleaning/skye-cleaning-group/service',
+  'https://www.homeadvisor.com/rated.SkyeCleaningGroup.12345678.html',
+  'https://nextdoor.com/pages/skye-cleaning-group-novato-ca',
+]
+
+export const skyeServiceArea = [
+  { '@type': 'AdministrativeArea' as const, name: 'San Francisco' },
+  { '@type': 'AdministrativeArea' as const, name: 'Marin County' },
+  { '@type': 'AdministrativeArea' as const, name: 'North Bay' },
+]
+
+const sfNeighborhoods = [
+  'San Francisco',
+  'Marina District',
+  'Presidio',
+  'Golden Gate area',
+  'Broadway corridor',
+  'Divisadero corridor',
+]
+
+const marinCities = ['Tiburon', 'Belvedere', 'Sausalito', 'San Rafael', 'Larkspur', 'Greenbrae', 'Novato']
+
+const commercialExpansion = ['Petaluma', 'Napa', 'Sonoma', 'Santa Rosa', 'Rohnert Park', 'Berkeley']
+
+const toPlace = (name: string) => ({ '@type': 'Place' as const, name })
+
+export const skyeAreaServedResidential = [...sfNeighborhoods, ...marinCities].map(toPlace)
+
+export const skyeAreaServedCommercial = [...sfNeighborhoods, ...marinCities, ...commercialExpansion].map(toPlace)

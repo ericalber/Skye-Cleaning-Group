@@ -1,3 +1,5 @@
+import type { Metadata } from 'next'
+import Script from 'next/script'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -11,6 +13,17 @@ import ProcessSteps, { type ProcessStep } from '@/components/blocks/ProcessSteps
 import RelatedLinks, { type RelatedLink } from '@/components/blocks/RelatedLinks'
 import { serviceDetails } from '@/data/servicePages'
 import type { ServiceDetail } from '@/data/servicePages'
+import { buildPageMetadata } from '@/seo/metadata'
+import {
+  createLocalBusinessSchema,
+  createServiceSchema,
+  skyeAreaServedCommercial,
+  skyeAreaServedResidential,
+  skyePostalAddress,
+  skyeSameAs,
+  skyeServiceArea,
+} from '@/seo/schema'
+import { siteUrl } from '../../../../seo.config'
 
 const supportingMedia: Record<string, { src: string; caption: string }[]> = {
   'recurring-cleaning': [
@@ -89,7 +102,7 @@ const supportingMedia: Record<string, { src: string; caption: string }[]> = {
       caption: 'High-rise apartment refreshed ahead of a relocation walkthrough.',
     },
     {
-      src: 'https://images.unsplash.com/photo-1584664213408-2f83a040607b?auto=format&fit=crop&w=1200&q=80',
+      src: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&w=1200&q=80',
       caption: 'Concierge team aligning balcony furniture to skyline sightlines.',
     },
   ],
@@ -121,6 +134,90 @@ const breadcrumbBase = [
 ]
 
 const relatedFallback = serviceDetails.slice(0, 3)
+
+const championAnchorOptions: Record<string, string[]> = {
+  'recurring-cleaning': [
+    'House cleaning in San Francisco',
+    'Recurring house cleaning in San Francisco',
+    'San Francisco house cleaning services',
+    'Concierge house cleaning in San Francisco',
+  ],
+  'one-time-deep-clean': [
+    'Deep cleaning in San Francisco',
+    'San Francisco deep cleaning service',
+    'One-time deep cleaning in San Francisco',
+    'Luxury deep cleaning in San Francisco',
+  ],
+  'move-in-move-out': [
+    'Move-out cleaning for San Francisco apartments',
+    'Move-in cleaning in San Francisco',
+    'San Francisco move-out cleaning services',
+    'Move-in and move-out cleaning in San Francisco',
+  ],
+  'janitorial-commercial': [
+    'Commercial cleaning services in San Francisco',
+    'San Francisco office cleaning',
+    'Commercial cleaning in San Francisco',
+    'Office cleaning services in San Francisco',
+  ],
+}
+
+const championSlugs = Object.keys(championAnchorOptions)
+
+const heroCtaBySlug: Record<string, { label: string; href: string }> = {
+  'recurring-cleaning': { label: 'Get a Same-Day Estimate', href: '/#quote' },
+  'one-time-deep-clean': { label: 'Get a Same-Day Estimate', href: '/#quote' },
+  'move-in-move-out': { label: 'Get a Same-Day Estimate', href: '/#quote' },
+  'janitorial-commercial': { label: 'Request a Quote', href: '/#quote' },
+}
+
+const localCoverageBySlug: Record<string, string> = {
+  'recurring-cleaning':
+    'San Francisco house cleaning is centered in the Marina District, Presidio, Pacific Heights, the Broadway and Divisadero corridors, and homes near the Golden Gate. We also support residences in Tiburon, Belvedere, Sausalito, San Rafael, Larkspur, Greenbrae, and Novato.',
+  'one-time-deep-clean':
+    'Deep cleaning is focused in San Francisco, including the Marina District, Presidio, Pacific Heights, the Broadway and Divisadero corridors, and properties near the Golden Gate. We also support Marin homes in Tiburon, Belvedere, Sausalito, San Rafael, Larkspur, Greenbrae, and Novato.',
+  'move-in-move-out':
+    'Move-in and move-out cleaning is concentrated in San Francisco across the Marina District, Presidio, Pacific Heights, the Broadway and Divisadero corridors, and residences near the Golden Gate. We also coordinate turnovers in Tiburon, Belvedere, Sausalito, San Rafael, Larkspur, Greenbrae, and Novato.',
+  'janitorial-commercial':
+    'Commercial service is centered in San Francisco, including Downtown San Francisco, the Marina District, Presidio, Pacific Heights, the Broadway and Divisadero corridors, and offices near the Golden Gate. We also support Marin County teams in Tiburon, Belvedere, Sausalito, San Rafael, Larkspur, Greenbrae, and Novato, with additional coverage in Petaluma, Napa, Sonoma, Santa Rosa, Rohnert Park, and Berkeley.',
+}
+
+type AreaServed = typeof skyeAreaServedResidential
+
+const championServiceSchemaConfig: Record<string, { serviceType: string; areaServed: AreaServed }> = {
+  'recurring-cleaning': {
+    serviceType: 'House cleaning',
+    areaServed: skyeAreaServedResidential,
+  },
+  'one-time-deep-clean': {
+    serviceType: 'Deep cleaning',
+    areaServed: skyeAreaServedResidential,
+  },
+  'move-in-move-out': {
+    serviceType: 'Move-in and move-out cleaning',
+    areaServed: skyeAreaServedResidential,
+  },
+  'janitorial-commercial': {
+    serviceType: 'Commercial and office cleaning',
+    areaServed: skyeAreaServedCommercial,
+  },
+}
+
+const hashString = (value: string) => {
+  let hash = 0
+  for (let i = 0; i < value.length; i += 1) {
+    hash = (hash << 5) - hash + value.charCodeAt(i)
+    hash |= 0
+  }
+  return Math.abs(hash)
+}
+
+const pickAnchorText = (currentSlug: string, championSlug: string) => {
+  const options = championAnchorOptions[championSlug]
+  if (!options?.length) return 'San Francisco cleaning services'
+  const index = hashString(`${currentSlug}-${championSlug}`) % options.length
+  return options[index]
+}
 
 function buildServiceMetrics(service: ServiceDetail): MetricItem[] {
   return [
@@ -176,8 +273,23 @@ function buildRelatedLinks(service: ServiceDetail, related: ServiceDetail[]): Re
     },
   ]
 
+  if (!championSlugs.includes(service.slug)) {
+    const championLinks = championSlugs
+      .map((slug) => serviceDetails.find((item) => item.slug === slug))
+      .filter((item): item is ServiceDetail => Boolean(item))
+      .map((item) => ({
+        title: pickAnchorText(service.slug, item.slug),
+        description: getServiceSummary(item.subheading, item.intro),
+        href: `/services/${item.slug}`,
+      }))
+
+    serviceLinks.push(...championLinks)
+  }
+
+  const filteredRelated = related.filter((item) => !championSlugs.includes(item.slug))
+
   serviceLinks.push(
-    ...related.map((item) => ({
+    ...filteredRelated.map((item) => ({
       title: item.name,
       description: getServiceSummary(item.subheading, item.intro),
       href: `/services/${item.slug}`,
@@ -197,11 +309,38 @@ function buildRelatedLinks(service: ServiceDetail, related: ServiceDetail[]): Re
     }
   )
 
-  return serviceLinks
+  const deduped = new Map<string, RelatedLink>()
+  serviceLinks.forEach((link) => {
+    if (!deduped.has(link.href)) {
+      deduped.set(link.href, link)
+    }
+  })
+
+  return Array.from(deduped.values())
 }
 
 export function generateStaticParams() {
   return serviceDetails.map(({ slug }) => ({ slug }))
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params
+  const service = serviceDetails.find((item) => item.slug === slug)
+
+  if (!service) {
+    return buildPageMetadata({
+      title: 'Service not found | Skye Cleaning Group',
+      description: 'This service is not available. Explore Skye Cleaning Group service options.',
+      path: '/services',
+    })
+  }
+
+  return buildPageMetadata({
+    title: service.seoTitle || `${service.name} | Skye Cleaning Group`,
+    description: service.seoDescription || service.subheading,
+    path: `/services/${service.slug}`,
+    ogImage: service.heroImage,
+  })
 }
 
 export default async function ServiceDetailPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -212,11 +351,41 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     notFound()
   }
 
+  const isChampion = championSlugs.includes(service.slug)
+  const schemaConfig = championServiceSchemaConfig[service.slug]
+  const localBusinessSchema = isChampion
+    ? createLocalBusinessSchema({
+        address: skyePostalAddress,
+        sameAs: skyeSameAs,
+        serviceArea: skyeServiceArea,
+        areaServed: skyeAreaServedCommercial,
+      })
+    : null
+  const serviceSchema =
+    isChampion && schemaConfig
+      ? createServiceSchema({
+          name: service.name,
+          description: service.seoDescription || service.subheading,
+          serviceType: schemaConfig.serviceType,
+          areaServed: schemaConfig.areaServed,
+          serviceArea: skyeServiceArea,
+          url: `${siteUrl}/services/${service.slug}`,
+        })
+      : null
+
   const related = serviceDetails
     .filter((item) => item.slug !== service.slug)
     .slice(0, 2)
     .concat(relatedFallback.filter((item) => item.slug !== service.slug).slice(0, 2))
     .slice(0, 2)
+
+  const heroCta = heroCtaBySlug[service.slug]
+  const heroActions = heroCta ? (
+    <Button variant="primary" size="lg" href={heroCta.href}>
+      {heroCta.label}
+    </Button>
+  ) : null
+  const localCoverage = localCoverageBySlug[service.slug]
 
   const spokeBreadcrumb = [...breadcrumbBase, { label: service.name }]
   const pills = supportingMedia[service.slug] ?? supportingMedia['recurring-cleaning']
@@ -226,6 +395,22 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
   return (
     <PageShell bodyClassName="with-service-landing" mainClassName="space-y-24 pb-24">
+      {isChampion ? (
+        <>
+          <Script
+            id="skye-jsonld-local-business"
+            type="application/ld+json"
+            strategy="beforeInteractive"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+          />
+          <Script
+            id={`skye-jsonld-service-${service.slug}`}
+            type="application/ld+json"
+            strategy="beforeInteractive"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+          />
+        </>
+      ) : null}
       <nav className="container-px text-sm text-slate-600" aria-label="Breadcrumb">
         <ol className="mx-auto flex max-w-5xl flex-wrap items-center gap-2">
           {spokeBreadcrumb.map((crumb, index) => (
@@ -249,7 +434,17 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         description={service.subheading}
         image={service.heroImage}
         align="left"
+        actions={heroActions}
       />
+
+      {localCoverage ? (
+        <section className="container-px">
+          <Card padding="p-6 sm:p-7" tone="foam" className="mx-auto max-w-5xl">
+            <h2 className="text-lg font-semibold text-ink-900">Local Service Coverage</h2>
+            <p className="mt-2 text-sm text-slate-600 sm:text-base">{localCoverage}</p>
+          </Card>
+        </section>
+      ) : null}
 
       <section className="container-px">
         <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">

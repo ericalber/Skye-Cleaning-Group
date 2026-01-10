@@ -16,15 +16,15 @@ export const serviceAreas: Area[] = [
     neighborhoods: [
       {
         name: 'Pacific Heights',
-        image: 'https://images.unsplash.com/photo-1617877645298-e7d8d0b0a08f?auto=format&fit=crop&w=1200&q=80',
+        image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80',
       },
       {
         name: 'Russian Hill',
-        image: 'https://images.unsplash.com/photo-1488740304459-45c42a17fca3?auto=format&fit=crop&w=1200&q=80',
+        image: 'https://images.unsplash.com/photo-1451906278231-17b8ff0a8880?auto=format&fit=crop&w=1200&q=80',
       },
       {
         name: 'Nob Hill',
-        image: 'https://images.unsplash.com/photo-1509130298731-5841dc2f2446?auto=format&fit=crop&w=1200&q=80',
+        image: 'https://images.unsplash.com/photo-1445307806294-bff7f67ff225?auto=format&fit=crop&w=1200&q=80',
       },
       {
         name: 'Presidio Heights',
@@ -32,7 +32,7 @@ export const serviceAreas: Area[] = [
       },
       {
         name: 'Mission Bay',
-        image: 'https://images.unsplash.com/photo-1470126057406-5173e874a366?auto=format&fit=crop&w=1200&q=80',
+        image: 'https://images.unsplash.com/photo-1534351590666-13e3e96b5017?auto=format&fit=crop&w=1200&q=80',
       },
     ],
   },
@@ -53,7 +53,7 @@ export const serviceAreas: Area[] = [
       },
       {
         name: 'Sausalito',
-        image: 'https://images.unsplash.com/photo-1508261305431-79c43a302e97?auto=format&fit=crop&w=1200&q=80',
+        image: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=80',
       },
       {
         name: 'Larkspur',
@@ -74,7 +74,7 @@ export const serviceAreas: Area[] = [
     neighborhoods: [
       {
         name: 'Napa',
-        image: 'https://images.unsplash.com/photo-1506808547685-e2ba962dedf8?auto=format&fit=crop&w=1200&q=80',
+        image: 'https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?auto=format&fit=crop&w=1200&q=80',
       },
       {
         name: 'Yountville',
@@ -115,11 +115,11 @@ export const serviceAreas: Area[] = [
       },
       {
         name: 'Petaluma',
-        image: 'https://images.unsplash.com/photo-1529287436263-94ee0d1cd3bd?auto=format&fit=crop&w=1200&q=80',
+        image: 'https://images.unsplash.com/photo-1442551382982-e59a4efb3c86?auto=format&fit=crop&w=1200&q=80',
       },
       {
         name: 'Sebastopol',
-        image: 'https://images.unsplash.com/photo-1524593119777-1ff0802cfbfb?auto=format&fit=crop&w=1200&q=80',
+        image: 'https://images.unsplash.com/photo-1528825871115-3581a5387919?auto=format&fit=crop&w=1200&q=80',
       },
     ],
   },
@@ -140,7 +140,7 @@ export const serviceAreas: Area[] = [
       },
       {
         name: 'Boyes Hot Springs',
-        image: 'https://images.unsplash.com/photo-1498598453635-35eed1cfa57c?auto=format&fit=crop&w=1200&q=80',
+        image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80',
       },
       {
         name: 'Kenwood',

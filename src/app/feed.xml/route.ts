@@ -8,21 +8,21 @@ const entries = [
     title: 'Skye expands Belvedere yacht concierge teams',
     description:
       'Our Belvedere program now includes dedicated yacht concierge crews who coordinate dockside arrivals, overnight detailing, and post-regatta resets for luxury homeowners.',
-    url: `${siteUrl}/services-areas#belvedere`,
+    url: `${siteUrl}/service-areas#belvedere`,
     publishedAt: new Date('2024-10-01T08:00:00-07:00'),
   },
   {
     title: 'Wine country hospitality upgrades in Napa and Sonoma',
     description:
       'Release-party season is underway with expanded tasting room detailing, guest casita turndowns, and 24-hour sanitization support across Napa, Sonoma, and St. Helena estates.',
-    url: `${siteUrl}/services-areas#napa`,
+    url: `${siteUrl}/service-areas#napa`,
     publishedAt: new Date('2024-09-10T08:00:00-07:00'),
   },
   {
     title: 'Corporate night crews now serve Presidio innovation campuses',
     description:
       'Skye Cleaning Group deploys NDA-trained overnight crews for Presidio studios, venture labs, and executive residences while maintaining museum-grade preservation.',
-    url: `${siteUrl}/services-areas#presidio`,
+    url: `${siteUrl}/service-areas#presidio`,
     publishedAt: new Date('2024-08-15T08:00:00-07:00'),
   },
 ]
