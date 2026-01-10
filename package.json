@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 4005 --hostname 0.0.0.0",
+    "dev": "next dev --turbo --port 4005 --hostname 0.0.0.0",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "seo:check-metadata": "node scripts/seo/check-metadata-duplicates.cjs",
     "sitemap": "next-sitemap",
     "postbuild": "next-sitemap"
   },

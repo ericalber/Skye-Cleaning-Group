@@ -7,6 +7,7 @@ const dev = process.env.NODE_ENV !== 'production'
 
 const nextConfig: NextConfig = {
   outputFileTracingRoot: __dirname,
+  distDir: dev ? '.next-dev' : '.next',
   compress: true,
   poweredByHeader: false,
   experimental: {
