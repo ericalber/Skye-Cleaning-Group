@@ -22,7 +22,7 @@ const script = `(() => {
 
   const wrapper = document.createElement('div')
   wrapper.id = 'skye-cleaning-widget'
-  const linkHref = '${siteUrl}/services-areas'
+  const linkHref = '${siteUrl}/service-areas'
   const markup = [
     '<button type="button" id="skye-widget-toggle">Get Cleaning Estimate</button>',
     '<form id="skye-widget-form" style="display: none;">',
