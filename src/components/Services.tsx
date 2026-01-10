@@ -1,6 +1,7 @@
 'use client'
 
-import { Suspense, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Building, Building2, PartyPopper, RefreshCw, Sparkles, Truck } from 'lucide-react'
@@ -84,6 +85,11 @@ const accentSwatch: Record<Accent, string> = {
 
 export default function Services() {
   const [selectedService, setSelectedService] = useState<QuoteService | null>(null)
+  const [portalRoot, setPortalRoot] = useState<HTMLElement | null>(null)
+
+  useEffect(() => {
+    setPortalRoot(document.body)
+  }, [])
 
   return (
     <section id="services" className="container-px py-16">
@@ -141,44 +147,49 @@ export default function Services() {
         })}
       </div>
 
-      <AnimatePresence>
-        {selectedService && (
-          <motion.div
-            role="dialog"
-            aria-modal="true"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
-            onClick={() => setSelectedService(null)}
-          >
-            <motion.div
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 20, opacity: 0 }}
-              transition={{ duration: 0.2, ease: 'easeOut' }}
-              className="card relative w-full max-w-xl max-h-[90vh] overflow-y-auto bg-white p-5 sm:p-8"
-              onClick={(event) => event.stopPropagation()}
-            >
-              <button
-                type="button"
-                onClick={() => setSelectedService(null)}
-                className="absolute right-4 top-4 rounded-full bg-black/5 px-2 py-1 text-sm font-semibold"
-                aria-label="Close availability form"
-              >
-                ✕
-              </button>
-              <h3 className="mb-2 text-2xl font-bold text-ink-900">Reserve your Skye clean</h3>
-              <p className="mb-5 text-sm text-slate-600">
-                Complete the form and our concierge team will confirm availability for the selected service.
-              </p>
-              <Suspense fallback={null}>
-                <QuoteForm compact initialService={selectedService} />
-              </Suspense>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {portalRoot
+        ? createPortal(
+            <AnimatePresence>
+              {selectedService ? (
+                <motion.div
+                  role="dialog"
+                  aria-modal="true"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="fixed inset-0 z-[12000] isolate flex items-center justify-center bg-black/90 backdrop-blur-sm p-4"
+                  onClick={() => setSelectedService(null)}
+                >
+                  <motion.div
+                    initial={{ y: 20 }}
+                    animate={{ y: 0 }}
+                    exit={{ y: 20 }}
+                    transition={{ duration: 0.2, ease: 'easeOut' }}
+                    className="relative z-[12001] w-full max-w-xl max-h-[90vh] overflow-y-auto rounded-2xl border border-black/5 bg-white p-5 shadow-[0_8px_30px_rgba(0,0,0,.06)] sm:p-8"
+                    onClick={(event) => event.stopPropagation()}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setSelectedService(null)}
+                      className="absolute right-4 top-4 rounded-full bg-black/5 px-2 py-1 text-sm font-semibold"
+                      aria-label="Close availability form"
+                    >
+                      ✕
+                    </button>
+                    <h3 className="mb-2 text-2xl font-bold text-ink-900">Reserve your Skye clean</h3>
+                    <p className="mb-5 text-sm text-slate-600">
+                      Complete the form and our concierge team will confirm availability for the selected service.
+                    </p>
+                    <Suspense fallback={null}>
+                      <QuoteForm compact initialService={selectedService} />
+                    </Suspense>
+                  </motion.div>
+                </motion.div>
+              ) : null}
+            </AnimatePresence>,
+            portalRoot
+          )
+        : null}
     </section>
   )
 }
