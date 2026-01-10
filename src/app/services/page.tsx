@@ -11,6 +11,18 @@ import MetricStrip from '@/components/blocks/MetricStrip'
 import ProcessSteps from '@/components/blocks/ProcessSteps'
 import RelatedLinks from '@/components/blocks/RelatedLinks'
 import { serviceDetails } from '@/data/servicePages'
+import { buildPageMetadata } from '@/seo/metadata'
+
+const servicesHeroImage =
+  'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=1600&q=80'
+
+export const metadata = buildPageMetadata({
+  title: 'Concierge Cleaning Services in San Francisco | Skye Cleaning Group',
+  description:
+    'Explore premium residential and commercial cleaning programs across San Francisco and the North Bay, with concierge reporting and trusted crews.',
+  path: '/services',
+  ogImage: servicesHeroImage,
+})
 
 const hubEditorial = [
   {
@@ -138,7 +150,7 @@ export default function ServicesPage() {
         eyebrow="Services"
         title="Concierge cleaning that presents like a private members club."
         description="Select a program that protects your brand, extends asset life, and keeps every arrival feeling as polished as opening night."
-        image="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=1600&q=80"
+        image={servicesHeroImage}
       />
 
       <section className="container-px">

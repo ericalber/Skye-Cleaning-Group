@@ -102,7 +102,7 @@ export default function GalleryPage() {
         eyebrow="Gallery"
         title="Step inside the reveals our clients rave about."
         description="Explore before-and-after transformations and short films that show how Skye choreographs concierge cleaning across luxury residences, boardrooms, and hospitality venues."
-        image="https://images.unsplash.com/photo-1529429617124-aee8095725cb?auto=format&fit=crop&w=1920&q=80"
+        image="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80"
       />
 
       <section className="container-px">

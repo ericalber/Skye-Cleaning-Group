@@ -5,6 +5,18 @@ import { cleanTips } from '@/data/cleanTips'
 import PageShell from '@/components/PageShell'
 import PageBanner from '@/components/PageBanner'
 import Card from '@/components/ui-kits/Card'
+import { buildPageMetadata } from '@/seo/metadata'
+
+const cleanTipsHeroImage =
+  'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1920&q=80'
+
+export const metadata = buildPageMetadata({
+  title: 'Cleaning Tips & Concierge Guides | Skye Cleaning Group',
+  description:
+    'Concierge-grade cleaning tips, routines, and hospitality playbooks for premium homes and boutique workplaces across San Francisco and the Bay Area.',
+  path: '/clean-tips',
+  ogImage: cleanTipsHeroImage,
+})
 
 export default function CleanTipsPage() {
   return (
@@ -13,7 +25,7 @@ export default function CleanTipsPage() {
         eyebrow="Cleaning Tips"
         title="Cleaning Tips"
         description="Concierge-grade routines, chemistry picks, and hospitality secrets that keep your space Skye-level between visits."
-        image="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1920&q=80"
+        image={cleanTipsHeroImage}
       />
 
       <section className="container-px">

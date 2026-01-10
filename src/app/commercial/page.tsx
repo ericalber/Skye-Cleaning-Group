@@ -3,12 +3,18 @@ import Link from 'next/link'
 import PageShell from '@/components/PageShell'
 import PageBanner from '@/components/PageBanner'
 import Card from '@/components/ui-kits/Card'
+import { buildPageMetadata } from '@/seo/metadata'
 
-export const metadata = {
-  title: 'Light Commercial Cleaning — Skye Cleaning Group',
+const commercialHeroImage =
+  'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1920&q=80'
+
+export const metadata = buildPageMetadata({
+  title: 'Light Commercial Cleaning in San Francisco | Skye Cleaning Group',
   description:
-    'Explore Skye Cleaning Group’s light commercial cleaning programs for executive suites, private clinics, retail showrooms, and boutique workplaces.',
-}
+    'Concierge light commercial cleaning for executive suites, private clinics, retail showrooms, and boutique workplaces across San Francisco and the North Bay.',
+  path: '/commercial',
+  ogImage: commercialHeroImage,
+})
 
 export default function CommercialPage() {
   return (
@@ -18,7 +24,7 @@ export default function CommercialPage() {
         align="left"
         title="Concierge cleaning that keeps your workplace investor-ready."
         description="Executive suites, private clinics, and boutique showrooms rely on Skye to choreograph presentation, compliance, and reporting without disrupting the workday."
-        image="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1920&q=80"
+        image={commercialHeroImage}
       />
 
       <section className="container-px">

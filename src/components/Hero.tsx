@@ -3,6 +3,7 @@
 import { Suspense } from 'react'
 import { easeOut, motion } from 'framer-motion'
 import QuoteForm from './QuoteForm'
+import { HERO_HEADLINE, HERO_SUBLINE } from '@/constants/heroCopy'
 
 const containerVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -35,12 +36,12 @@ export default function Hero() {
             className="text-white"
           >
             <p className="mb-3 text-xs uppercase tracking-[0.3em] text-white/80">San Francisco • North Bay</p>
-            <h1 className="text-4xl font-black leading-tight sm:text-5xl">Your home, the Skye standard.</h1>
+            <h1 className="text-4xl font-black leading-tight sm:text-5xl">{HERO_HEADLINE}</h1>
             <p className="mt-4 max-w-xl text-base text-white/90 sm:text-lg">
-              Effortless scheduling. Background-checked professionals. Results you feel proud to come home to.
+              {HERO_SUBLINE}
             </p>
             <p className="mt-3 inline-flex items-center rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white/90">
-              Skye Done-Right Promise: if anything isn’t perfect, we return at no cost.
+              Referral thank-you: $50 off your next visit.
             </p>
           </motion.div>
           <motion.div

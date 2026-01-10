@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -10,6 +11,7 @@ import ProcessSteps from '@/components/blocks/ProcessSteps'
 
 import { cleanTips, getCleanTip } from '@/data/cleanTips'
 import { serviceDetails } from '@/data/servicePages'
+import { buildPageMetadata, isLikelyPortuguese, titleFromSlug } from '@/seo/metadata'
 
 function getServiceSummary(subheading: string, intro: string[]) {
   if (subheading) return subheading
@@ -22,6 +24,78 @@ function getServiceSummary(subheading: string, intro: string[]) {
 
 export function generateStaticParams() {
   return cleanTips.map(({ slug }) => ({ slug }))
+}
+
+const buildCleanTipDescription = (title: string) =>
+  `Concierge cleaning insight: ${title}. Skye Cleaning Group shares premium routines for San Francisco and the Bay Area.`
+
+const championLinksByTip: Record<
+  string,
+  { href: string; label: string; prefix: string; suffix: string }[]
+> = {
+  'office-brand-cleaning-mistakes': [
+    {
+      href: '/services/janitorial-commercial',
+      label: 'commercial cleaning services in San Francisco',
+      prefix: 'Need a facilities partner to protect brand perception? Our ',
+      suffix: ' align hospitality detail with compliance-ready reporting.',
+    },
+  ],
+  'five-star-home-checklist': [
+    {
+      href: '/services/recurring-cleaning',
+      label: 'house cleaning in San Francisco',
+      prefix: 'Want this routine handled end-to-end? Our ',
+      suffix: ' delivers concierge cadence with vetted teams.',
+    },
+    {
+      href: '/services/move-in-move-out',
+      label: 'move-out cleaning for San Francisco apartments',
+      prefix: 'For relocations or lease turnovers, our ',
+      suffix: ' protects deposits and keeps handoffs frictionless.',
+    },
+  ],
+  'window-perception-shift': [
+    {
+      href: '/services/janitorial-commercial',
+      label: 'San Francisco office cleaning',
+      prefix: 'To keep investor impressions consistent beyond the glass, our ',
+      suffix: ' pairs daily presentation with secure access protocols.',
+    },
+  ],
+  'post-event-refresh-formula': [
+    {
+      href: '/services/one-time-deep-clean',
+      label: 'deep cleaning in San Francisco',
+      prefix: 'For a full reset after major events, our ',
+      suffix: ' restores homes and venues to showroom readiness.',
+    },
+  ],
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params
+  const tip = getCleanTip(slug)
+
+  if (!tip) {
+    return buildPageMetadata({
+      title: 'Cleaning tip not found | Skye Cleaning Group',
+      description: 'This cleaning tip is not available. Explore Skye Cleaning Group insights.',
+      path: '/clean-tips',
+    })
+  }
+
+  const fallbackTitle = titleFromSlug(tip.slug)
+  const rawTitle = isLikelyPortuguese(tip.title) ? fallbackTitle : tip.title
+  const rawDescription = isLikelyPortuguese(tip.excerpt) ? buildCleanTipDescription(rawTitle) : tip.excerpt
+
+  return buildPageMetadata({
+    title: `${rawTitle} | Skye Cleaning Group`,
+    description: rawDescription,
+    path: `/clean-tips/${tip.slug}`,
+    ogImage: tip.hero,
+    ogType: 'article',
+  })
 }
 
 export default async function CleanTipDetail({ params }: { params: Promise<{ slug: string }> }) {
@@ -54,6 +128,10 @@ export default async function CleanTipDetail({ params }: { params: Promise<{ slu
     },
   ]
 
+  const championLinks = championLinksByTip[tip.slug] ?? []
+  const showChampionLinks =
+    championLinks.length > 0 && !isLikelyPortuguese(tip.title) && !isLikelyPortuguese(tip.hook)
+
   return (
     <PageShell bodyClassName="with-gotravel with-service-landing" mainClassName="space-y-16 pb-20">
       <PageBanner
@@ -73,6 +151,20 @@ export default async function CleanTipDetail({ params }: { params: Promise<{ slu
             <p key={paragraph}>{paragraph}</p>
           ))}
           <ProcessSteps steps={quickSteps} eyebrow="Put this tip to work" />
+          {showChampionLinks ? (
+            <div className="space-y-3 rounded-[2rem] border border-[rgba(18,60,84,0.12)] bg-white/95 p-6 text-sm text-slate-600 shadow-[0_20px_60px_rgba(12,42,74,0.16)] sm:text-base">
+              <h3 className="text-lg font-semibold text-ink-900">San Francisco service follow-through</h3>
+              {championLinks.map((link) => (
+                <p key={link.href}>
+                  {link.prefix}
+                  <Link href={link.href} className="font-semibold text-[var(--skye-700)] underline decoration-dotted">
+                    {link.label}
+                  </Link>
+                  {link.suffix}
+                </p>
+              ))}
+            </div>
+          ) : null}
           {related.length ? (
             <div className="space-y-4 rounded-[2.25rem] border border-[rgba(18,60,84,0.12)] bg-white/95 p-6 shadow-[0_26px_72px_rgba(12,42,74,0.16)]">
               <h3 className="text-lg font-semibold text-ink-900">Services that pair with this routine</h3>

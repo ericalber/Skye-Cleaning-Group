@@ -65,7 +65,7 @@ const caseStudies = [
       { label: 'Infection control compliance', value: '100 percent audit pass' },
       { label: 'Client loyalty increase', value: '18 percent growth' }
     ],
-    before: 'https://images.unsplash.com/photo-1529429617124-aee8095725cb?auto=format&fit=crop&w=1600&q=80',
+    before: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80',
     after: 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1600&q=80'
   }
 ]
