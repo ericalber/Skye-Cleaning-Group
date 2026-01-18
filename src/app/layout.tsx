@@ -39,7 +39,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en-US">
-      <body className={`${inter.className} with-grandstar with-sidebar-flat fsx-light`}>
+      <body suppressHydrationWarning className={`${inter.className} with-grandstar with-sidebar-flat fsx-light`}>
         {children}
       </body>
     </html>

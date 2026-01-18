@@ -31,7 +31,7 @@ export default function Hero() {
         <div className="grid items-start gap-8 md:grid-cols-2">
           <motion.div
             variants={containerVariants}
-            initial="hidden"
+            initial={false}
             animate="visible"
             className="text-white"
           >
@@ -40,13 +40,17 @@ export default function Hero() {
             <p className="mt-4 max-w-xl text-base text-white/90 sm:text-lg">
               {HERO_SUBLINE}
             </p>
-            <p className="mt-3 inline-flex items-center rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white/90">
-              Referral thank-you: $50 off your next visit.
-            </p>
+            <div className="mt-5 space-y-2 rounded-2xl bg-white/10 px-4 py-3">
+              <p className="text-lg font-semibold text-white sm:text-xl">Referral Program</p>
+              <p className="text-sm leading-relaxed text-white/90 sm:text-base">
+                For every friend or family member you refer who books a regular cleaning service,
+                you receive 50% off your next cleaning service.
+              </p>
+            </div>
           </motion.div>
           <motion.div
             variants={containerVariants}
-            initial="hidden"
+            initial={false}
             animate="visible"
             transition={{ delay: 0.15, duration: 0.6, ease: easeOut }}
             className="flex md:justify-end"
